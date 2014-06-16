@@ -24,13 +24,18 @@
 #include <legacy/compat.hpp>
 #endif
 
+// #include <stdio.h>
+
 #include <urob4/usmltag.h>
 #include <cstdlib>
+//#include <ulms4/ufunclaserbase.h>
 #include <ucam4/ufunctioncambase.h>
 
 /**
 Laser scanner plugin - stop robot in something is infront of the robot
 */
+
+
 
 
 class UFuncLaserStop : public UFunctionCamBase
@@ -69,6 +74,7 @@ class UFuncLaserStop : public UFunctionCamBase
      char val[MVL];
      int camDevice = -1;
      bool debug = true; // default is debug on
+     bool result = true;
      
      ask4help = msg->tag.getAttValue("help", val, MVL);
      if (not ask4help)
@@ -82,21 +88,53 @@ class UFuncLaserStop : public UFunctionCamBase
      // ask4help = false, if no 'help' option were available.
      if (ask4help)
      { // create the reply in XML-like (html - like) format
-       sendHelpStart("LaserStop");
-       sendText("--- available Laser Stop options\n");
-       sendText("device=X          Use this laser device\n");
-       sendText("debug=false       More images and print on server console (def=true)\n");
-       sendText("smrcl             Format the reply for MRC (<vision vis1=\"x.x\" vis2=\"y.y\" .../>\n");
-       sendText("help              This message\n");
-       sendHelpDone();
-       sendInfo("done");
-       
+      sendHelpStart("B2");
+      sendText("--- available B2 options\n");
+      sendText("device=X          Use this camera - for position and parameters\n");
+      sendText("img=X             Get image from image pool - else take new image\n");
+      sendText("blue              Try find a blue ball (def is red)\n");
+      sendText("debug=false       More images and print on server console (def=true)\n");
+      sendText("smrcl             Format the reply for MRC (<vision vis1=\"x.x\" vis2=\"y.y\" .../>\n");
+      sendText("v2                use version 2 code (edge extraction)");
+      sendText("help              This message\n");
+      sendHelpDone();
+      sendInfo("done");
+      result = true;
      } 
+     else
+     {
+       result = false;
+     }
      
-     return true;
+     
+     return result;
    }
+   
+   bool setResource(UResBase * resource, bool remove)
+    { // load resource as provided by the server (or other plugins)
+      bool result;
+      result = true;
+      return result;
+    }
+    
+    /**
+    * Create any resources that this modules needs
+    * This method is called after the resource is registred by the server. */
+    virtual void createResources()
+    {
+      
+    }
  
  protected:
   
   
 };
+
+
+#ifdef LIBRARY_OPEN_NEEDED
+UFunctionBase * createFunc()
+  { // called by server to create an object of this type
+    /** replace 'UFuncBall' with your classname, as used in the headerfile */
+    return new UFuncLaserStop();
+  }
+#endif
