@@ -28,8 +28,8 @@
 
 #include <urob4/usmltag.h>
 #include <cstdlib>
-//#include <ulms4/ufunclaserbase.h>
-#include <ucam4/ufunctioncambase.h>
+#include <ulms4/ufunclaserbase.h>
+//#include <ucam4/ufunctioncambase.h>
 
 /**
 Laser scanner plugin - stop robot in something is infront of the robot
@@ -38,7 +38,7 @@ Laser scanner plugin - stop robot in something is infront of the robot
 
 
 
-class UFuncLaserStop : public UFunctionCamBase
+class UFuncLaserStop : public UFuncLaserBase
 { // NAMING convention recommend that the main plugin function class
   // starts with UFunc followed by
   // a descriptive extension for this specific plugin
@@ -88,6 +88,7 @@ class UFuncLaserStop : public UFunctionCamBase
      // ask4help = false, if no 'help' option were available.
      if (ask4help)
      { // create the reply in XML-like (html - like) format
+      printf("test\n");
       sendHelpStart("B2");
       sendText("--- available B2 options\n");
       sendText("device=X          Use this camera - for position and parameters\n");
