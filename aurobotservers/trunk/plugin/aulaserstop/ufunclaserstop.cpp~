@@ -51,7 +51,7 @@ class UFuncLaserStop : public UFunctionCamBase
    };
    
    /** Destructor - to delete the resource (etc) when finished */
-   virtual ~UFuncLaserStop()
+   virtual ~UFuncBall()
    { // possibly remove allocated variables here - if needed
    }
  
