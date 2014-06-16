@@ -1,0 +1,20 @@
+log "$odox" "$odoy" "$odoth" "$l0"  
+v0=0.2
+w0=0
+laser "scanset width=180"
+laser "scanget"
+laser "scanpush cmd='v360 update'"
+laser "v360push cmd='near x=3 y=0.0 '"
+count=$l1
+label "vent"
+wait 0.01
+if ($l1==count) "vent"
+count=$l1
+w=$l0
+eval w
+w0=0.0*w0+0.7*w
+vl=v0-0.13*w0
+vr=v0+0.13*w0
+motorcmds vl vr
+if ($odox < 2.5) "vent"
+

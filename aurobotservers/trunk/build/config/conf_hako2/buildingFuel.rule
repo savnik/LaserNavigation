@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="buildingFuelPoly" run="true">
+# converted from KML - offset by 1.00E, -0.01N
+#           map part - offset by -707999.00E, -6174000.01N
+poly.del('buildingFuel')
+# poly.addPoint('buildingFuel', 707946.20, 6174314.71)
+poly.addPoint('buildingFuel', -53.80, 314.71)
+# poly.addPoint('buildingFuel', 707929.50, 6174313.72)
+poly.addPoint('buildingFuel', -70.50, 313.72)
+mapbase.addMapLine('buildingFuel3', -53.80, 314.71, -70.50, 313.72, 0.50, 1)
+# poly.addPoint('buildingFuel', 707934.56, 6174240.09)
+poly.addPoint('buildingFuel', -65.44, 240.09)
+mapbase.addMapLine('buildingFuel6', -70.50, 313.72, -65.44, 240.09, 0.50, 1)
+# poly.addPoint('buildingFuel', 707950.75, 6174241.28)
+poly.addPoint('buildingFuel', -49.25, 241.28)
+mapbase.addMapLine('buildingFuel9', -65.44, 240.09, -49.25, 241.28, 0.50, 1)
+mapbase.addMapLine('buildingFuel12', -49.25, 241.28, -53.80, 314.71, 0.50, 1)
+poly.setRefCoord('buildingFuel', 2) # map coordinate system
+# poly.setRefCoord('buildingFuel', 1) # UTM coordinate system
+poly.setClosed('buildingFuel') # polygon
+# ends at lat 55.669381 deg and long 12.306747 deg
+</rule>
+

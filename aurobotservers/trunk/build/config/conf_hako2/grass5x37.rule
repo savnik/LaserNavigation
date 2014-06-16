@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rule name="grass5x37rute" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('plannedRoute')
+# poly.addPoint('plannedRoute', 707833.45, 6174298.28)
+poly.addPoint('plannedRoute', -166.55, 298.28)
+# poly.addPoint('plannedRoute', 707802.26, 6174293.98)
+poly.addPoint('plannedRoute', -197.74, 293.98)
+# poly.addPoint('plannedRoute', 707799.10, 6174291.08)
+poly.addPoint('plannedRoute', -200.90, 291.08)
+# poly.addPoint('plannedRoute', 707799.27, 6174288.89)
+poly.addPoint('plannedRoute', -200.73, 288.89)
+# poly.addPoint('plannedRoute', 707803.25, 6174284.89)
+poly.addPoint('plannedRoute', -196.75, 284.89)
+# poly.addPoint('plannedRoute', 707834.88, 6174288.66)
+poly.addPoint('plannedRoute', -165.12, 288.66)
+# poly.addPoint('plannedRoute', 707837.66, 6174290.99)
+poly.addPoint('plannedRoute', -162.34, 290.99)
+# poly.addPoint('plannedRoute', 707837.58, 6174292.57)
+poly.addPoint('plannedRoute', -162.42, 292.57)
+# poly.addPoint('plannedRoute', 707833.96, 6174294.80)
+poly.addPoint('plannedRoute', -166.04, 294.80)
+# poly.addPoint('plannedRoute', 707802.86, 6174290.09)
+poly.addPoint('plannedRoute', -197.14, 290.09)
+# poly.addPoint('plannedRoute', 707798.93, 6174291.76)
+poly.addPoint('plannedRoute', -201.07, 291.76)
+# poly.addPoint('plannedRoute', 707798.80, 6174292.99)
+poly.addPoint('plannedRoute', -201.20, 292.99)
+# poly.addPoint('plannedRoute', 707801.81, 6174296.36)
+poly.addPoint('plannedRoute', -198.19, 296.36)
+# poly.addPoint('plannedRoute', 707832.99, 6174300.80)
+poly.addPoint('plannedRoute', -167.01, 300.80)
+# poly.addPoint('plannedRoute', 707836.52, 6174298.84)
+poly.addPoint('plannedRoute', -163.48, 298.84)
+# poly.addPoint('plannedRoute', 707837.31, 6174295.38)
+poly.addPoint('plannedRoute', -162.69, 295.38)
+# poly.addPoint('plannedRoute', 707834.18, 6174291.79)
+poly.addPoint('plannedRoute', -165.82, 291.79)
+# poly.addPoint('plannedRoute', 707803.19, 6174287.50)
+poly.addPoint('plannedRoute', -196.81, 287.50)
+poly.setRefCoord('plannedRoute', 2) # map coordinate system
+# poly.setRefCoord('plannedRoute', 1) # UTM coordinate system
+# poly.setClosed('plannedRoute') # polygon
+poly.setOpen('plannedRoute') # polyline
+# ends at lat 55.669858 deg and long 12.304456 deg
+</rule>
+
+<rule name="grass5x37" run="false">
+<description>
+  Converted from google earth plan - check that name is legal
+  Heading is estimated from line length, and may be inappropriate
+  (rev2)
+  # converted from KML - offset by 0.00E, 0.00N
+  #           map part - offset by -708000.00E, -6174000.00N
+</description>
+<init>
+  global.drive.mission='grass5x37'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+</init>
+smr.do('set "hakoliftinggearstateref" 100')
+wait(3) : false
+smr.do('set "hakoenginespeed" 1900') # RPM
+smr.speed = 0.7 # desired drive speed m/s (0.7m/s~2.5km/h)
+global.drive.directOrWait = false
+#
+# to lat 55.669917 deg and long 12.304446 deg
+driveUTM(707833.45, 6174298.28, 262.1)
+# driveMap(-166.55, 298.28, 262.1)
+#
+global.drive.holdLine=true
+# to lat 55.669892 deg and long 12.304394 deg
+# distance is 31.48m long at compas heading 262.1
+driveUTM(707802.26, 6174293.98, 262.1)
+# driveMap(-197.74, 293.98, 262.1)
+#
+# to lat 55.669873 deg and long 12.304395 deg
+# distance is 4.29m long at compas heading 227.5
+driveUTM(707799.10, 6174291.08, 201.5)
+# driveMap(-200.90, 291.08, 201.5)
+#
+# to lat 55.669835 deg and long 12.304455 deg
+# distance is 2.20m long at compas heading 175.5
+driveUTM(707799.27, 6174288.89, 155.3)
+# driveMap(-200.73, 288.89, 155.3)
+#
+# to lat 55.669855 deg and long 12.304960 deg
+# distance is 5.64m long at compas heading 135.2
+driveUTM(707803.25, 6174284.89, 83.2)
+# driveMap(-196.75, 284.89, 83.2)
+#
+global.drive.holdLine=true
+# to lat 55.669875 deg and long 12.305006 deg
+# distance is 31.85m long at compas heading 83.2
+driveUTM(707834.88, 6174288.66, 83.2)
+# driveMap(-165.12, 288.66, 83.2)
+#
+# to lat 55.669889 deg and long 12.305006 deg
+# distance is 3.63m long at compas heading 50.0
+driveUTM(707837.66, 6174290.99, 23.6)
+# driveMap(-162.34, 290.99, 23.6)
+#
+# to lat 55.669911 deg and long 12.304950 deg
+# distance is 1.58m long at compas heading 357.3
+driveUTM(707837.58, 6174292.57, 329.5)
+# driveMap(-162.42, 292.57, 329.5)
+#
+# to lat 55.669882 deg and long 12.304453 deg
+# distance is 4.25m long at compas heading 301.7
+driveUTM(707833.96, 6174294.80, 261.4)
+# driveMap(-166.04, 294.80, 261.4)
+#
+global.drive.holdLine=true
+# to lat 55.669899 deg and long 12.304392 deg
+# distance is 31.46m long at compas heading 261.4
+driveUTM(707802.86, 6174290.09, 261.4)
+# driveMap(-197.14, 290.09, 261.4)
+#
+# to lat 55.669910 deg and long 12.304391 deg
+# distance is 4.27m long at compas heading 293.0
+driveUTM(707798.93, 6174291.76, 323.5)
+# driveMap(-201.07, 291.76, 323.5)
+#
+# to lat 55.669939 deg and long 12.304441 deg
+# distance is 1.24m long at compas heading 354.1
+driveUTM(707798.80, 6174292.99, 17.9)
+# driveMap(-201.20, 292.99, 17.9)
+#
+# to lat 55.669965 deg and long 12.304939 deg
+# distance is 4.52m long at compas heading 41.7
+driveUTM(707801.81, 6174296.36, 81.9)
+# driveMap(-198.19, 296.36, 81.9)
+#
+global.drive.holdLine=true
+# to lat 55.669946 deg and long 12.304994 deg
+# distance is 31.50m long at compas heading 81.9
+driveUTM(707832.99, 6174300.80, 81.9)
+# driveMap(-167.01, 300.80, 81.9)
+#
+# to lat 55.669915 deg and long 12.305004 deg
+# distance is 4.04m long at compas heading 119.0
+driveUTM(707836.52, 6174298.84, 143.1)
+# driveMap(-163.48, 298.84, 143.1)
+#
+# to lat 55.669884 deg and long 12.304951 deg
+# distance is 3.55m long at compas heading 167.2
+driveUTM(707837.31, 6174295.38, 194.2)
+# driveMap(-162.69, 295.38, 194.2)
+#
+# to lat 55.669858 deg and long 12.304456 deg
+# distance is 4.76m long at compas heading 221.2
+driveUTM(707834.18, 6174291.79, 262.1)
+# driveMap(-165.82, 291.79, 262.1)
+#
+global.drive.holdLine=true
+# ends at lat 55.669858 deg and long 12.304456 deg
+# last distance is 31.28m long at compas heading 262.1
+driveUTM(707803.19, 6174287.50, 262.1)
+# driveMap(-196.81, 287.50, 262.1)
+driveStop()
+# wait a 10 seconds before saving the MRC log
+smr.do('set "hakoenginespeed" 800') # RPM
+wait(10) : false
+smr.saveMrcLog()
+print('finished grass5x37')
+</rule>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="roadToSouthAreaPoly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('roadToSouthArea')
+poly.addPoint('roadToSouthArea', 707921.29, 6174222.10)
+poly.addPoint('roadToSouthArea', 707925.70, 6174148.49)
+poly.addPoint('roadToSouthArea', 707925.28, 6174139.87)
+poly.addPoint('roadToSouthArea', 707921.67, 6174134.31)
+poly.addPoint('roadToSouthArea', 707915.17, 6174130.49)
+poly.addPoint('roadToSouthArea', 707907.08, 6174129.26)
+poly.addPoint('roadToSouthArea', 707819.57, 6174124.66)
+poly.addPoint('roadToSouthArea', 707764.91, 6174121.24)
+poly.addPoint('roadToSouthArea', 707761.04, 6174122.51)
+poly.addPoint('roadToSouthArea', 707756.09, 6174128.47)
+poly.addPoint('roadToSouthArea', 707753.26, 6174126.25)
+poly.addPoint('roadToSouthArea', 707758.15, 6174120.63)
+poly.addPoint('roadToSouthArea', 707761.41, 6174118.76)
+poly.addPoint('roadToSouthArea', 707843.04, 6174123.52)
+poly.addPoint('roadToSouthArea', 707850.64, 6174122.87)
+poly.addPoint('roadToSouthArea', 707867.49, 6174123.38)
+poly.addPoint('roadToSouthArea', 707892.28, 6174124.42)
+poly.addPoint('roadToSouthArea', 707894.80, 6174124.83)
+poly.addPoint('roadToSouthArea', 707917.30, 6174127.06)
+poly.addPoint('roadToSouthArea', 707924.75, 6174130.32)
+poly.addPoint('roadToSouthArea', 707929.63, 6174136.00)
+poly.addPoint('roadToSouthArea', 707930.68, 6174143.73)
+poly.addPoint('roadToSouthArea', 707925.23, 6174222.26)
+poly.setRefCoord('roadToSouthArea', 1) # UTM coordinate system
+poly.setClosed('roadToSouthArea') # polygon
+# ends at lat 55.669221 deg and long 12.306344 deg
+</rule>
+

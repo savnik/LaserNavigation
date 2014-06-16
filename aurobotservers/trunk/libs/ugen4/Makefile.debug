@@ -1,0 +1,62 @@
+# makefile
+# preprocessor flags like -I(include dir)
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include
+#                  and -O0 (no optimize and -g3 full debug info
+LDFLAGS = -g3 -lcxcore -lcv -lpng
+# extra preprocessor defines
+DEFINES =
+# C++ compiler flags
+CXXFLAGS = -O0 -g3 -Wall $(DEFINES)
+
+# Object files to produce before link
+objects = conf.o     ucommon.o \
+ufuzzysplit.o  uimg3dpoint.o  umatrix.o  \
+usmltagin.o u2dline.o  udatabase.o      ugbmbmp.o   \
+ugmk.o     uimgstat.o     uplane.o    utime.o    \
+u3d.o      ufuzzyelement.o  ugbmhelp.o     uimage2.o  \
+uline.o        upolygon.o ucampar.o  ufuzzypixel.o   \
+ugbm.o         uimage.o   ulock.o        uposrot.o crc.o
+# executable file name
+exe = ugen4
+lib = libugen4o.a
+
+# compile all - all objects depend on all other
+all: $(objects)
+
+.PHONY : clean install
+clean :
+	-rm -f $(objects) $(lib)
+	-@rm -fr *~ .deps
+
+
+install:
+	-rm ../include/ugen4/*.h
+	cp *.h ../include/ugen4
+	ar -r $(lib) $(objects)
+#	-ar -d $(lib) $(exe).o
+	ranlib $(lib)
+	cp $(lib) ../lib
+
+######################################################################
+#
+# Automatic dependencies
+
+DEPS_MAGIC := $(shell mkdir -p .deps)
+
+
+%.o: .deps/%.d
+
+.deps/%.d: src/%.c
+	@cc $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#'
+
+.deps/%.d: %.cpp
+	@g++ $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' > $@
+
+
+
+######################################################################
+#
+# Include automatic dependencies
+
+-include $(patsubst %.o, .deps/%.d, $(objects))

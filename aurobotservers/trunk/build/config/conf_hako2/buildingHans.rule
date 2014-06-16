@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="buildingHansPoly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('buildingHans')
+poly.addPoint('buildingHans', 707916.5, 6174213.00)
+poly.addPoint('buildingHans', 707902.5, 6174212.44)
+poly.addPoint('buildingHans', 707906.0, 6174154.69)
+poly.addPoint('buildingHans', 707920.0, 6174155.52)
+poly.setRefCoord('buildingHans', 1) # UTM coordinate system
+poly.setClosed('buildingHans') # polygon
+# ends at lat 55.668624 deg and long 12.306227 deg
+</rule>
+

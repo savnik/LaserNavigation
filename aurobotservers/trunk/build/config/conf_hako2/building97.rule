@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="building97Poly" run="true">
+# converted from KML - offset by 0.02E, -0.01N
+#           map part - offset by -707999.98E, -6174000.01N
+poly.del('building97')
+# poly.addPoint('building97', 707881.76, 6174297.75)
+poly.addPoint('building97', -118.24, 297.75)
+# poly.addPoint('building97', 707864.81, 6174296.73)
+poly.addPoint('building97', -135.19, 296.73)
+mapbase.addMapLine('building973', -118.24, 297.75, -135.19, 296.73, 0.50, 1)
+# poly.addPoint('building97', 707868.42, 6174236.31)
+poly.addPoint('building97', -131.58, 236.31)
+mapbase.addMapLine('building976', -135.19, 296.73, -131.58, 236.31, 0.50, 1)
+# poly.addPoint('building97', 707884.98, 6174236.70)
+poly.addPoint('building97', -115.02, 236.70)
+mapbase.addMapLine('building979', -131.58, 236.31, -115.02, 236.70, 0.50, 1)
+mapbase.addMapLine('building9712', -115.02, 236.70, -118.24, 297.75, 0.50, 1)
+poly.setRefCoord('building97', 2) # map coordinate system
+# poly.setRefCoord('building97', 1) # UTM coordinate system
+poly.setClosed('building97') # polygon
+# ends at lat 55.669368 deg and long 12.305716 deg
+</rule>
+

@@ -1,0 +1,7 @@
+log "$time" "$odox" "$odoy" "$odoth" "$XbowYaw" "$fogPhdZ"
+wait 10
+%followline "bm" @v 0.2 : ($drivendist > 60.5)
+ignoreobstacles
+followline "bm" @v 0.2 : ($drivendist > 11.5)
+ignoreobstacles
+followline "bm" @v 0.2 : ($crossingblackline)

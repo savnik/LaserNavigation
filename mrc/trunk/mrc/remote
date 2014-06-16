@@ -1,0 +1,3 @@
+cd calibtest
+/vhome/naa/robot2005/src/smrdemo/smrdemo $1
+

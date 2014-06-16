@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!-- Generate stopcmd code -->
+<rule name="stopcmd"  if="true">
+  <init>
+    #Create the required followline structure
+    global.codegen.stopcmd.command = ""
+    global.codegen.stopcmd.failcond = ""
+    global.codegen.stopcmd.quality = 0.8
+  </init>
+  #Create static code
+  global.codegen.stopcmd.command = 'stop '
+  global.codegen.stopcmd.quality = 0.1
+  <post>
+  </post>
+</rule>

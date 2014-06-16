@@ -1,0 +1,6 @@
+log "$time" "$odox" "$odoy" "$odoth"
+log "$ir1[0]" "$ir1[1]" "$ir1[2]" "$ir1[3]" "$ir1[4]" "$ir1[5]" "$ir1[6]" "$ir1[7]" "$ir1[8]" 
+log "$ir1[9]" 
+log "$ir2[0]" "$ir2[1]" "$ir2[2]" "$ir2[3]" "$ir2[4]" "$ir2[5]" "$ir2[6]" "$ir2[7]"
+log "$cursensor[0]" "$cursensor[1]" "$gyro[0]" "$gyro[1]" "$gyro[2]" "$gyrotemp[0]" "$gyrotemp[1]" "$gyrotemp[2]"
+wait 600

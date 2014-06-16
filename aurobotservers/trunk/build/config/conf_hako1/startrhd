@@ -1,0 +1,40 @@
+#! /bin/bash
+#export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/lib/svs":$LD_LIBRARY_PATH
+# starting aukeeper ad deamon on port 24926
+# running in /rhome/demo/bin
+# updating aukeeper from userver as needed (m-date based)
+#
+# echo switch to demo bin directory
+cd /root/hako/rhd
+echo ready to start rhd
+serverName=rhd2
+echo starting a "$serverName"
+if [ $( pgrep -x "$serverName" ) ]
+then
+  echo trying to terminate "$serverName"
+  killall "$serverName" > /dev/null
+    echo zzz 1...
+  sleep 0.7
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo zzzzzzz 2...
+    sleep 2.5
+  fi
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo zzzzzzzzzzzzzz 3...
+    sleep 7
+  fi
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo trying to 9 kill "$serverName"
+    killall -9 "$serverName" > /dev/null
+    echo "$serverName" killed
+  else
+    echo "$serverName" terminated
+  fi
+fi
+aulogrotate "$serverName"_out
+aulogrotate "$serverName"_err
+./"$serverName" $1 $2 $3 $4 > "$serverName"_out 2> "$serverName"_err &
+echo started "$serverName" $1 $2 $3 $4

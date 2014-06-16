@@ -1,0 +1,91 @@
+log "$odoy"
+d=0.5
+s=0.2
+n=0
+rounds=0
+targetrounds=5
+pi=3.1416
+
+array "gmx" 15
+array "gmy" 15
+array "gmth" 15
+pi=3.1416
+gmx[0]=0
+gmx[1]=0
+gmx[2]=4
+gmx[3]=4
+gmx[4]=0
+gmx[5]=0
+gmx[6]=4
+gmx[7]=4
+gmx[8]=0
+gmx[9]=4
+gmx[10]=0.4
+gmx[11]=3.6
+gmx[12]=2
+gmx[13]=2
+gmx[14]=0.5
+
+gmy[0]=1.5
+gmy[1]=1.5
+gmy[2]=1.5
+gmy[3]=1.5
+gmy[4]=3.5
+gmy[5]=3.5
+gmy[6]=3.5
+gmy[7]=3.5
+gmy[8]=4.7
+gmy[9]=4.7
+gmy[10]=5
+gmy[11]=5
+gmy[12]=4.1
+gmy[13]=4.1
+gmy[14]=0
+
+gmth[0]=pi
+gmth[1]=0
+gmth[2]=pi
+gmth[3]=0
+gmth[4]=pi
+gmth[5]=0
+gmth[6]=pi
+gmth[7]=0
+gmth[8]=0
+gmth[9]=pi
+gmth[10]=-pi/2
+gmth[11]=-pi/2
+gmth[12]=pi
+gmth[13]=0
+gmth[14]=pi/2
+
+array "route" 7
+route[0]=1
+route[1]=5
+route[2]=10
+route[3]=9
+route[4]=2
+route[5]=14
+
+laser "resetlocalizer"
+
+laser "addline alpha=1.57 r=1.0"
+laser "addline alpha=1.57 r=6.0"
+laser "addline alpha=0 r=1.0"
+laser "addline alpha=0 r=5.0"
+
+laser "setinitpose x=1.2 y=1.2 th=0"
+laser "setinitcov Cx=0.004 Cy=0.004 Cth=0.01"
+
+laser "push t='0.5' cmd='localize'"
+wait 1
+label "mainloop"
+driveonw 4.5 1.5 0 :($targetdist <0.3)
+driveonw 4.5 5.5 90 :($targetdist <0.3)
+driveonw 1.5 5.5 180 :($targetdist <0.3)
+driveonw 1.5 1.5 -90 :($targetdist <0.3)
+goto "mainloop"
+
+
+
+
+

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="south11poly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+<init>
+  namepp = 'south11poly'
+</init>
+poly.del(namepp)
+poly.addPoint(namepp, 707884.99, 6174119.18)
+poly.addPoint(namepp, 707871.89, 6174118.25)
+poly.addPoint(namepp, 707867.12, 6174114.90)
+poly.addPoint(namepp, 707872.32, 6174112.26)
+poly.addPoint(namepp, 707885.42, 6174113.20)
+poly.addPoint(namepp, 707890.69, 6174109.56)
+poly.addPoint(namepp, 707885.98, 6174105.22)
+poly.addPoint(namepp, 707872.89, 6174104.28)
+poly.addPoint(namepp, 707868.11, 6174100.94)
+poly.addPoint(namepp, 707873.31, 6174098.30)
+poly.addPoint(namepp, 707886.41, 6174099.23)
+poly.addPoint(namepp, 707891.11, 6174103.58)
+poly.addPoint(namepp, 707885.84, 6174107.21)
+poly.addPoint(namepp, 707872.74, 6174106.28)
+poly.addPoint(namepp, 707867.97, 6174102.93)
+poly.addPoint(namepp, 707873.17, 6174100.29)
+poly.addPoint(namepp, 707886.27, 6174101.23)
+poly.addPoint(namepp, 707890.76, 6174108.56)
+poly.addPoint(namepp, 707885.27, 6174115.19)
+poly.addPoint(namepp, 707872.18, 6174114.26)
+poly.addPoint(namepp, 707867.40, 6174110.91)
+poly.addPoint(namepp, 707872.60, 6174108.27)
+poly.addPoint(namepp, 707885.70, 6174109.21)
+poly.addPoint(namepp, 707890.90, 6174106.57)
+poly.addPoint(namepp, 707886.13, 6174103.22)
+poly.addPoint(namepp, 707873.03, 6174102.29)
+poly.addPoint(namepp, 707867.76, 6174105.92)
+poly.addPoint(namepp, 707872.46, 6174110.27)
+poly.addPoint(namepp, 707885.56, 6174111.20)
+poly.addPoint(namepp, 707890.33, 6174114.55)
+poly.addPoint(namepp, 707885.13, 6174117.19)
+poly.addPoint(namepp, 707872.03, 6174116.25)
+#poly.setRefCoord(namepp, 2) # map coordinate system
+poly.setRefCoord(namepp, 1) # UTM coordinate system
+poly.setOpen(namepp) # polyline
+</rule>
+
+<rule name="south11" run="false">
+<description>
+  Converted from google earth plan - check that name is legal
+  Heading is estimated from line length, and may be inappropriate
+  (rev2)
+  # converted from KML - offset by 0.00E, 0.00N
+  #           map part - offset by -708000.00E, -6174000.00N
+</description>
+<init>
+  global.drive.mission='south11'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+</init>
+# smr.speed = 0.7 # desired drive speed m/s (0.7m/s~2.5km/h)
+smr.do('set "hakoliftinggearstateref" 120')
+#smr.do('set "hakopowertakeoffstateref" 0')
+wait(1) : false
+smr.do('set "hakoenginespeed" 1900') # RPM
+wait(2) : false
+smr.speed = 0.6
+global.drive.directOrWait = false
+#
+driveUTM(707884.99, 6174119.18, 265.9)
+driveUTM(707871.89, 6174118.25, 265.9)
+driveUTM(707867.12, 6174114.90, 175.9)
+driveUTM(707872.32, 6174112.26, 85.9)
+driveUTM(707885.42, 6174113.20, 85.9)
+driveUTM(707890.69, 6174109.56, 175.9)
+driveUTM(707885.98, 6174105.22, 265.9)
+driveUTM(707872.89, 6174104.28, 265.9)
+driveUTM(707868.11, 6174100.94, 175.9)
+driveUTM(707873.31, 6174098.30, 85.9)
+driveUTM(707886.41, 6174099.23, 85.9)
+driveUTM(707891.11, 6174103.58, 355.9)
+driveUTM(707885.84, 6174107.21, 265.9)
+driveUTM(707872.74, 6174106.28, 265.9)
+driveUTM(707867.97, 6174102.93, 175.9)
+driveUTM(707873.17, 6174100.29, 85.9)
+driveUTM(707886.27, 6174101.23, 85.9)
+driveUTM(707890.76, 6174108.56, 355.9)
+driveUTM(707885.27, 6174115.19, 265.9)
+driveUTM(707872.18, 6174114.26, 265.9)
+driveUTM(707867.40, 6174110.91, 175.9)
+driveUTM(707872.60, 6174108.27, 85.9)
+driveUTM(707885.70, 6174109.21, 85.9)
+driveUTM(707890.90, 6174106.57, 175.9)
+driveUTM(707886.13, 6174103.22, 265.9)
+driveUTM(707873.03, 6174102.29, 265.9)
+driveUTM(707867.76, 6174105.92, 355.9)
+driveUTM(707872.46, 6174110.27, 85.9)
+driveUTM(707885.56, 6174111.20, 85.9)
+driveUTM(707890.33, 6174114.55, 355.9)
+driveUTM(707885.13, 6174117.19, 265.9)
+driveUTM(707872.03, 6174116.25, 265.9)
+driveStop()
+# wait a 4 seconds before saving the MRC log
+smr.do('set "hakoenginespeed" 800') # RPM
+wait(4) : false
+smr.saveMrcLog()
+print('finished south11')
+</rule>

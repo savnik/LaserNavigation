@@ -1,0 +1,72 @@
+int intp_set(void *par){
+  if ( strcmp((char *)varptrstack[0].pt,"linedetect")==0)
+  lineest.Ndetect=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"conditioncounter")==0)
+  conditioncounter[(int)(*varptrstack[1].pt)]=0;
+  if ( strcmp((char *)varptrstack[0].pt,"odocontrol")==0)
+  odo.control=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"$odox")==0) odo.pose.x=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"$odoy")==0) odo.pose.y=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"$odoth")==0) odo.pose.th=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"$gyro1off")==0) gyro1off=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"odowidth")==0) odo.w=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"usekalmanodo")==0)  {
+    usekalmanodo=*varptrstack[1].pt;
+    motcon.tgt.x=vget(kalmanodo.kalman->Xpost,0)+ kalmanodo.offset_x;
+    motcon.tgt.y=vget(kalmanodo.kalman->Xpost,1)+kalmanodo.offset_y;
+    motcon.tgt.th=vget(kalmanodo.kalman->Xpost,2);
+  }
+  if ( strcmp((char *)varptrstack[0].pt,"kalmanon")==0)  {
+    kalmanon=*varptrstack[1].pt;  
+  }
+  if ( strcmp((char *)varptrstack[0].pt,"hakomanual")==0)  {
+    if(*varptrstack[1].pt) 
+      hako.navigationModeRef='M';
+    else
+      hako.navigationModeRef='A';  
+  }
+
+  if ( strcmp((char *)varptrstack[0].pt,"hakoenginespeed")==0) hako.engineSpeedRef=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"hakoliftinggearstateref")==0)
+  hako.liftingGearStateRef=*varptrstack[1].pt;
+  if ( strcmp((char *)varptrstack[0].pt,"hakopowertakeoffstateref")==0)
+  hako.powerTakeoffStateRef=*varptrstack[1].pt; 
+  if ( strcmp((char *)varptrstack[0].pt,"odoratio")==0)
+  {
+      double k,c0;
+       k=*varptrstack[1].pt;
+       c0=(odo.cr+odo.cl)/2;
+       odo.cr= (2*k/(1+k))*c0;
+       odo.cl= (2/(1+k))*c0;
+  }
+  if ( strcmp((char *)varptrstack[0].pt,"odoc0")==0){
+      double k,c0;
+       c0=*varptrstack[1].pt;
+       k=(odo.cr/odo.cl);
+       odo.cr= (2*k/(1+k))*c0;
+       odo.cl= (2/(1+k))*c0;
+  }
+  if ( strcmp((char *)varptrstack[0].pt,"$digiout")==0){
+    int dig;
+     dig=*varptrstack[1].pt;
+     dig=(dig & 0x7)<< 3;
+     set_digiout(dig);
+  }
+ if ( strcmp((char *)varptrstack[0].pt,"motorcontrolmode")==0){
+      double kp,ki;
+      if(*varptrstack[1].pt ==0){
+        kp=0;ki=0;
+      }
+      else {
+        kp=motorcontrol.kp;
+        ki=motorcontrol.ki;
+     }
+     set_motor_param(1,0,kp);
+     set_motor_param(1,1,ki);
+     set_motor_param(2,0,kp);
+     set_motor_param(2,1,ki);
+  }
+  defaultcond=defaulttrue;
+  return(0);
+}
+

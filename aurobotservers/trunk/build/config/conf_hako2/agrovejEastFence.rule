@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="agrovejEastFencePoly" run="true">
+# converted from KML - offset by 0.02E, -0.01N
+#           map part - offset by -707999.98E, -6174000.01N
+poly.del('agrovejEastFence')
+# poly.addPoint('agrovejEastFence', 708124.14, 6174228.52)
+poly.addPoint('agrovejEastFence', 124.14, 228.52)
+# poly.addPoint('agrovejEastFence', 708121.94, 6174242.86)
+poly.addPoint('agrovejEastFence', 121.94, 242.86)
+mapbase.addMapLine('agrovejEastFence3', 124.14, 228.52, 121.94, 242.86, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708127.64, 6174244.17)
+poly.addPoint('agrovejEastFence', 127.64, 244.17)
+mapbase.addMapLine('agrovejEastFence6', 121.94, 242.86, 127.64, 244.17, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708127.12, 6174249.38)
+poly.addPoint('agrovejEastFence', 127.12, 249.38)
+mapbase.addMapLine('agrovejEastFence9', 127.64, 244.17, 127.12, 249.38, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708121.35, 6174248.59)
+poly.addPoint('agrovejEastFence', 121.35, 248.59)
+mapbase.addMapLine('agrovejEastFence12', 127.12, 249.38, 121.35, 248.59, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708112.65, 6174305.72)
+poly.addPoint('agrovejEastFence', 112.65, 305.72)
+mapbase.addMapLine('agrovejEastFence15', 121.35, 248.59, 112.65, 305.72, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708109.40, 6174321.32)
+poly.addPoint('agrovejEastFence', 109.40, 321.32)
+mapbase.addMapLine('agrovejEastFence18', 112.65, 305.72, 109.40, 321.32, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708103.42, 6174346.32)
+poly.addPoint('agrovejEastFence', 103.42, 346.32)
+mapbase.addMapLine('agrovejEastFence21', 109.40, 321.32, 103.42, 346.32, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708090.58, 6174382.01)
+poly.addPoint('agrovejEastFence', 90.58, 382.01)
+mapbase.addMapLine('agrovejEastFence24', 103.42, 346.32, 90.58, 382.01, 0.50, 1)
+# poly.addPoint('agrovejEastFence', 708095.54, 6174385.09)
+poly.addPoint('agrovejEastFence', 95.54, 385.09)
+mapbase.addMapLine('agrovejEastFence27', 90.58, 382.01, 95.54, 385.09, 0.50, 1)
+poly.setRefCoord('agrovejEastFence', 2) # map coordinate system
+# poly.setRefCoord('agrovejEastFence', 1) # UTM coordinate system
+poly.setOpen('agrovejEastFence') # polygon
+# ends at lat 55.670609 deg and long 12.309170 deg
+</rule>
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<!--
+    Configuration file for 
+    Robot Hardware Daemon
+
+    This configuration is for the AU SMR
+
+    $Id: rhdconfig.smr.xml 642 2009-07-21 21:02:55Z s021786 $
+-->
+<!-- Starting RHD Configuration -->
+<rhd>
+  <!-- *** Core Components Configuration *** -->
+  <!-- Sheduler configuration -->
+  <sheduler>
+    <period value="10000"/><!--in usec-->
+    <type value="itimer"/><!--"usleep","itimer","LXRT" -->
+  </sheduler>
+  <!-- Server configuration -->
+  <server>
+    <port value="24902"/>
+    <clients 
+      number="10" 
+      allwriters="1"
+      />
+  </server>
+  <!-- *** Plugins Configuration - RHD-plugins must be in this path *** -->
+  <plugins basepath="/usr/local/lib/rhdplugin/">
+    <!-- *** phidget bridge is a HID device and allow only one bridge device
+         gain is analog gain from 1 to 128 of on-board amplifier - does not change scaled value
+         scale is factor from value in volts to calibrated value in milli newton (mN)
+         filter is low pass filter, where new measurement is adds this fraction of new value to result.
+         updateTimeMs is time between updates in milliseconds - range is 8 to 1000.
+         idxroll is index to the force variable.
+         idxnick is index to the nick (tilt) force variable.
+         idxdown is index to the down (cable weight) force variable.
+         scaleroll is factor to scale the (filtered) roll force to get force in milli newton.
+         scalenick is factor to scale the (filtered) nick force to get force in milli newton.
+         scaledown is factor to scale the (filtered) cable weight force (Z) to get force in milli newton.
+         ///
+         creates variables
+           force is raw filtered force values from sensor (numbered as on board)
+           forceErr is error (overload) reported by board
+           forceRate is update rate (Hz) for force values (detected)
+           forceFilterRef is filter setting for running average fiælter if force (integer [1..])
+           tannick as is tangent to nick angle relative to kopter * 1000
+           tanroll as is tangent to roll angle relative to kopter * 1000
+         *** -->
+    <phidgetbridge enable="true"
+          lib="phidgetbridge.so.1"
+          critical="false"
+          safety="3"
+          gain="128 128 128 128"
+          filter="10"
+          updateTimeMs="20"
+          idxroll="2"
+          idxnick="1"
+          idxdown="0"
+          scaleroll = "1.0"
+          scalenick = "1.0"
+          scaledown = "1.0"
+          >
+    </phidgetbridge>
+    <!-- Interface for version 0.88n of flightcontroller -->
+    <hexakopter enable="true"
+          lib="hexakopter.so.1"
+          critical="false"
+          safety="3"
+          dev="/dev/ttyUSB0"
+          baudrate="57600"
+          debug="1"
+          >
+    </hexakopter>
+    <!-- pose (roll-nick) control for theadered kopter using roll and nick values (tangent to cable angle) from force sensors (phidgetbridge)
+         pd is PD controll values (proportional gain, differential time constant (tauD) (sec)) for both controllers. ctrl = P (tauD s + 1)/(tauD * 10 * s + 1)
+         scaleCtrl is factor to scale control angle in radians to kopter controll angle (integer degrees).
+         debug if 1 then control is calculated even if control flag is false.
+         creates RHD variables:
+           wctrlpd (read and write) is PD control values * 1000
+           wrollref is desired wire angle in roll direction (degrees * 10)
+           wnickref is desired wire angle in nick direction (degrees * 10)
+           wrollctrl is control value (to be send to hexacopter) degrees*10
+           wnickctrl is control value (to be send to hexacopter) degrees*10
+    -->
+    <kopterctrl enable="true"
+          lib="kopterctrl.so.1"
+          critical="false"
+          safety="2"
+          pd = "0.001 16.0"
+          scaleCtrl = "57.296"
+          debug = "1"
+          >
+    </kopterctrl>
+    <!-- rhdlog will open a file rhdlog.txt and write all symbol values here as fast as possible is 
+             it can not keep up writeing with the tick interval specified (can be changed online) 
+             interval = 0 for no log.
+             File is created in default directory.
+             After each write operation the data is flushed to disk (using fflush()). 
+             each line starts with a unix timestamp (gettimeofday) - set at tick call -->
+    <rhdlog enable="true"
+          lib="rhdlog.so.1"
+          critical="false"
+          interval="3"
+          debug="0">
+    </rhdlog>
+
+    <joycontrol enable="true" 
+      lib="libjoycontrol.so.1" 
+      critical="false" 
+      safety="1">
+      <joystick port="/dev/bus/usb/001/007"/>
+      <speed maxfwd="3000" maxturn="900"/>
+      <deadband max="767" min="-767"/>
+      <control enable="true"/>
+    </joycontrol>
+  </plugins>
+</rhd>

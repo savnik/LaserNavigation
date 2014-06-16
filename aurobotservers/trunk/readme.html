@@ -1,0 +1,47 @@
+
+<h2>Introduction</h2>
+
+<p>To install see the install.html.
+<a href="install.html"> install.html</a> <br>
+</p>
+
+<p>This is a set of server applications autonomous robot control.
+The main servers are a camera server (ucamserver) a laser scanner server (ulmsserver) and 
+an empty server (userver). The servers has a set of modules that can be loaded (module load=XXX)
+and the possibility to load plug-in module compiled separately.
+There is a monitoring client application (uclient and auclient) to monitor 
+the data from the servers graphically.</p>
+
+<p>The functions are avilable to the robot using a
+socket connection. The protocol is text-based
+in a XML format.</p>
+
+<p>A test session could be like this:
+Start a server (from the bin directory):
+<pre>[jca@pc89 sample]$ ./ucamserver
+      --- pc89 is open on port 24920 for requests.
+      >>
+</pre>
+The server is now accepting connections on port 24920.
+</p>
+<hr>
+<p>Start a telnet client connection:
+
+<pre>[jca@pc89 jca]$ telnet localhost 24920
+Trying 127.0.0.1...
+Connected to localhost (127.0.0.1).
+Escape character is '^]'.
+</pre></p>
+<hr>
+<p>Type in e.g.:
+<pre> &#060;camGet name size/&gt;</pre>
+</p>
+
+<p>Reply is something like:
+<pre>&#060;camget posName="Left" height="240" width="320" name="Philips 740 webcam"/&gt;</pre>
+</p>
+<hr>
+
+<p> See http://timmy.elektro.dtu.dk/rse/wiki for further info </p>
+
+

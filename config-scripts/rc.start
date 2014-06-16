@@ -1,0 +1,23 @@
+#!/bin/bash
+# starting rhd and aukeeper
+export PATH="$PATH:/usr/local/smr/bin"
+#cd /usr/local/smr/bin
+cd /usr/local/etc/mobotware
+rhd &
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/smr/lib"
+aukeeper -a >/dev/null &
+cd
+#/usr/local/smr/bin/aukeeper -a -s /etc/rc.smr/aukeeper.ini > /dev/null &
+#cp /usr/local/smr/marg/robot.xml /srv/httpd/htdocs/robot.xml
+#SMRHN=`hostname`
+#if [ -x "/srv/httpd/htdocs/robot.xml" ]; then
+#  MARG_CONFIG=/srv/httpd/htdocs/robot.xml
+#elif [ -x "/var/www/robot.xml" ]; then
+#  MARG_CONFIG=/var/www/robot.xml
+#else
+#  MARG_CONFIG=no-marg
+#fi
+#if [ "$MARG_CONFIG" != "no-marg" ]; then
+#  sed -i "s/smrhost/$SMRHN/g" $MARG_CONFIG
+#fi
+exit 0

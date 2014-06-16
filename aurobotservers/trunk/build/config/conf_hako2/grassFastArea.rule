@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rule name="grassFastArea" run="true">
+  <init>
+    # converted from KML - offset by 0.00E, 0.00N
+    #           map part - offset by -708000.00E, -6174000.00N
+    poly.del('grassFastArea')
+    # poly.addPoint('grassFastArea', 707804.99, 6174299.42)
+    poly.addPoint('grassFastArea', -195.01, 299.42)
+    # poly.addPoint('grassFastArea', 707807.00, 6174283.28)
+    poly.addPoint('grassFastArea', -193.00, 283.28)
+    # poly.addPoint('grassFastArea', 707832.62, 6174286.57)
+    poly.addPoint('grassFastArea', -167.38, 286.57)
+    # poly.addPoint('grassFastArea', 707830.63, 6174302.51)
+    poly.addPoint('grassFastArea', -169.37, 302.51)
+    poly.setRefCoord('grassFastArea', 2) # map coordinate system
+    # poly.setRefCoord('grassFastArea', 1) # UTM coordinate system
+    poly.setClosed('grassFastArea') # polygon
+    # poly.setOpen('grassFastArea') # polyline
+    # ends at lat 55.669981 deg and long 12.304903 deg
+    toolPos[1] = 0.0; // coordinate center must be inside (y coordinate)
+    toolPos[0] = 0.0; // x coordinate
+    outSpeed = smr.speed
+    inSpeed = 0.33
+    <rule name="isIn" if="poly.isInside('grassFastArea', mapPose.pose, toolPos)">
+      print('has entered grassFastArea, speed ' smr.speed " to " inSpeed)
+      # place enter-area actions here
+      smr.speed=inSpeed
+      wait() : not poly.isInside('grassFastArea', mapPose.pose, toolPos)
+      print('has left grassFastArea, speed ' smr.speed " to " outSpeed)
+      # place leave-area actions here
+      smr.speed=outSpeed
+    </rule>
+  </init>
+  wait() : false;
+</rule>

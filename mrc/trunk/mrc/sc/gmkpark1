@@ -1,0 +1,53 @@
+get "guidemark"
+wait 1.5
+get "guidemark"
+wait 1
+label "again"
+get "guidemark"
+wait 2 : ($guidemarkok)
+eval $guidemarkok
+choice=$guidemarkok
+if (choice<1 ) "again"
+tointstring  choice
+stringcat "Going to station  " "$str"
+speak "$string"
+resetmotors
+fwd 0.20
+turn -90
+followline "br" @v0.2:($crossingblackline)
+switch (choice)
+case 1:
+  d=0
+case 2:
+  d=0.1
+case 3: 
+  d=0.6
+case 4:
+  d=1.1
+endswitch
+followline "bm" @v0.2:($drivendist > d &$crossingblackline)
+fwd 0.21
+stop
+turn -90 @v0.2
+followline "bm" @v0.2:($drivendist > 0.4)
+fwd 0.05 
+label "error"
+turn -180 
+tointstring  choice
+stringcat "Stopping at station " "$str"
+speak "$string"
+idle
+wait 4
+resetmotors
+speak "going back to start"
+
+fwd 0.4
+turn 90
+followline "bm" @v0.2:($drivendist > (d+1) &$crossingblackline)
+fwd 0.21
+stop
+turn 90 @v0.2
+fwd 0.21
+turn 180
+stop
+goto "again"

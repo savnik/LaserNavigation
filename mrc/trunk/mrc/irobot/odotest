@@ -1,0 +1,3 @@
+set "odocontrol" 1
+log "$transpos" "$rotpos" "$odox" "$odoy" "$odoth"
+wait 100

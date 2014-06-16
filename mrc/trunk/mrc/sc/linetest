@@ -1,0 +1,10 @@
+d=10
+label "start"
+followline "bm" :($drivendist >d)
+fwd 0.15
+turn 180
+followline "bm":($drivendist > d)
+fwd 0.15
+turn 180
+goto "start"
+

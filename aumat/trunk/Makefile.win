@@ -1,0 +1,88 @@
+######################################################################
+#
+# Makefile for "iau_mat" module for lcc compiler under Windows
+# NOTE: Only library, test and clean works
+# sh, 06-01-2009
+
+CC=$(LCCROOT)\bin\lcc.exe
+LFLAGS=
+CFLAGS=-g -I.
+LINKER=$(LCCROOT)\bin\lcclnk.exe
+AR=$(LCCROOT)\bin\lcclib.exe
+
+SOURCES=matinv.c matcore.c matio.c
+OBS=matinv.obj matcore.obj matio.obj
+TARGET=iau_mat.lib
+
+TESTPROG=demomat.exe
+TESTSOURCES=$(TESTPROG).c $(SOURCES)
+TESTOBS=demomat.obj
+
+######################################################################
+#
+# Main target. Compiles object files as this is not a stand alone
+#              program, but a module.
+
+all:	$(TARGET) $(OBS)
+
+
+######################################################################
+#
+# Create static library using lcclib
+
+$(TARGET): 	$(OBS)
+	$(AR) /OUT:$@ $(OBS)
+
+
+######################################################################
+#
+# Remove backup, object, dependency, test and core files
+
+clean:
+	del *~ *.o *.obj *.d $(TESTPROG) core core.* *.lib
+
+######################################################################
+#
+# test programs
+
+test: $(TESTOBS) $(TARGET)
+	$(LINKER) -o $(TESTPROG) $(TESTOBS) $(TARGET)
+
+######################################################################
+#
+# Documentation
+#
+#doc:
+#	doxygen Doxyfile_lin
+
+######################################################################
+#
+# Installation of the library in /usr/local/lib and the include
+# file in /usr/local/include. This must be run as root.
+#
+#install:
+#	cp -f libiau_mat.a /usr/local/lib/.
+#	cp -f iau_mat.h /usr/local/include/.
+
+######################################################################
+#
+# .c to .obj
+#
+#%.obj:	%.c
+#	$(CC) $(CFLAGS) -c $<
+
+
+######################################################################
+#
+# Automatic dependencies
+#
+#%.d:	%.c
+#	@$(SHELL) -ec '$(CC) -MM $(CFLAGS) $< \
+#        | sed '\''s/\($*\)\.o[ :]*/\1.o $@ : /g'\'' > $@; \
+#          [ -s $@ ] || rm -f $@'
+
+######################################################################
+#
+# Include automatic dependencies
+#
+#-include $(SOURCES:.c=.d)

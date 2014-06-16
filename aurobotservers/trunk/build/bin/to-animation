@@ -1,0 +1,14 @@
+#! /bin/bash
+let COUNTER=1000000
+for f in $( ls imgC/*.bmp ); do 
+  echo convert $f imgCpng/hako-20080821-left-$COUNTER.png
+  convert $f imgCpng/hako-20080821-left-$COUNTER.png
+  let PREV=$COUNTER
+  let COUNTER+=1
+  done
+# convert to mpeg format
+# -r 10 frames per second
+# -b 5000000 bitrate på 5Mbit/sec
+# -y betyder overskriv destination
+ffmpeg -y -r 25 -b 5000000 -i imgCpng/hako-20080821-left-1%06d.png path.mpeg
+ls -l *.mpeg

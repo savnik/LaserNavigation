@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!-- Map pose maintenance - based on locater and utmPose -->
+
+<rule name="mapPoseMaint" if="true">
+  <description>
+    Monitors the progress of the locater, if it fails to locate in
+    20 seccessive scans, then the mapPose is maintained from the
+    utmPose, and the locater is reset.
+    locater.updCnt[0] is count of failed updates since last update
+    locater.updCnt[1] is total count of accepted updates
+    locater.updCnt[2] is count of updates since last fail
+  </description>
+  <init>
+    locater.keepMapPose=false
+    global.allowKeepMapPose=true
+    global.allowGpsMapPose=true
+    locater.resetstate()
+    <rule name="locaterReset" if="((locater.updCnt[0] > 3 and global.allowGpsMapPose) or
+                                   locater.updCnt[0] > 1 and locater.updCnt[1] < 3) and utmpose.poseQ == 3)">
+      # a reset state will reset the updCnt[0] to 0 as well
+      print("locater reset by mapPoseMaint rule (" locater.updCnt[0] ", " locater.updCnt[1] ")");
+      locater.resetstate()
+    </rule>
+    <rule name="locaterOn" if="(((locater.updCnt[2] > 5 or utmpose.poseQ != 3) and
+                                  global.allowKeepMapPose) or not global.allowGpsMapPose) and
+                                  not locater.keepMapPose">
+      # let locater maintain mapPose
+      locater.keepMapPose=true
+      print("locater now drives mapPose");
+    </rule>
+    <rule name="locaterOff" if="((locater.updCnt[0] > 10 and utmpose.poseQ == 3) or
+                                  (locater.updCnt[0] > 70 and utmpose.poseQ == 4) or
+				  not global.allowKeepMapPose) and
+				  global.allowGpsMapPose and 
+                                  locater.keepMapPose">
+      # let locater maintain mapPose
+      locater.keepMapPose=false
+      print("utmPose now drives mapPose");
+    </rule>
+  </init>
+  wait() : false
+</rule>
+

@@ -1,0 +1,1 @@
+../../../aumat/trunk/smartmat.hpp

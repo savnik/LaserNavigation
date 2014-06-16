@@ -1,0 +1,105 @@
+log "$odoy"
+d=0.5
+s=0.2
+n=0
+rounds=0
+targetrounds=5
+pi=3.1416
+
+laser "resetlocalizer"
+
+laser "addline alpha=1.57 r=0.9"
+laser "addline alpha=-1.57 r=0.9"
+laser "addline alpha=0 r=2.7"
+laser "addline alpha=3.1416 r=0.9"
+
+laser "setinitpose x=0 y=0 th=0"
+laser "setinitcov Cx=0.004 Cy=0.004 Cth=0.01"
+array "targetsxw" 4
+array "targetsyw" 4
+array "targetsthw" 4
+targetsxw[0]=0.5
+targetsyw[0]=0.5
+targetsthw[0]=pi/2
+targetsxw[1]=-2.3
+targetsyw[1]=0.5
+targetsthw[1]=pi
+targetsxw[2]=-2.3
+targetsyw[2]=-0.5
+targetsthw[2]=-pi/2
+targetsxw[3]=0.5
+targetsyw[3]=-0.5
+targetsthw[3]=0
+
+
+targetxw=0
+targetyw=0
+targetzw=0
+laser "localize"
+wait 0.7
+wxo=$l0
+wyo=$l1
+wtho=$l2
+targetxw=0.5
+targetyw=0.5
+targetzw=3.1416
+call "findtarget"
+call "gototarget"
+laser "localize"
+wait 0.7
+wxo=$l0
+wyo=$l1
+wtho=$l2
+n=1
+targetxw=targetsxw[n]
+targetyw=targetsyw[n]
+targetzw=targetsthw[n]
+
+label "updatetarget"
+call "findtarget"
+driveon targetxo targetyo targetzo "rad" :($targetdist <0.3)
+turnr 0.3 90
+n=n+1
+if (n< 4) "noaction"
+n=0
+label "noaction"
+targetxw=targetsxw[n]
+targetyw=targetsyw[n]
+targetzw=targetsthw[n]
+call "findtarget"
+driveon targetxo targetyo targetzo "rad" :($drivendist <0.2)
+laser "localize"
+wait 0.7
+wxo=$l0
+wyo=$l1
+wtho=$l2
+
+goto "updatetarget"
+
+
+stop
+
+
+goto "end"
+label "findtarget"
+trans wxo wyo wtho targetxw targetyw targetzw
+targetxo=$res0
+targetyo=$res1
+targetzo=$res2
+return
+
+label "gototarget"
+gtdx=targetxo-$odox
+gtdy=targetyo-$odoy
+gtth=atan2(gtdy,gtdx)
+gtth1=normalizeanglerad(gtth-$odoth)
+turn gtth1 "rad"
+gtd=hypot(gtdx,gtdy)
+fwd gtd
+gtth1=normalizeanglerad(targetzo-$odoth)
+turn gtth1 "rad"
+return
+
+
+
+label "end"

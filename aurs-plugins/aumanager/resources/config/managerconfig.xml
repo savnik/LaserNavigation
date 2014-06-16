@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<!-- Configuration for Robot mission manager -->
+<missionmanager>
+	  <!-- Server configuration -->
+  <server>
+    <port value="31100"/>
+    <clients number="10"/>
+  </server>
+	
+	<!-- Robot Manager configuration -->
+	<robotmanager>
+		<scheduler period="1000" /> 
+		<executor name="aurobotserver"/>
+        <map filename="hall-newstyle"/>
+		<connect host="smr4.iau.dtu.dk" port="24919" autoconnect="true"/>
+	</robotmanager>
+
+</missionmanager>

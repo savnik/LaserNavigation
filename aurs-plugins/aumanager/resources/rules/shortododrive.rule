@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!-- Generate followline code -->
+<rule name="shortodo" if="true">
+  <init>
+    #Create the required followline structure
+    global.planner.shortodo.precommand = ""
+    global.planner.shortodo.command = ""
+    global.planner.shortodo.successcond = ""
+    global.planner.shortodo.reloadcond = ""
+    global.planner.shortodo.quality = 0.8
+    global.planner.shortodo.next.precommand = ""
+    global.planner.shortodo.next.command = ""
+    global.planner.shortodo.next.successcond = ""
+    global.planner.shortodo.next.reloadcond = ""
+    global.planner.shortodo.next.quality = 0.8
+    angleIn = 0
+    angleOut = 0
+    turnAngle = 0
+    length = 0
+  </init>
+  #Extract informations from generated route
+  angleIn = manager.startconn("th")
+  angleOut = manager.endconn("th")
+  length = manager.edge("properties.length")
+  
+  #Create static code
+  global.planner.shortodo.precommand = "drive @v0.15 @a0.5 :($drivendist < 0.05)"
+  
+  #Evaluate if the length is longer than 30cm, the set quality to 0
+  if (length < 0.30)
+    global.planner.shortodo.quality = 0.8
+  else
+    global.planner.shortodo.quality = 0.0
+    
+   if (angleIn < angleOut) 
+       angleIn = angleIn + 360.0;
+   turnAngle = (angleOut - angleIn) + 180.0;
+  
+  #Create dynamic code
+  if ((turnAngle > -10.0) && (turnAngle < 10.0))
+    <block>
+      global.planner.shortodo.command = "drive @v0.20 "
+      global.planner.shortodo.successcond = '(($ododist - edgeStartOdo) > ' length ')'
+    </block>
+  else
+    <block>
+    global.planner.shortodo.command = "turnr " (length-0.05) " " (turnAngle) " @v0.15"
+    global.planner.shortodo.successcond = ''
+    </block>
+    
+    #******** DO THE NEXT STUFF *************
+    angleIn = manager.endconn("th")
+    angleOut = manager.nextconn("th")
+    length = manager.nextedge("properties.length")
+    #Create static code
+   global.planner.shortodo.next.precommand = "drive @v0.15 @a0.5 :($drivendist < 0.05)"
+  
+  #Evaluate if the length is longer than 30cm, the set quality to 0
+  if (length < 0.30)
+    global.planner.shortodo.next.quality = 0.8
+  else
+    global.planner.shortodo.next.quality = 0.0
+    
+   if (angleIn < angleOut) 
+       angleIn = angleIn + 360.0;
+   turnAngle = (angleOut - angleIn) + 180.0;
+  
+  #Create dynamic code
+  if ((turnAngle > -15.0) && (turnAngle < 15.0))
+    <block>
+      global.planner.shortodo.next.command = "drive @v0.20 "
+      global.planner.shortodo.next.successcond = '(($ododist - edgeStartOdo)  > ' length ')'
+    </block>
+ else
+    <block>
+    global.planner.shortodo.next.command = "turnr " (length-0.05) " " (turnAngle) " @v0.15 "
+    global.planner.shortodo.next.successcond = ''
+    </block>
+</rule>

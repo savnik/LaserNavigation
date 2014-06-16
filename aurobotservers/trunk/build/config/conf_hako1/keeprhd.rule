@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<rule name="keeprhd" if="defined('rhd.connected')">
+  <description>
+    trying to keep 
+    * rhd running with all interfaces running - on port 24902
+  </description>
+  <init>
+  deadCnt = 0
+  allow = 3  # allow time is allowed time to be dead
+  global.alive.rhd = false
+  badStanding = true
+  rhdtick = 0
+  <rule name="rhdok" if="rhd.connected and not global.alive.rhd and not badStanding">
+     global.alive.rhd = true
+     print("rhd is now alive after " deadCnt " seconds break")
+     deadCnt = 0
+     allow = 40  # seen alive to dead detect
+  </rule>
+  <rule name="rhdBad" if="rhd.connected and 
+                          defined('rhd.gpsquality') and 
+                          defined('rhd.hakoodopulses') and
+                          defined('rhd.fogphdz')">
+     badStanding = rhd.fogphdz[0]==0 and rhd.tick[1]==rhdtick # or rhd.hakoodopulses[0] == 0
+     rhdtick=rhd.tick[1]
+  </rule>
+  <rule name="rhddeadCnt" if="(not rhd.connected or badStanding) and
+                               ifvar.global.alive.hako2">
+     if (deadCnt < 0.51)
+       print("rhd seems to be dying " deadCnt ", bad standing:" badStanding)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name="rhddead" if="deadCnt > allow">
+     print("rhd is assumed dead after " deadCnt " seconds with no responce")
+     print(" - rhd status: rhd.connected=" rhd.connected ", badStanding:" badStanding)
+     deadCnt = 0
+     badStanding = true
+     global.alive.rhd = false
+     allow = 120 # allow for start-up time (seconds)
+     core.send("bash ./startrhd")
+  </rule>
+  </init>
+  print("Started monitoring of rhd")
+  wait() : false
+</rule>
+

@@ -1,0 +1,49 @@
+#! /bin/bash
+#export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/lib/svs":$LD_LIBRARY_PATH
+if [ $# -eq 0 ]
+then
+  echo
+  echo Start a nev version of the server in 1st parameter
+  echo use with at least one parameter, like:
+  echo  $  startserver ucamserver
+  echo  $  startserver ulmsserver
+  echo  $  startserver auclientnox -p 24928
+  echo 
+else
+  serverName=$1
+  echo starting a "$serverName"
+  if [ ! -x "$serverName" ]
+  then
+    echo executable "$serverName" not found
+  fi
+  # if assumed dead process is still running, then kill it
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo trying to terminate "$serverName"
+    killall "$serverName" > /dev/null
+      echo zzz 1...
+    sleep 0.7
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo zzzzzzz 2...
+      sleep 2.5
+    fi
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo zzzzzzzzzzzzzz 3...
+      sleep 7
+    fi
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo trying to 9 kill "$serverName"
+      killall -9 "$serverName" > /dev/null
+      echo "$serverName" killed
+    else
+      echo "$serverName" terminated
+    fi
+  fi
+  aulogrotate "$serverName"_out
+  aulogrotate "$serverName"_err
+  ./"$serverName" -a $2 $3 $4 > "$serverName"_out 2> "$serverName"_err &
+  echo started "$serverName" -a $2 $3 $4
+fi

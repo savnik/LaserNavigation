@@ -1,0 +1,12 @@
+n= 100
+label "again1"
+driveon :($drivendist > 0.01)
+n=n-1
+if (n>0) "again1"
+stop
+wait 2
+n= 100
+label "again2"
+drive :($drivendist > 0.01)
+n=n-1
+if (n>0) "again2"

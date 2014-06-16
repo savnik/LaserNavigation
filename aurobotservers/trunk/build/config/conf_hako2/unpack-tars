@@ -1,0 +1,10 @@
+#!/bin/bash
+files="$(ls *.bmp.tar 2>/dev/null)" 
+# declare integer variables
+declare -i cnt=0
+for X in $files
+do
+  tar -xf $X
+  cnt=$cnt+1
+done
+#mv mnt/ram imgorg

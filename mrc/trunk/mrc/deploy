@@ -1,0 +1,8 @@
+cd ../filter/
+make clean
+make
+cd ../robotinc
+make
+cd ../smrdemo
+make clean
+make

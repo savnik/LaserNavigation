@@ -1,0 +1,310 @@
+<?xml version="1.0" ?>
+<!-- obst avoid driver v2.960 -->
+<rule name="initDrive" run="true">
+  <init>
+      global.drive.mapDest[2] = 0.0 # destination in map coordinates
+      global.drive.utmDest[2] = 0.0 # destination in UTM coordinates
+      global.drive.odoDest[2] = 0.0 # destination in ODO coordinates
+      global.drive.lastMapDest[2] = 0.0 # last destination in map coordinates
+      global.drive.lastUtmDest[2] = 0.0 # last destination in UTM coordinates
+      global.drive.lastOdoDest[2] = 0.0 # last destination in ODO coordinates
+      global.drive.refCoord = -1  # 0=odo, 1=UTM, 2=map
+      global.drive.newDest = 0
+      global.drive.pause = false
+      global.drive.waitHere = true   # waits in a state with low RPM
+      global.drive.gettingClose = false
+      global.drive.skipDestination = false
+      global.drive.compasHeading = false # heading in compas degrees if true (else math)
+      global.drive.radians = true # heading in radians if true, else in degrees (math heading only)
+      global.drive.continueDist = 0.2 # continues when closer than this from next node
+      global.drive.holdLine = false # try hold line from last waypoint, else go direct
+      global.drive.engineRPM= 1900;
+      global.mission.name= 'none'
+      global.mission.leg= 0
+      global.mission.stop = 0
+      global.mission.start = 0
+      odoPose.tripTimeB= 0
+      odoPose.tripB= 0
+      global.drive.distToTgt = 0
+      global.drive.fromPose[2] = 0.0 # last used source pose
+      print("------------ rule drivebase version smr 2.1090") 
+  </init>
+</rule>
+
+<rule name="drive" if="true">
+  <description>
+    Main drive rules
+  </description>
+  <init>
+    # define drive local variables
+    destUpdated = false
+    dest[2] = 0
+    odoDest[2] = 0
+    destOK = false
+    tripStart = now()
+    lastManDist = 100.0 # target distance at last plan
+    lastLineDest = 100
+    holdLineDist = 4.5 # aiming pose position when holding line
+    lastOdoDest[2] = 0
+    newDest = false
+    renewDrive = false
+    #
+    # rule to update map target in odometry coordinates
+    # updates with new map pose 
+    <rule name="updateMap" if="global.drive.refCoord == 2 and
+                               global.drive.newDest">
+      odoDest = mapToPose(mapPose.odoPoseOrigin, global.drive.mapDest)
+    </rule>
+    #
+    # rule to update utm target in odometry coordinates
+    # updates when new utm pose
+    <rule name="updateUtm" if="global.drive.refCoord == 1 and
+                               global.drive.newDest">
+      odoDest = mapToPose(utmPose.odoPoseOrigin, global.drive.utmDest)
+    </rule>
+    #
+    #define rule to use destination odometry coordinates
+    <rule name="updateOdo" if="global.drive.refCoord == 0 and
+                               global.drive.newDest">
+      lastOdoDest = odoDest
+      odoDest = global.drive.odoDest
+      global.drive.newDest = false;
+      newDest = true
+    </rule>
+    #
+    # clear new dest flag, of destination movement is small
+    <rule name="newDestinationValid" if="global.drive.refCoord > 0">
+       <init>
+         d = 0
+         a = 0
+       </init>
+       d = dist2d(odoDest, lastOdoDest)
+       a = limitToPi(odoDest[2] - lastOdoDest[2])
+       if (abs(a) > 0.04 or d > 0.03)
+       <block>
+         lastOdoDest = odoDest
+         newDest = true
+         print("Detected movement in destination, d=" d ", and a=" a)
+       </block>
+    </rule>
+    #
+    # should destination be used directly, or are we following a line
+    <rule name="aim4dest" if="newDest and not global.drive.holdLine">
+      # use of next destination is OK
+      dest = odoDest;
+      destOK = true
+      lastManDist = 100
+      newDest = false;
+      # print("aim4dest direct dest " dest)
+    </rule>
+    #
+    # should destination be used directly, or are we following a line
+    <rule name="aim4line" if="global.drive.holdLine and
+                              (newDest or holdLineDist > lastLineDest))">
+      # use of next destination is not OK
+      <init>
+        dtgt = 0
+      </init>
+      dest = odoDest;
+      holdLineDist = 12
+      # get distance relative to destination (is negative)
+      dtgt = distOnLine(dest, odoPose.pose)
+      # advance carror to outside sensor range
+      if (-dtgt > holdLineDist)
+        dest = poseOnLine(odoDest, dtgt + holdLineDist + 5)
+      else
+        holdLineDist = 0
+      # print("aim4line from target " dtgt "m, new carrot pose " dest " lastDest:" lastLineDest)
+      destOK = true
+      if (newDest)
+        lastManDist = 100
+      newDest = false;
+    </rule>
+    #
+    # stop the robot for a pause
+    <rule name="stopAndWait" if="smrctl.directWait or
+                                 global.drive.pause or
+                                 global.drive.waitHere">
+      print("Stopping ...")
+      odoPose.tripB = 0
+      odoPose.tripTimeB = 0
+      smr.send("flushcmds")
+      # smr.do('setvar "hakoenginespeed" 800')
+      if (global.drive.waitHere and destOK and odopose.vel > 0.3)
+      <block>
+        # drive towards the destination and stop
+        smr.do("drive " dest[0] " " dest[1] " " dest[2] ' "rad"  @v0.2 : ($targetdist < 0.0) | ($odovelocity < 0.3)')
+      </block>
+      smr.send("idle")
+      print("StopAndWait: stopped at pose " odopose.pose)
+      wait() : not if()
+      print("StopAndWait: resume after pause")
+      # smr.do('setvar "hakoenginespeed" ' global.drive.engineRPM)
+    </rule>
+    #
+    # test if robot is close to destination
+    <rule name="closeTest" if="destOK">
+       <init>
+          ds = 0
+          rel[2] = 1 # target relative pose x,y,h
+       </init>
+       # get destination relative to current pose
+       rel = mapToPose(odoPose.pose, odoDest)
+       ds = rulestate.sampletime * smr.speed + global.drive.continueDist
+       # close if x is less that a sample distance, and total distance is small too
+       global.drive.gettingClose = ds > abs(rel[0]) and ds > abs(rel[1])
+       destOK = not global.drive.gettingClose
+    </rule>
+    #
+    <rule name="replayRenewDrive" if="not renewDrive">
+      # renew drive command if driven more than 1 meter
+      # should only be needed in replay mode wih no live MRC to event trigger this renewal
+      <init>
+        d = 0.0
+      </init>
+      d = dist2d(global.drive.fromPose, odoPose.pose)
+      renewDrive = d > 1
+      if (renewDrive)
+        print("Rule::replayRenewDrive: Driven 1m, so forced renewal of drive command")
+    </rule>
+    #
+    # advance a further distance
+    <rule name="advance" if="destOK and
+                             lastManDist > smrctl.manPlanDist and
+                             not global.drive.pause and
+                             smr.connected">
+      odoPose.tripB = 0
+      odoPose.tripTimeB = 0
+      global.drive.fromPose = odoPose.pose
+      renewDrive = false
+      print("Drive advance from " odopose.pose " towards " dest " (leg " global.mission.leg ")")
+      tripStart = now()
+      lastManDist = dist2d(dest, odoPose.pose)
+      lastLineDest = -distOnLine(dest, odoPose.pose)
+      # obst.updateMappedObst()
+      drivePos.odo(dest[0], dest[1], dest[2]) : renewDrive or not destOK or global.drive.pause or not smr.connected
+      print("Drive advance ended leg at odo pose " odopose.pose " (leg " global.mission.leg ")")
+    </rule>
+    #
+  </init>
+  # stay alert here
+  wait() : false
+</rule>
+
+<rule name="driveUTM">
+  <parameters x="0" y="0" h="0" />
+  global.drive.lastUtmDest = global.drive.utmDest
+  global.drive.utmDest[0] = x
+  global.drive.utmDest[1] = y
+  if (global.drive.compasHeading == true)
+    global.drive.utmDest[2] = limittopi((90 - h) * pi / 180.0)
+  else
+    if (global.drive.radians)
+      global.drive.utmDest[2] = h
+    else
+      global.drive.utmDest[2] = limittopi(h * pi / 180.0)
+  global.drive.refCoord = 1
+  global.drive.gettingClose = false
+  global.drive.skipDestination = false
+  global.drive.waitHere = false;
+  global.mission.leg = global.mission.leg + 1
+  print("Leg " global.mission.leg " UTM target pose: x:" x ", y:" y ", h:" h)
+  global.drive.newDest = true
+  wait() : global.drive.gettingClose or global.drive.skipDestination
+  <post>
+    global.drive.newDest = false
+    #global.drive.holdLine=false
+  </post>
+</rule>
+
+<rule name="driveMap">
+  <parameters x="0" y="0" h="0" />
+  global.drive.lastMapDest = global.drive.mapDest
+  global.drive.mapDest[0] = x
+  global.drive.mapDest[1] = y
+  if (global.drive.compasHeading)
+    global.drive.mapDest[2] = limittopi((90 - h) * pi / 180.0)
+  else
+    if (global.drive.radians)
+      global.drive.mapDest[2] = h
+    else
+      global.drive.mapDest[2] = limittopi(h * pi / 180.0)
+  global.drive.refCoord = 2
+  global.drive.gettingClose = false
+  global.drive.skipDestination = false
+  global.drive.waitHere = false;
+  global.mission.leg = global.mission.leg + 1
+  print("Leg " global.mission.leg " map target pose: x:" x ", y:" y ", h:" h)
+  global.drive.newDest = true
+  wait() : global.drive.gettingClose or global.drive.skipDestination
+  <post>
+    global.drive.newDest = false
+    #global.drive.holdLine=false
+  </post>
+</rule>
+
+<rule name="driveNode">
+  <parameters node="''" hdg="0"/>
+  <init>
+    nextNode[2] = 0.0;
+  </init>
+  nextNode[0] = mapbase.node(node, 'x')
+  nextNode[1] = mapbase.node(node, 'y')
+  nextNode[2] = mapbase.node(node, 'th') + hdg
+  driveMap(nextNode[0], nextNode[1], nextNode[2])
+</rule>
+
+<rule name="driveOdo">
+  <parameters x="0" y="0" h="0" />
+  global.drive.lastOdoDest = global.drive.odoDest
+  global.drive.odoDest[0] = x
+  global.drive.odoDest[1] = y
+  if (global.drive.compasHeading)
+    global.drive.odoDest[2] = limittopi((90 - h) * pi / 180.0)
+  else
+    if (global.drive.radians)
+      global.drive.odoDest[2] = h
+    else
+      global.drive.odoDest[2] = limittopi(h * pi / 180.0)
+  global.drive.refCoord = 0
+  global.drive.gettingClose = false
+  global.drive.skipDestination = false
+  global.drive.waitHere = false;
+  global.mission.leg = global.mission.leg + 1
+  print("Leg " global.mission.leg " odo target pose: x:" x ", y:" y ", h:" h)
+  global.drive.newDest = true
+  wait() : global.drive.gettingClose or global.drive.skipDestination
+  <post>
+    print("driveodo continues, as gettingClose=" global.drive.gettingClose ", and skip=" global.drive.skipDestination)
+    global.drive.newDest = false
+    #global.drive.holdLine=false
+  </post>
+</rule>
+
+<rule name="driveWait">
+  # stop and wait are language keywords
+  # stop here for some seconds
+  # called by mission
+  <parameters stoptime="1.0"/>
+  print("********** stop and wait for " stoptime " sec")
+  global.drive.waitHere = true;
+  wait(stoptime) : false
+  print("********** resumes drive")
+</rule>
+
+<rule name="missionStart">
+  <parameters missionName="'noname'"/>
+  global.mission.name=missionName
+  global.mission.leg=0
+  odoPose.tripTimeB= 0
+  odoPose.tripB= 0
+  print("Mission " global.mission.name " started.")
+</rule>
+
+<rule name="missionEnd">
+  global.drive.waitHere=true
+  wait(2) : false
+  print("Mission " global.mission.name " stopped after " global.mission.leg " legs.")
+  print("Mission took " odoPose.tripTimeB " and drove " odoPose.tripB "m.")
+</rule>
+

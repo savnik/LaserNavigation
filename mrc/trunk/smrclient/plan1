@@ -1,0 +1,7 @@
+driveonw 9.600000 0 0 "rad" @v mvel :($targetdist>0)
+putevent "12"
+driveonw 12.800000 0 0 "rad" @v vel :($targetdist<0.3)
+targethere 
+ fwd 0.3 
+idle 
+putevent "14"

@@ -1,0 +1,6 @@
+label "start"
+wait 0.01
+eval $linesensor[0];$linesensor[1];$linesensor[2]
+eval $irsensor[0];$irsensor[1];$irsensor[2]
+eval $encl
+goto "start"

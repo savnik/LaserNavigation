@@ -1,0 +1,336 @@
+<?xml version="1.0" ?>
+
+<!-- initialization of global variables -->
+<rule name="initialize" order="1" run="true">
+  <init>
+    global.mis.mission = 0
+    global.mis.misStage = 0
+    global.mis.solution = 0
+    global.mis.endStage = 0
+    global.mis.edge = 0
+		global.mis.replan = 0;
+    global.queue.addQueue = 0
+    global.queue.nextMis = 0
+    global.md.orderSuccess = false
+    global.md.orderFailed = false
+    global.exception.watch.blocked = true
+    global.exception.watch.linelost = true
+    global.exception.linelost = false
+    global.event.eventCnt = 1
+
+    core.send('var smr.blocked.event = 0') #Create event structure
+    core.send('var smr.unblocked.event = 0')
+  </init>
+  print("Initialized global variable structure")
+</rule>
+
+<!-------------------------------------------------->
+
+<!-- interacts with line drive -->
+<rule name="turnToEdge">
+  <parameters angle="-1" speed="0.10"/>
+  <description>
+    Turns [angle] to follow the next edge out of a node
+    Angle is in degrees (in math orientation).
+    Returns when driving on line after turn
+  </description>
+	<init>
+	  turnr = 0
+		turnRadius = 0.07
+    successEventId = 0
+    #Rules to monitor success or failure
+    <rule name="returnSuccess" if="smr.gotEvent(successEventId)">
+      global.md.orderSuccess = true
+    </rule>
+    <rule name="returnFailure" if="false">
+      global.md.orderFailed = true
+    </rule>
+	</init>
+    #Abort command if a previous order has failed
+    if (global.md.orderFailed == true)
+      break;
+
+		angle = limittopi(angle * pi / 180)
+    if (abs(angle) > 120 * pi / 180) #Do a stop-turn, if angle is more than 120 degrees
+    <block>
+      smr.send('fwd 0.20 @v0.1 @a0.1')
+      print('fwd 0.20 @v' speed ' @a0.1')
+      smr.send('turn ' angle ' "rad" @v0.1 @a0.2')
+      print('turn ' angle ' "rad" @v' speed ' @a0.2')
+    </block>
+    else 
+    if (abs(angle) > 15 * pi / 180) # more than +/-15 degrees turn using turnr
+    <block> # turn past crossing line
+      smr.send('drive @v' speed ' @a0.3 : ($drivendist > 0.1)')
+      print('drive @v' speed ' : ($drivendist > 0.1)')
+      turnr = turnRadius * tan( (pi - abs(angle)) / 2)
+      smr.send('turnr ' turnr ' ' angle ' "rad" @v0.1 @a0.1')
+      print('turnr ' turnr ' ' angle ' "rad"')
+    </block>
+    else # just get past the crossing line
+    <block>
+      smr.send('drive @v0.1 : ($drivendist > 0.07)')
+      print('drive : ($drivendist > 0.07)')
+    </block>
+    #Put event to detect finished command
+    successEventId = global.event.eventCnt
+    global.event.eventCnt = global.event.eventCnt +1
+    smr.putEvent(successEventId)
+    print("Sent all to SMRDEMO")
+    wait(): global.md.orderSuccess or global.md.orderFailed
+  <post>
+  print("... now Turned to " global.mis.edge)
+  global.md.orderSuccess = false
+  </post>
+</rule>
+
+<!-- Follow black tapeline -->
+<rule name="followblackline">
+  <parameters speed="0.2" />
+  <description>
+    Follows a black tapeline until next crossing 
+  </description>
+	<init>
+    successEventId = 0 
+    #Rules to monitor success or failure
+    <rule name="returnSuccess" if="smr.gotEvent(successEventId)">
+      global.md.orderSuccess = true
+    </rule>
+    <rule name="returnFailure" if="global.exception.blocked == true">
+      global.md.orderFailed = true
+      print("Followblack failed")
+    </rule>
+	</init>
+    #Abort command if a previous order has failed
+    if (global.md.orderFailed == true)
+        break;
+
+		smr.send('followline "bm" @v' speed '  : ($crossingblackline)')
+    #Put event to detect finished command
+    successEventId = global.event.eventCnt
+    global.event.eventCnt = global.event.eventCnt +1
+    smr.putEvent(successEventId)
+    print("Sent all to SMRDEMO")
+		wait(): global.md.orderSuccess or global.md.orderFailed
+  <post>
+  print("... now at node " global.mis.edge)
+  global.md.orderSuccess = false
+  </post>
+</rule>
+
+<!-- Return to start-connector -->
+<rule name="returnToStartConnector" >
+  <parameters speed="0.2" />
+	<init>
+	  #Create local variables
+	  returnDist = 0.1
+    successEventId = 0
+		robotSize = 0.22
+		#Rules to monitor success or failure
+		<rule name="returnSuccess" if="smr.gotEvent(successEventId)">
+			global.md.orderSuccess = true
+		</rule>
+		<rule name="returnFailure" if="false">
+			global.md.orderFailed = true
+		</rule>
+	</init>
+    #Abort command if a previous order has failed
+    if (global.md.orderFailed == true)
+      break;
+  
+	  #Read from MRC the drivendist in the current command
+	  returnDist = returnDist + smr.eval('$drivendist')
+	  smr.send('flushcmds') #Clear any pending commands in MRC queue
+	  if (returnDist <= robotSize + 0.05)
+		  <block>
+			  smr.send('fwd -0.05 @v0.2') 	#reverse a bit
+			  smr.send('turn 180 @v0.1')			#turn arround center
+			  smr.send('fwd -' (returnDist - 0.05 - robotSize)  ' @v0.2')
+		  </block>
+	  else
+		  <block>
+			  smr.send('fwd -0.05 @v0.2') 	#reverse a bit
+			  smr.send('turn 180 @v0.1')			#turn arround center
+			  smr.send('followline "bm" @v' speed '  : ($crossingblackline)')
+		  </block>
+      #Put event to detect finished command
+      successEventId = global.event.eventCnt
+      global.event.eventCnt = global.event.eventCnt +1
+      smr.putEvent(successEventId)
+		  wait(): global.md.orderSuccess or global.md.orderFailed
+	<post>
+	  global.md.orderSuccess = false
+	</post>
+</rule>
+
+<!-- Drive arround obstacle (assume road is straight for at least 30 cm behind obstacle) -->
+<rule name="driveArroundRight" >
+  <parameters pathlength="1.0" />
+  <init>
+    #Create local variables
+    robotLength = 0.25
+    successEventId = 0
+    returnDist = 0.0
+    obstacleDist = 0.0
+    #Rules to monitor success or failure
+    <rule name="returnSuccess" if="smr.gotEvent(successEventId)">
+      global.md.orderSuccess = true
+    </rule>
+    <rule name="returnFailure" if="false">
+      global.md.orderFailed = true
+    </rule>
+  </init>
+    #Abort command if a previous order has failed
+    if (global.md.orderFailed == true)
+      break
+  
+    #Read from MRC the drivendist in the current command
+    returnDist = smr.eval('$drivendist')
+    obstacleDist = smr.eval('$irdistfrontmiddle')
+    if (pathlength - returnDist < robotLength)
+      <block>
+        global.md.orderFailed = true
+        break
+      </block>
+
+      smr.send('flushcmds') #Clear any pending commands in MRC queue
+
+      #Turn the robot and use IR sensors to drive arround
+      smr.send('turn -90 @v0.1 @a0.2')   #reverse a bit
+      smr.send('drive @v0.2 : ($irdistleft > 0.50)')   #Pass obstacle with ir sensor
+      smr.send('fwd ' robotLength * 1.5)   #Drive 1.5 robot forward to get free from obstacle
+      smr.send('turn 90 @v0.2')   #turn arround it
+      smr.send('drive @v0.2 : ($drivendist > ' obstacleDist ')')   #Pass obstacle with ir sensor
+      smr.send('drive @v0.2 : ($irdistleft > 0.50)')   #Pass obstacle with ir sensor
+      smr.send('fwd ' robotLength * 2.5)   #Drive 1.5 robot forward to get free from obstacle
+      smr.send('turn 90 @v0.2')   #Softturn arround it again
+      smr.send('fwd ' robotLength * 1.5)   #Drive 1.5 robot forward to get free from obstacle
+      smr.send('turn -90')   #Softturn arround it
+
+
+      #Put event to detect finished command
+      successEventId = global.event.eventCnt
+      global.event.eventCnt = global.event.eventCnt +1
+      smr.putEvent(successEventId)
+      wait(): global.md.orderSuccess or global.md.orderFailed
+  <post>
+    global.md.orderSuccess = false
+  </post>
+</rule>
+
+
+<!-- stop robot now -->
+<rule name="stopNow">
+  <parameters cnt="0"/>
+  <init>
+    #Create local variables
+    successEventId = 0
+    #Rules to monitor success or failure
+    <rule name="returnSuccess" if="smr.gotEvent(successEventId)">
+      global.md.orderSuccess = true
+    </rule>
+    <rule name="returnFailure" if="false">
+      global.md.orderFailed = true
+    </rule>
+  </init>
+    #Abort command if a previous order has failed
+    if (global.md.orderFailed == true)
+      break;
+
+    print("is stopping")
+  
+    #Send stop commands to robot
+    smr.send('flushcmds')
+    smr.send('stop')
+    smr.send('idle')
+  
+    #Put event to detect finished command
+    successEventId = global.event.eventCnt
+    global.event.eventCnt = global.event.eventCnt +1
+    smr.putEvent(successEventId)
+    wait(): global.md.orderSuccess or global.md.orderFailed
+    print("is stopped")
+  <post>
+    global.md.orderSuccess = false
+  </post>
+</rule>
+
+
+<!-- Request replanning from planner -->
+<rule name="replan">
+      print("Replanning!")
+			global.mis.replan = 2 #Reqest replanning
+			wait(): (global.mis.replan != 2)
+			if (global.mis.replan == -1) #If planner responds -1 it has failed (1 on success)
+				global.md.orderFailed = true
+				
+			print('Replanning results ' global.mis.replan)
+  <post>
+    global.md.orderSuccess = false
+		global.mis.replan = 0 #Reset variable
+  </post>
+</rule>
+
+<!-------------------------------------------------->
+<!-- Mission queue manager (Only 1 level implemented) -->
+<!-------------------------------------------------->
+<rule name="missionQueueManager" if="global.queue.addQueue != 0">
+  <init>
+    #Create 5-level queue
+    global.queue.nextMis = 0
+    global.queue.nextMis2 = 0
+    global.queue.nextMis3 = 0
+    global.queue.nextMis4 = 0
+  </init>
+	print('Adding mission to queue ' global.queue.addQueue)
+  global.queue.nextMis = global.queue.addQueue
+	global.queue.addQueue = 0 #Clear queue
+</rule>
+
+<!-- Mission activator - Loads next mission from queue -->
+<rule name="missionActivator" if="global.mis.mission == 0 and global.queue.nextMis != 0">
+	<init>
+	
+	</init>
+	global.mis.mission = global.queue.nextMis
+	global.queue.nextMis = global.queue.nextMis2
+	global.queue.nextMis2 = global.queue.nextMis3
+	global.queue.nextMis3 = global.queue.nextMis4
+	global.queue.nextMis4 = 0
+	print('Loading mission ' global.mis.mission)
+</rule>
+
+<!-------------------------------------------------->
+<!-- Edge blocked detector -->
+<rule name="BlockException" if='global.exception.watch.blocked and defined("smr.blocked.event")'>
+	<init>
+		smr.send('addwatch "blocked" 0 : ($motionstatus > 0)')
+		smr.send('addwatch "unblocked" 0 : ($motionstatus == 0)')
+		blocked = 0
+		unblocked = 0
+		blockstatus = 0
+		blockFilter = 0
+		global.exception.blocked = false
+		<rule name="blockDetect" if="smr.blocked.event > blocked">
+			blocked = smr.blocked.event
+			blockStatus = 1
+		</rule>
+		<rule name="unblockDetect" if="smr.unblocked.event > unblocked">
+			unblocked = smr.unblocked.event
+			blockStatus = 0
+			blockFilter = 0
+			global.exception.blocked = 0
+		</rule>	
+		<rule name="blockFilter" if="blockStatus > 0">
+			#print('Blocked! ' blockFilter)
+			blockFilter = blockFilter + 1
+			if (blockFilter > 10)
+			<block>
+				global.exception.blocked = true
+				#print('BlockFilter exceeded!')
+			</block>
+		</rule>
+	</init>
+	wait(): false
+</rule>
+

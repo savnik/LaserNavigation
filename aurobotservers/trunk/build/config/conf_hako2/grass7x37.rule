@@ -1,0 +1,65 @@
+<rule name="grass7x37plan" run="true">
+  poly.del('plannedRoute')
+  poly.addPoint('plannedRoute', 707836.16, 6174298.43)
+  poly.addPoint('plannedRoute', 707799.30, 6174293.80)
+  poly.addPoint('plannedRoute', 707797.04, 6174289.70)
+  poly.addPoint('plannedRoute', 707800.11, 6174286.81)
+  poly.addPoint('plannedRoute', 707836.87, 6174291.38)
+  poly.addPoint('plannedRoute', 707841.31, 6174294.52)
+  poly.addPoint('plannedRoute', 707841.18, 6174296.06)
+</rule>
+
+<rule name="grass7x37" run="false">
+<description>
+  Converted from google earth plan - check that name is legal
+  Heading is estimated from line length, and may be inappropriate
+</description>
+<init>
+  global.drive.mission='grass7x37'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+</init>
+#
+smr.do('set "hakoenginespeed" 1900')
+smr.do('set "hakoliftinggearstateref" 100')
+smr.do('set "hakopowertakeoffstateref" 0')
+smr.speed = 0.5 # desired drive speed m/s
+#
+# to lat 55.669917 deg and long 12.304399 deg
+driveUTM(707836.16, 6174298.43, 262.8)
+#
+global.drive.holdLine=true
+# to lat 55.669881 deg and long 12.304360 deg
+# distance is 37.15m long at compas heading 262.8
+driveUTM(707799.30, 6174293.80, 262.8)
+#
+# to lat 55.669854 deg and long 12.304407 deg
+# distance is 4.68m long at compas heading 208.8
+driveUTM(707797.04, 6174289.70, 171.0)
+#
+# to lat 55.669879 deg and long 12.304994 deg
+# distance is 4.22m long at compas heading 133.2
+driveUTM(707800.11, 6174286.81, 82.9)
+#
+global.drive.holdLine=true
+# to lat 55.669905 deg and long 12.305067 deg
+# distance is 37.04m long at compas heading 82.9
+driveUTM(707836.87, 6174291.38, 82.9)
+#
+# to lat 55.669919 deg and long 12.305066 deg
+# distance is 5.44m long at compas heading 54.7
+driveUTM(707841.31, 6174294.52, 25.0)
+#
+# ends at lat 55.669919 deg and long 12.305066 deg
+# last distance is 1.54m long at compas heading 355.3
+driveUTM(707841.18, 6174296.06, 355.3)
+driveStop()
+# wait a bit before saving the MRC log
+wait(3) : false
+smr.do('set "hakoenginespeed" 800') # RPM
+wait(3) : false
+smr.saveMrcLog()
+print('finished grass7x37')
+</rule>

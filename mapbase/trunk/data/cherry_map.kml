@@ -1,0 +1,82 @@
+<Document><name>cherry_map.kml</name>
+<Style id="sn_donut"><IconStyle><color>ff1effdd</color><scale>0.4</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/shapes/donut.png</href></Icon></IconStyle></Style>
+<Style id="sh_donut"><IconStyle><color>ff1effdd</color><scale>0.52</scale>
+<Icon><href>http://maps.google.com/mapfiles/kml/shapes/donut.png</href></Icon></IconStyle></Style>
+<Style id="utmLine0"><LineStyle>
+<color>7f1f1f1f</color><width>3</width></LineStyle></Style>
+<Style id="utmLine1"><LineStyle>
+<color>7f0000ff</color><width>4</width></LineStyle></Style>
+<Style id="utmLine2"><LineStyle>
+<color>7f9f009f</color><width>4</width></LineStyle></Style>
+<Style id="utmLine3"><LineStyle>
+<color>7fff0000</color><width>4</width></LineStyle></Style>
+<Style id="utmLine4"><LineStyle>
+<color>7f7f7f00</color><width>4</width></LineStyle></Style>
+<StyleMap id="msn_donut"><Pair><key>normal</key><styleUrl>#sn_donut</styleUrl></Pair><Pair><key>highlight</key><styleUrl>#sh_donut</styleUrl></Pair></StyleMap>
+
+<Placemark><name>RTK-GPS HAKO Pometet</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3050431,55.6719563,0
+12.3052788,55.6700998,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3051212,55.6719639,0
+12.3053579,55.6701078,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3051994,55.6719716,0
+12.3054369,55.6701157,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3052775,55.6719793,0
+12.3055159,55.6701237,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3053557,55.6719869,0
+12.3055949,55.6701317,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3054338,55.6719946,0
+12.3056740,55.6701396,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3055120,55.6720023,0
+12.3057530,55.6701476,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3055901,55.6720099,0
+12.3058320,55.6701556,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3056683,55.6720176,0
+12.3059110,55.6701635,0
+</coordinates></LineString></Placemark>
+<Placemark><name>row-line</name>
+<styleUrl>#utmLine1</styleUrl>
+<LineString><coordinates>
+12.3057464,55.6720253,0
+12.3059901,55.6701715,0
+</coordinates></LineString></Placemark>
+</Document>

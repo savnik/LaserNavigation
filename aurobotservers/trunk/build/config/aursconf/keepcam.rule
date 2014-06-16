@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<rule name="keepcam" if="defined('cam.connected')">
+  <description>
+    * This rule is trying to keep cam server running, when the
+    number of clients is more than required in global.requiredclients and
+    the variable global.keep.cam is true.
+    * This rule starts when the cam interface module is available (and
+    has created the variable cam.connected).
+    * When number of clients falls below the number of required, then
+    the server is closed (if it was started by the keeper).
+    * If the cam server is running already then the keeper will monitor the running
+    instance and restart it if it crashes. The server is crashed if no "alive" signal
+    is received within 3 seconds (value in alive rule below)
+  </description>
+  <init>
+    # define global status variables
+    global.alive.cam = false
+    global.alive.camStarted = false
+    allow = 7  # allow time is allowed time to be dead
+    if (not defined('global.keep.cam'))
+      global.keep.cam=false
+    deadCnt = allow + 1
+    <rule name="alive" if="cam.connected[1] and
+                          cam.hostalive and
+                          not global.alive.cam">
+      global.alive.cam = true
+      print("cam is alive after " deadCnt " secs to start")
+      deadCnt = 0
+      allow = 3  # seen alive to dead detect
+    </rule>
+    <rule name="deadCnt" if="not cam.connected[1] or not cam.hostalive">
+      # if (deadCnt &lt; 0.51)
+      #   print("cam seems to be dying " deadCnt " : cam.connected=" cam.connected[1] ", cam.alive=" cam.hostalive)
+      deadCnt = deadCnt + rulestate.sampletime
+    </rule>
+    <rule name="noclient" if="cam.connected[1] and
+                              global.requiredclients > core.clients and
+                              global.alive.camStarted">
+      global.alive.camStarted = false
+      print("Closing cam server - as there is no clients left on port " core.port)
+      core.send("cam quit")
+    </rule>
+    <rule name="dead" if="deadCnt >= allow and global.alive.cam">
+      print("cam assumed dead after " deadCnt " secs with no responce")
+      print(" - cam status: cam.connected=" cam.connected[1] ", cam.alive=" cam.hostalive)
+      global.alive.cam = false
+      global.alive.camStarted = false
+    </rule>
+    <rule name="start" if="core.clients >= global.requiredclients and
+                          not global.alive.cam and
+                          not global.alive.camStarted and
+                          global.keep.cam">
+      deadCnt = 0
+      global.alive.camStarted = true
+      allow = 30 # allow for start-up time
+      core.send("bash nice --adjustment=5 /usr/local/smr/bin/startserver ucamserver")
+    </rule>
+  </init>
+  # keep monitoring rule active
+  wait() : false
+</rule>
+

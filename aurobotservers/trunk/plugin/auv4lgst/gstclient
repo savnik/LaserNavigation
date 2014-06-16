@@ -1,0 +1,8 @@
+#!/bin/bash
+if ! [ -z ${1} ]; then
+  port="${1}"
+else
+  port="23097"
+fi
+echo opening client on port ${port}
+gst-launch-0.10 udpsrc uri=udp://127.0.0.1:${port} caps='application/x-rtp, timeout=(int)0,  media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96' ! rtph264depay ! ffdec_h264 ! ffmpegcolorspace ! ximagesink

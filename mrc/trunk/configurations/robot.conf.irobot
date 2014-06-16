@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+
+<!--
+Configuration file for MRR
+This is for the iRobot ATRV-JR robot
+
+Robot types
+differential, ackerman, velomega
+
+Name
+smr, mmr, ackerbot, hako, Irobot
+-->
+
+<robotinfo
+  type= "velomega"
+  name="Irobot"
+>
+
+   <odometry
+    cl=" 0.000"
+    cr=" 0.000"
+    w =" 0.52"
+    ts=" 0.025"   
+    maxtick=" 10000"
+    control="1"
+   /> 
+<filter
+type="EKF"
+run="1"
+use="0"
+measurementnoise_std_x="1.0"
+measurementnoise_std_y="1.0" 
+processnoise_std_stearingangle="0.0033"
+processnoise_std_dist="0.01"
+>
+<!--
+gpsoffset_easting="700000"
+gpsoffset_northing="6100000"
+-->
+
+</filter>
+
+   <motioncontrol
+    ts  	 ="0.025"
+    line_gain 	 ="0.1"
+    line_tau	 ="0"
+    line_alfa    ="0.04"
+    wall_gain    ="1"
+    wall_tau     ="0.7"
+    wall_alfa	 ="0.2"
+    drive_kdist  ="1.0" 
+    drive_kangle ="1.5"
+    gain	 ="0.0"
+    tau	="0.16"
+    alfa	 ="0.2"
+    w		 ="0.52"
+    lim 	 ="0.2"
+    stopdist	 ="0.4"
+    alarmdist	 ="0.1"
+    velcmd	 ="0.2"
+    acccmd	 ="0.3"
+    nolinedist	 ="0.2"
+   />
+   
+   <motorcontrol
+    velscalel 	="100000"
+    velscaler	="40000"
+    kp	   	="66"
+    ki		="5"
+   />  
+   
+   <linesensor
+    size	="8"
+    k_filt	="0.8"
+   />
+   
+</robotinfo>

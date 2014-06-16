@@ -1,0 +1,34 @@
+xtg=3.3
+ytg=4
+set "$odox" 0.2
+set "$odoy" 0.2
+laser "resetplanner"
+label "runroute"
+% find current pose in worldcoordinates
+trans $l0 $l1 $l2 $odox $odoy $odoth
+
+stringcat "findroute startx= " $res0 "starty=" $res1 "endx=" routetgtx "endy="routetgty
+laser "$string" 
+wait 1
+rstart=$l4
+eval rstart
+cp=rstart-1
+stringcat "getpoint p=" cp
+laser "$string"
+wait 1
+th= normalizeanglerad(atan2($l6-$res1, $l5-$res0)-$res2) 
+turn th "rad"
+label "routecontinue"
+xg=$l5
+yg=$l6
+thg=$l7
+cp=cp-1
+if (cp < 0) "endroute"
+stringcat  "getpoint p=" cp
+laser "$string"
+driveonw xg yg thg "rad":($targetdist <0.25)
+goto "routecontinue"
+label "endroute"
+driveonw xg yg thg "rad":($targetdist <0.25)
+fwd 0.25
+

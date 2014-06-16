@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : robot.xml
+    Created on : 6. oktober 2009, 11:35
+    Author     : MARG TEAM
+    Description:
+        Purpose of the document follows.
+    updated 3 jun 2010 - /christian
+    updated 11 aug 2010 - /christian
+-->
+
+<robot>
+    <name>smrhost</name>
+    <module>
+        <name>camera</name>
+        <host>smrhost</host>
+        <port>24920</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>laser</name>
+        <host>localhost</host>
+        <port>24919</port>
+	<plugin>LaserMap</plugin>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>RHD</name>
+        <host>smrhost</host>
+        <port>24926</port>
+        <plugin>SMRPlugin</plugin>
+        <autoConnect>true</autoConnect>
+    </module>
+    <controlButtons>
+        <start moduleName="RHD" command="push cmd='var allcopy'"/>
+        <pause moduleName="RHD" command="push flush"/>
+        <stop moduleName="RHD" command="push flush"/>
+    </controlButtons>
+    <watch moduleName="RHD" watch="odopose.pose" okMin="-1000" okMax="1000"/>
+</robot>

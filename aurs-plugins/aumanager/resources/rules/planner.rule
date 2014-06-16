@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<!-- Basic planner script. 
+     Calls the code generator rules with current and next route element -->
+<rule name="planner" run="true">
+  <init>
+  </init>
+    manager.currentedge()
+    #Run all the code generator scripts
+    filldrive()
+    followline()
+    shortododrive()
+    stopcmd()
+    manager.process()
+    manager.nextedge()
+    #Run all the code generator scripts (again
+    filldrive()
+    followline()
+    shortododrive()
+    stopcmd()
+    manager.process()
+    manager.updaterobot()
+</rule>

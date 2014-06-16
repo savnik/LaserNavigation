@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<rule name="keepucamserver" if="defined('cam.connected')">
+  <description>
+    trying to keep 
+    * ucamserver on port 24920
+    running
+  </description>
+  <init>
+  global.alive.cam = false
+  deadCnt = 0
+  allow = 7  # allow time is allowed time to be dead
+  <rule name="camok" if="cam.connected and 
+                         cam.hostalive and 
+                         not global.alive.cam">
+     global.alive.cam = true
+     print("cam is alive after " deadCnt " seconds to start")
+     deadCnt = 0
+     allow = 3  # seen alive to dead detect
+  </rule>
+  <rule name="camdeadCnt" if="not cam.connected or not cam.hostalive">
+     if (deadCnt < 0.51)
+       print("cam seems to be dying " deadCnt " : cam.connected=" cam.connected ", cam.alive=" cam.hostalive)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name="camdead" if="deadCnt > allow">
+     print("cam is assumed dead after " deadCnt " seconds with no responce")
+     print(" - cam status: cam.connected=" cam.connected ", cam.alive=" cam.hostalive)
+     global.alive.cam = false
+     deadCnt = 0
+     allow = 30 # allow for start-up time
+     core.send("bash nice --adjustment=5 ./startserver ucamserver -p 24920")
+  </rule>
+  </init>
+  print("Started monitoring of cam")
+  wait() : false
+</rule>
+

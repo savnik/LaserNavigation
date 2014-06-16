@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<rule name="square">
+  smr.do('set "hakoenginespeed" 1600')
+  #smr.do('set "$hakomanual" 0') 
+  #smr.do('set "$hakoliftinggearstateref" 85')
+  # smr.do('set "$powertakeoffstateref" 0') 
+  smr.speed = 0.8
+  driveOdo(4,  4,  1.57)
+  driveOdo(0,  8,  3.14)
+  print("try to stop")
+  driveWait(5)
+  print("ended stopping")
+  driveOdo(-4, 8,  3.14)
+  driveOdo(-8, 4,  -1.57)
+  driveOdo(-8, -4, -1.57)
+  driveOdo(-4, -8,  0.0)
+  driveOdo(4,  -8,  0.0)
+  driveOdo(8, -4,  1.57)
+  driveOdo(8,  4,  1.57)
+  driveOdo(4,  8,  3.14)
+  driveOdo(-6, 8,  3.14)
+  driveOdo(-10, 4,  -1.57)
+  driveOdo(-10, 2,  -1.57)
+  driveOdo(-7, 0,  0)
+  driveWait(2)
+  driveOdo(-1, 0,  0)
+  print("stopping")
+</rule>

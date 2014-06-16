@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<rule name="keepmrc" if="defined('global.alive.rhd') and defined('ifvar.global.alive.hako2')">
+  <description>
+    trying to keep mrc running (on port 31001)
+    starts only mrc when hako2 aunav at hako2 is alive and reports no connection to mrc.
+    the result is available in the global var: global.alive.mrc
+  </description>
+  <init>
+  deadCnt = 0
+  allow = 3  # allow time is allowed time to be dead
+  global.alive.mrc = false
+  <rule name="mrcok" if="nav.connected and 
+                         nav.hostalive and
+                         ifvar.smr.connected and 
+                         not global.alive.mrc">
+     global.alive.mrc = true
+     print("mrc is alive after " deadCnt " seconds to start")
+     deadCnt = 0
+     allow = 15  # seen alive to dead detect
+  </rule>
+  <rule name="mrcdeadCnt" if="nav.connected and not ifvar.smr.connected and rhd.connected">
+     if (deadCnt < 0.51)
+       print("mrc seems to be dying " deadCnt " : nav.connected=" nav.connected ", mrc.connected=" ifvar.smr.connected)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name=donotknow if="global.alive.mrc and not nav.connected">
+      deadCnt=0
+      global.alive.mrc=false
+  </rule>
+  <rule name="mrcdead" if="deadCnt > allow">
+     print("mrc is assumed dead after " deadCnt " seconds with no responce")
+     print(" - mrc status: nav.connected=" nav.connected ", mrc.connected=" ifvar.smr.connected)
+     deadCnt = 0
+     global.alive.mrc = false
+     allow = 30 # allow for start-up time
+     core.send("bash ./startmrc -t1")
+  </rule>
+  </init>
+  print("Started monitoring of mrc")
+  wait() : false
+</rule>
+

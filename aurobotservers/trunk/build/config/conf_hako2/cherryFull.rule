@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rule name="cherryFullRoute" run="true">
+  <init>
+    <rule name="addNodePoly">
+    <parameters node="''"/>
+    <init>
+      pos[1] = 0.0
+    </init>
+    pos[0] = mapbase.node(node, 'x')
+    pos[1] = mapbase.node(node, 'y')
+    poly.addPoint('cherryFullRoute', pos[0], pos[1])
+    ## make a waypoint marker too
+    poly.addPoint(node, pos[0], pos[1]);
+    poly.addPoint(node, pos[0]+0.5, pos[1]);
+    poly.setRefCoord(node, 2) # map coordinate system
+    </rule>
+  </init>
+  # from apple_cherry_graph
+  # standard offset -708000.00E, -6174000.00N
+  poly.del('cherryFullRoute')
+  addNodePoly("taastrup.cherrytrans_9-10S")
+  addNodePoly("taastrup.cherrypath_10-11S")
+  addNodePoly("taastrup.cherrypath_10-11N")
+  addNodePoly("taastrup.cherrytrans_9-10N")
+  addNodePoly("taastrup.cherrypath_8-9N")
+  addNodePoly("taastrup.cherrypath_8-9S")
+  addNodePoly("taastrup.cherrytrans_7-8S")
+  addNodePoly("taastrup.cherrypath_6-7S")
+  addNodePoly("taastrup.cherrypath_6-7N")
+  addNodePoly("taastrup.cherrytrans_8-9N")
+  addNodePoly("taastrup.cherrypath_9-10N")
+  addNodePoly("taastrup.cherrypath_9-10S")
+  addNodePoly("taastrup.cherrytrans_6-7S")
+  addNodePoly("taastrup.cherrypath_5-6S")
+  addNodePoly("taastrup.cherrypath_5-6N")
+  addNodePoly("taastrup.cherrytrans_4-5N")
+  addNodePoly("taastrup.cherrypath_3-4N")
+  addNodePoly("taastrup.cherrypath_3-4S")
+  addNodePoly("taastrup.cherrytrans_2-3S")
+  addNodePoly("taastrup.cherrypath_1-2S")
+  addNodePoly("taastrup.cherrypath_1-2N")
+  addNodePoly("taastrup.cherrytrans_3-4N")
+  addNodePoly("taastrup.cherrypath_4-5N")
+  addNodePoly("taastrup.cherrypath_4-5S")
+  addNodePoly("taastrup.cherrytrans_3-4S")
+  addNodePoly("taastrup.cherrypath_2-3S")
+  addNodePoly("taastrup.cherrypath_2-3N")
+  addNodePoly("taastrup.cherrytrans_1-2N")
+  addNodePoly("taastrup.cherrypath_0-1N")
+  addNodePoly("taastrup.cherrypath_0-1S")
+  addNodePoly("taastrup.cherrytrans_3-4S")
+  poly.setRefCoord('cherryFullRoute', 2) # map coordinate system
+  poly.setOpen('cherryFullRoute') # polyline
+</rule>
+
+
+<rule name="cherryFull" run="false">
+  <init>
+    global.drive.compasHeading=false # means math heading (east is 0)
+    global.drive.radians=false # means degrees
+    global.drive.continueDist = 1.6 # meter, relaxed driving
+    # global.drive.continueDist = 0 # meter, tight driving
+  </init>
+  missionStart("cherryFull")
+  smr.do('setvar "hakoliftinggearstateref" 130')
+  wait(3) : false
+  global.drive.engineRPM = 1900;
+  smr.do('setvar "hakoenginespeed" 1900') # RPM
+  smr.speed = 0.5 # desired drive speed m/s (0.7m/s~2.5km/h)
+  smrctl.directOrWait = false
+  #
+  global.drive.holdLine=true
+  driveNode("taastrup.cherrytrans_9-10S", 0)
+
+  driveNode("taastrup.cherrypath_10-11S", 180)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_10-11N", 180)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_9-10N", -180)
+
+  driveNode("taastrup.cherrypath_8-9N", 0)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_8-9S", 0)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_7-8S", -180)
+
+  driveNode("taastrup.cherrypath_6-7S", 180)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_6-7N", 180)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_8-9N", 0)
+
+  driveNode("taastrup.cherrypath_9-10N", 0)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_9-10S", 0)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_6-7S", -180)
+
+  driveNode("taastrup.cherrypath_5-6S", 180)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_5-6N", 180)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_4-5N", -180)
+
+  driveNode("taastrup.cherrypath_3-4N", 0)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_3-4S", 0)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_2-3S", -180)
+
+  driveNode("taastrup.cherrypath_1-2S", 180)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_1-2N", 180)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_3-4N", 0)
+
+  driveNode("taastrup.cherrypath_4-5N", 0)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_4-5S", 0)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_3-4S", -180)
+
+  driveNode("taastrup.cherrypath_2-3S", 180)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_2-3N", 180)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_1-2N", 180)
+
+  driveNode("taastrup.cherrypath_0-1N", 0)
+  smrctl.directOrWait = true
+  driveNode("taastrup.cherrypath_0-1S", 0)
+  smrctl.directOrWait = false
+  driveNode("taastrup.cherrytrans_3-4S", 0)
+  #
+  missionEnd()
+  # wait a bit before saving the MRC log
+  wait(2) : false
+  <post>
+    smr.saveMrcLog()
+    print('finished cherryFull')
+  </post>
+</rule>

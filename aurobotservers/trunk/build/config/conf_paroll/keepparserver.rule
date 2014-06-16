@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<rule name="keepparserver" if="defined('par.connected')">
+  <description>
+    trying to keep paroll server running, when a client is on the keeper server
+    * ulmsserver on port 24919
+    running
+  </description>
+  <init>
+  if (not defined('global.alive.always'))
+    global.alive.always = true
+  global.alive.paroll = false
+  global.alive.parollStarted = false
+  allow = 7  # allow time is allowed time to be dead
+  deadCnt = allow + 1
+  <rule name="alive" if="par.connected and 
+                         par.hostalive and 
+                         not global.alive.paroll">
+     global.alive.paroll = true
+     print("paroll is alive after " deadCnt " secs to start")
+     deadCnt = 0
+     allow = 3  # seen alive to dead detect
+  </rule>
+  <rule name="deadCnt" if="not par.connected or not par.hostalive">
+     if (deadCnt > allow / 2 and deadCnt <= allow)
+       if (core.clients > 0 or global.alive.always)
+         print("paroll server seems to be dead for " deadCnt " secs - restarts after " allow " secs!")
+       else
+         print("paroll server seems to be dead for " deadCnt " secs!")
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+#  <rule name="noclient" if="par.connected and core.clients == 0 and global.alive.parollstarted">
+#     global.alive.parollStarted = false
+#     print("Closing paroll server - as there is no clients left on port " core.port)
+#     core.send("par quit")
+#  </rule>
+  <rule name="dead" if="deadCnt >= allow and global.alive.parollStarted">
+     print("paroll server dead after " deadCnt " secs with no responce")
+     print(" - paroll status: par.connected=" par.connected ", par.alive=" par.hostalive)
+     global.alive.paroll = false
+     global.alive.parollStarted = false
+  </rule>
+  <rule name="start" if="(core.clients > 0 or global.alive.always) and not global.alive.paroll and not global.alive.parollStarted">
+#  <rule name="start" if="not global.alive.paroll and not global.alive.parollStarted">
+     deadCnt = 0
+     global.alive.parollStarted = true
+     allow = 30 # allow for start-up time
+     core.send("bash /usr/local/bin/startserver uparserver")
+  </rule>
+  </init>
+  print("Started monitoring of paroll")
+  wait() : false
+</rule>
+

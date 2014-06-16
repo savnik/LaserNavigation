@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<mission>
+	<log
+		gps="true"
+		kalman="true"
+		imu="true"
+		odometry="true"	
+	/>
+
+	<kalmaninit
+		type="drive"
+		dist="5"
+		speed="1.0"
+	/>
+	
+	<route>
+			<point
+				utme="708110"
+				utmn="6174202"
+				acc = "1.0"
+				speed = "1.0"
+			/>
+			<point
+				utme="708110"
+				utmn="6174182"
+				turn="omega"
+			/>
+			
+			<point
+				utme="708101"
+				utmn="6174182"
+			/>
+			<point
+				utme="708101"
+				utmn="6174202"
+				turn="omega"
+			/>
+			
+			<point
+				utme="708107"
+				utmn="6174202"
+			/>
+			<point
+				utme="708107"
+				utmn="6174182"
+				turn="omega"
+			/>
+			
+			<point
+				utme="708098"
+				utmn="6174182"
+			/>
+			<point
+				utme="708098"
+				utmn="6174202"
+				turn="omega"
+			/>
+			
+			<point
+				utme="708104"
+				utmn="6174202"
+			/>
+			<point
+				utme="708104"
+				utmn="6174182"
+			/>
+		
+	</route>
+	<field comment="for GUI only" >
+			<point
+				utme="708065.645"
+				utmn="6174230.443"
+			/>
+			<point
+				utme="708113.589"
+				utmn="6174232.643"
+			/>
+			<point
+				utme="708122.483"
+				utmn="6174166.911"
+			/>
+			<point
+				utme="708079.365"
+				utmn="6174164.805"
+			/>
+			<point
+				utme="708078.758"
+				utmn="6174181.899"
+			/>
+			<point
+				utme="708080.632"
+				utmn="6174183.151"
+			/>
+			<point
+				utme="708081.390"
+				utmn="6174185.454"
+			/>
+			<point
+				utme="708080.186"
+				utmn="6174187.635 "
+			/>
+			<point
+				utme="708078.367"
+				utmn="6174188.590"
+			/>
+			<point
+				utme="708078.049"
+				utmn="6174194.595 "
+			/>
+			<point
+				utme="708067.631"
+				utmn="6174194.167 "
+			/>
+	</field>
+</mission>

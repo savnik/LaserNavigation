@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<rule name="hako2running" if="true">
+  <description>
+  Maintains the global.alive.hako2 flag
+  </description>
+  <init>
+    global.alive.hako2 = false
+    <rule name="hako2flag" if="defined('global.alive.nav') and
+                                defined('global.alive.nox') and
+                                defined('global.alive.laser') and
+                                defined('global.alive.cam')">
+       global.alive.hako2 = global.alive.nox and global.alive.nav and global.alive.laser and global.alive.cam
+    </rule>
+  </init>
+  print("Started monitoring of hako2")
+  wait() : false
+</rule>
+

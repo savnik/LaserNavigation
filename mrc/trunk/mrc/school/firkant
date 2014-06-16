@@ -1,0 +1,8 @@
+d=1
+v=120
+fwd d
+turn v
+fwd d
+turn v
+fwd d
+turn v

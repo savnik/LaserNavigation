@@ -1,0 +1,5 @@
+log "$time" "$motcon_omega" "$odoth"
+fwd 5 @v0.5
+turn 180 @v0.05
+fwd 5 @v0.5
+idle

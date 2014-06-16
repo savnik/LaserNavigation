@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : robot.xml
+    Created on : 6. oktober 2009, 11:35
+    Author     : MARG TEAM
+    Description:
+        Purpose of the document follows.
+    updated 31 oct 2009 - /christian
+-->
+
+<robot>
+    <name>HAKO1</name>
+    <module>
+        <name>keeper1</name>
+        <host>hako1</host>
+        <port>24926</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <controlButtons>
+        <start moduleName="nav" command="var global.mission.start='1'"/>
+        <pause moduleName="nav" command="var global.drive.pause='1'"/>
+        <stop moduleName="nav" command="var global.mission.stop='0'"/>
+    </controlButtons>
+</robot>

@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!--
+    Map created from orchard measurements. Created: 09-Jun-2009
+-->
+<map nodename="pometet.apple">
+  <line number="1" perimeter="1.500">
+    <start x="144.820" y="390.849"/>
+    <end x="156.735" y="258.875"/>
+  </line>
+  <line number="2" perimeter="1.500">
+    <start x="148.456" y="391.286"/>
+    <end x="160.292" y="259.270"/>
+  </line>
+  <line number="3" perimeter="1.500">
+    <start x="151.880" y="391.502"/>
+    <end x="163.654" y="261.089"/>
+  </line>
+  <line number="4" perimeter="1.500">
+    <start x="155.336" y="391.759"/>
+    <end x="167.240" y="259.755"/>
+  </line>
+  <line number="5" perimeter="1.500">
+    <start x="158.810" y="392.147"/>
+    <end x="170.822" y="260.077"/>
+  </line>
+  <line number="6" perimeter="1.500">
+    <start x="162.378" y="392.361"/>
+    <end x="174.220" y="260.430"/>
+  </line>
+  <line number="7" perimeter="1.500">
+    <start x="166.020" y="389.716"/>
+    <end x="177.717" y="260.748"/>
+  </line>
+  <line number="8" perimeter="1.500">
+    <start x="169.469" y="391.444"/>
+    <end x="181.187" y="261.072"/>
+  </line>
+  <line number="9" perimeter="1.500">
+    <start x="172.801" y="393.232"/>
+    <end x="184.686" y="261.342"/>
+  </line>
+  <line number="10" perimeter="1.500">
+    <start x="176.323" y="393.624"/>
+    <end x="188.196" y="261.735"/>
+  </line>
+  <line number="11" perimeter="1.500">
+    <start x="185.746" y="343.286"/>
+    <end x="193.214" y="262.047"/>
+  </line>
+  <line number="12" perimeter="1.500">
+    <start x="154.107" y="252.355"/>
+    <end x="197.343" y="256.214"/>
+  </line>
+</map>

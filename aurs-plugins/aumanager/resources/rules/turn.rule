@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!-- Rule to turn the robot at the beginning of each edge if needed -->
+<rule name="initTurn" if="true">
+  <init>
+    #Create the required structure
+    global.planner.initturn.initcommand = ""
+    global.planner.initturn.exitcommand = ""
+    global.planner.initturn.quality = 0.8"
+  </init>
+
+  #Calculate the turn commands
+  if ((manager.currentRoute == 0) && (manager.reverse == 1))
+      global.planner.initturn.initcommand = "turn 180 @v0.10"
+  else
+      global.planner.initturn.initcommand = " "
+      
+  if (manager.nextReverse == 1)
+      global.planner.initturn.exitcommand = "turn 180 @v0.10"
+  else
+      global.planner.initturn.exitcommand = " "
+</rule>

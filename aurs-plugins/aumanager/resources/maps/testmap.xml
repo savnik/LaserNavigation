@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<!-- map for testing-->
+
+<graph name="testmap">
+    <nodetype name="blacktapecross">
+    <dimension shape="circle" radius="0.20"/>
+    <linemarker color="0" width="0.04" cross="1"/>
+    <connector name="a" x="0.10" y="0.0" th="0.0" autoconnect="1">
+      <linemarker color="0" width="0.04" cross="1"/>
+    </connector>
+    <connector name="b" x="0.0" y="0.10" th="90.0" autoconnect="1">
+      <linemarker color="0" width="0.04" cross="1"/>
+    </connector>
+    <connector name="c" x="0.10" y="0.20" th="180.0" autoconnect="1">
+      <linemarker color="0" width="0.04" cross="1"/>
+    </connector>
+    <connector name="d" x="0.20" y="0.10" th="270.0" autoconnect="1">
+      <linemarker color="0" width="0.04" cross="1"/>
+    </connector>
+  </nodetype>
+
+  <node name="start"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  <node name="slut"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  <node name="mellem"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  <node name="1"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  <node name="2"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  <node name="3"  type="blacktapecross" x="8.0"  y="6.34" th="0.0"/>
+  
+     <edgetype name="simpletapeline">
+      <properties length="3.2" straight="1" directional="0" />
+      <linemarker color="0" width="0.04" speed="0.15" />
+   </edgetype>
+   
+  <edge start="start.a" end="mellem.c" type="simpletapeline"/>
+  <edge start="slut.a" end="mellem.c" type="simpletapeline"/>
+  <edge start="mellem.d" end="1.c" type="simpletapeline"/>
+  <edge start="1.b" end="2.b" type="simpletapeline"/>
+  <edge start="2.d" end="3.b" type="simpletapeline"/>
+  <edge start="3.a" end="mellem.b" type="simpletapeline"/>
+  
+</graph>
+  

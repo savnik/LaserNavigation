@@ -1,0 +1,8 @@
+The version used here in this version should correspond to the version used
+by the institute robots. 
+You may (and should) replace the file 
+   pwc-ioctl.h
+with a link to your version of the file, as implemented in the linux kernel
+e.g.:
+
+$ ln -s /usr/src/linux/include/media/pwc-ioctl.h pwc-ioctl.h

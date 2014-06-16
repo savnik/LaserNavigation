@@ -1,0 +1,27 @@
+d=2
+n=100
+wait 3
+get "guidemark"
+wait 3
+label "next"
+get "guidemark"
+idle
+wait 3 :($guidemarkok)
+if ($guidemarkok == 0 ) "next"
+x1=$gmkx+d*cos($gmkkappa)
+y1=$gmky+d*sin($gmkkappa)
+%eval x1;y1
+th=atan2(y1,x1)
+dist=sqrt(y1*y1+x1*x1)
+eval th;dist
+turn th "rad"
+fwd dist
+v1=normalizeanglerad($gmkkappa-3.14-th)
+%eval v1
+turn v1 "rad"
+fwd 1.0
+n=n-1
+eval n
+if (n>0) "next"
+label "end"
+

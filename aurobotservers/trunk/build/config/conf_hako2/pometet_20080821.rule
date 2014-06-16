@@ -1,0 +1,352 @@
+<rule name="pometet_20080821" run="false">
+<description>
+Converted from google earth plan - check that name is legal
+Heading is estimated from line length, and may be inappropriate
+</description>
+<init>
+  global.drive.mission='pometet_20080821'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+  smr.do('set "hakoenginespeed" 1900') # RPM
+  smr.speed = 1.0 # desired drive speed m/s
+</init>
+#
+# to lat 55.670053 deg and long 12.305602 deg
+driveUTM(707873.92, 6174309.94, 5.4)
+#
+global.drive.holdLine=true
+# to lat 55.670073 deg and long 12.305661 deg
+# distance is 2.62m long at compas heading 5.4
+driveUTM(707874.17, 6174312.55, 30.9)
+#
+# to lat 55.670071 deg and long 12.305764 deg
+# distance is 4.33m long at compas heading 56.4
+driveUTM(707877.77, 6174314.94, 72.6)
+#
+# to lat 55.670026 deg and long 12.305826 deg
+# distance is 6.50m long at compas heading 88.9
+driveUTM(707884.27, 6174315.07, 114.1)
+#
+# to lat 55.669837 deg and long 12.305838 deg
+# distance is 6.34m long at compas heading 139.3
+driveUTM(707888.40, 6174310.26, 175.3)
+#
+global.drive.holdLine=true
+# to lat 55.669694 deg and long 12.305917 deg
+# distance is 21.13m long at compas heading 175.3
+driveUTM(707890.15, 6174289.20, 175.3)
+#
+# to lat 55.669655 deg and long 12.305897 deg
+# distance is 16.70m long at compas heading 159.8
+driveUTM(707895.92, 6174273.53, 177.0)
+#
+# to lat 55.669599 deg and long 12.305856 deg
+# distance is 4.45m long at compas heading 194.2
+driveUTM(707894.82, 6174269.22, 197.0)
+#
+# to lat 55.669379 deg and long 12.305864 deg
+# distance is 6.81m long at compas heading 199.7
+driveUTM(707892.53, 6174262.80, 176.0)
+#
+global.drive.holdLine=true
+# to lat 55.669298 deg and long 12.305882 deg
+# distance is 24.45m long at compas heading 176.0
+driveUTM(707894.25, 6174238.41, 176.0)
+#
+# to lat 55.669266 deg and long 12.305932 deg
+# distance is 9.14m long at compas heading 170.3
+driveUTM(707895.80, 6174229.40, 152.8)
+#
+# to lat 55.669283 deg and long 12.309270 deg
+# distance is 4.73m long at compas heading 135.4
+driveUTM(707899.12, 6174226.03, 86.7)
+#
+global.drive.holdLine=true
+# to lat 55.669355 deg and long 12.309411 deg
+# distance is 210.05m long at compas heading 86.7
+driveUTM(708108.83, 6174237.95, 86.7)
+#
+# to lat 55.669792 deg and long 12.309346 deg
+# distance is 11.95m long at compas heading 45.5
+driveUTM(708117.34, 6174246.33, 352.5)
+#
+global.drive.holdLine=true
+# to lat 55.670002 deg and long 12.309294 deg
+# distance is 48.88m long at compas heading 352.5
+driveUTM(708110.94, 6174294.79, 350.9)
+#
+# to lat 55.670328 deg and long 12.309170 deg
+# distance is 23.54m long at compas heading 349.2
+driveUTM(708106.55, 6174317.92, 347.2)
+#
+# to lat 55.670570 deg and long 12.309023 deg
+# distance is 37.13m long at compas heading 345.1
+driveUTM(708097.03, 6174353.81, 341.7)
+#
+# to lat 55.670635 deg and long 12.309094 deg
+# distance is 28.51m long at compas heading 338.3
+driveUTM(708086.49, 6174380.31, 341.7)
+#
+# to lat 55.670677 deg and long 12.309913 deg
+# distance is 8.49m long at compas heading 28.9
+driveUTM(708090.60, 6174387.73, 82.1)
+#
+global.drive.holdLine=true
+# to lat 55.670688 deg and long 12.309986 deg
+# distance is 51.73m long at compas heading 82.1
+driveUTM(708141.83, 6174394.88, 82.1)
+#
+# to lat 55.670634 deg and long 12.310042 deg
+# distance is 4.82m long at compas heading 71.7
+driveUTM(708146.41, 6174396.39, 109.4)
+#
+# to lat 55.669441 deg and long 12.310136 deg
+# distance is 6.95m long at compas heading 147.1
+driveUTM(708150.18, 6174390.55, 174.7)
+#
+global.drive.holdLine=true
+# to lat 55.669416 deg and long 12.310175 deg
+# distance is 132.97m long at compas heading 174.7
+driveUTM(708162.41, 6174258.14, 174.7)
+#
+# to lat 55.669424 deg and long 12.310530 deg
+# distance is 3.75m long at compas heading 136.2
+driveUTM(708165.01, 6174255.44, 85.0)
+#
+global.drive.holdLine=true
+# to lat 55.669462 deg and long 12.310583 deg
+# distance is 22.37m long at compas heading 85.0
+driveUTM(708187.30, 6174257.38, 85.0)
+#
+# to lat 55.670190 deg and long 12.310529 deg
+# distance is 5.46m long at compas heading 35.4
+driveUTM(708190.45, 6174261.83, 354.8)
+#
+global.drive.holdLine=true
+# to lat 55.670265 deg and long 12.310554 deg
+# distance is 81.03m long at compas heading 354.8
+driveUTM(708183.15, 6174342.53, 354.8)
+#
+# to lat 55.670346 deg and long 12.310520 deg
+# distance is 8.53m long at compas heading 8.2
+driveUTM(708184.37, 6174350.98, 356.0)
+#
+# to lat 55.670643 deg and long 12.310506 deg
+# distance is 9.30m long at compas heading 343.8
+driveUTM(708181.77, 6174359.90, 355.7)
+#
+global.drive.holdLine=true
+# to lat 55.670671 deg and long 12.310454 deg
+# distance is 33.08m long at compas heading 355.7
+driveUTM(708179.31, 6174392.89, 355.7)
+#
+# to lat 55.670657 deg and long 12.309975 deg
+# distance is 4.55m long at compas heading 311.6
+driveUTM(708175.91, 6174395.90, 264.2)
+#
+global.drive.holdLine=true
+# to lat 55.670618 deg and long 12.309930 deg
+# distance is 30.19m long at compas heading 264.2
+driveUTM(708145.87, 6174392.87, 264.2)
+#
+# to lat 55.669440 deg and long 12.310017 deg
+# distance is 5.22m long at compas heading 209.9
+driveUTM(708143.27, 6174388.35, 174.9)
+#
+global.drive.holdLine=true
+# to lat 55.669420 deg and long 12.310049 deg
+# distance is 131.21m long at compas heading 174.9
+driveUTM(708154.94, 6174257.66, 174.9)
+#
+# to lat 55.669438 deg and long 12.310191 deg
+# distance is 3.00m long at compas heading 135.1
+driveUTM(708157.06, 6174255.53, 104.9)
+#
+# to lat 55.669465 deg and long 12.311879 deg
+# distance is 9.17m long at compas heading 74.6
+driveUTM(708165.90, 6174257.96, 85.7)
+#
+global.drive.holdLine=true
+# to lat 55.669504 deg and long 12.311918 deg
+# distance is 106.27m long at compas heading 85.7
+driveUTM(708271.86, 6174266.01, 85.7)
+#
+# to lat 55.669917 deg and long 12.311891 deg
+# distance is 4.97m long at compas heading 27.3
+driveUTM(708274.15, 6174270.43, 355.1)
+#
+global.drive.holdLine=true
+# to lat 55.669969 deg and long 12.311812 deg
+# distance is 46.09m long at compas heading 355.1
+driveUTM(708270.25, 6174316.35, 355.1)
+#
+# to lat 55.670091 deg and long 12.311806 deg
+# distance is 7.62m long at compas heading 316.1
+driveUTM(708264.97, 6174321.84, 336.0)
+#
+# to lat 55.670152 deg and long 12.311869 deg
+# distance is 13.60m long at compas heading 355.8
+driveUTM(708263.97, 6174335.40, 11.7)
+#
+# to lat 55.670685 deg and long 12.311833 deg
+# distance is 7.88m long at compas heading 27.6
+driveUTM(708267.63, 6174342.38, 355.1)
+#
+global.drive.holdLine=true
+# to lat 55.670718 deg and long 12.311776 deg
+# distance is 59.40m long at compas heading 355.1
+driveUTM(708262.51, 6174401.56, 355.1)
+#
+# to lat 55.670716 deg and long 12.311695 deg
+# distance is 5.15m long at compas heading 312.8
+driveUTM(708258.73, 6174405.06, 289.1)
+#
+# to lat 55.670678 deg and long 12.311668 deg
+# distance is 5.07m long at compas heading 265.4
+driveUTM(708253.68, 6174404.65, 232.0)
+#
+# to lat 55.669909 deg and long 12.311734 deg
+# distance is 4.65m long at compas heading 198.7
+driveUTM(708252.19, 6174400.24, 174.5)
+#
+global.drive.holdLine=true
+# to lat 55.669831 deg and long 12.311662 deg
+# distance is 85.72m long at compas heading 174.5
+driveUTM(708260.41, 6174314.91, 174.5)
+#
+# to lat 55.669472 deg and long 12.311682 deg
+# distance is 9.72m long at compas heading 205.0
+driveUTM(708256.30, 6174306.10, 175.5)
+#
+global.drive.holdLine=true
+# to lat 55.669455 deg and long 12.311633 deg
+# distance is 40.05m long at compas heading 175.5
+driveUTM(708259.43, 6174266.18, 175.5)
+#
+# to lat 55.669448 deg and long 12.311499 deg
+# distance is 3.57m long at compas heading 236.2
+driveUTM(708256.47, 6174264.19, 249.0)
+#
+# to lat 55.669477 deg and long 12.311433 deg
+# distance is 8.47m long at compas heading 261.8
+driveUTM(708248.08, 6174262.98, 283.5)
+#
+# to lat 55.670391 deg and long 12.311357 deg
+# distance is 5.26m long at compas heading 305.1
+driveUTM(708243.78, 6174266.01, 354.6)
+#
+global.drive.holdLine=true
+# to lat 55.670429 deg and long 12.311325 deg
+# distance is 101.91m long at compas heading 354.6
+driveUTM(708234.15, 6174367.47, 354.6)
+#
+# to lat 55.670539 deg and long 12.310926 deg
+# distance is 4.62m long at compas heading 331.4
+driveUTM(708231.94, 6174371.53, 293.4)
+#
+global.drive.holdLine=true
+# to lat 55.670556 deg and long 12.310622 deg
+# distance is 27.96m long at compas heading 293.4
+driveUTM(708206.27, 6174382.61, 293.4)
+#
+# to lat 55.670595 deg and long 12.310512 deg
+# distance is 19.22m long at compas heading 272.9
+driveUTM(708187.07, 6174383.59, 286.2)
+#
+# to lat 55.670656 deg and long 12.310504 deg
+# distance is 8.19m long at compas heading 299.6
+driveUTM(708179.96, 6174387.63, 326.1)
+#
+# to lat 55.670683 deg and long 12.310458 deg
+# distance is 6.78m long at compas heading 352.7
+driveUTM(708179.09, 6174394.35, 332.8)
+#
+# to lat 55.670643 deg and long 12.309103 deg
+# distance is 4.14m long at compas heading 312.9
+driveUTM(708176.06, 6174397.17, 264.3)
+#
+global.drive.holdLine=true
+# to lat 55.670679 deg and long 12.308975 deg
+# distance is 85.35m long at compas heading 264.3
+driveUTM(708091.12, 6174388.74, 264.3)
+#
+# to lat 55.671209 deg and long 12.308552 deg
+# distance is 9.02m long at compas heading 293.5
+driveUTM(708082.85, 6174392.34, 333.0)
+#
+global.drive.holdLine=true
+# to lat 55.671223 deg and long 12.308481 deg
+# distance is 64.71m long at compas heading 333.0
+driveUTM(708053.45, 6174449.98, 333.0)
+#
+# to lat 55.671207 deg and long 12.306974 deg
+# distance is 4.74m long at compas heading 287.1
+driveUTM(708048.93, 6174451.38, 266.2)
+#
+global.drive.holdLine=true
+# to lat 55.671170 deg and long 12.306852 deg
+# distance is 94.84m long at compas heading 266.2
+driveUTM(707954.30, 6174445.03, 266.2)
+#
+# to lat 55.671106 deg and long 12.306773 deg
+# distance is 8.67m long at compas heading 239.2
+driveUTM(707946.86, 6174440.59, 225.7)
+#
+# to lat 55.671051 deg and long 12.306773 deg
+# distance is 8.72m long at compas heading 212.1
+driveUTM(707942.22, 6174433.21, 194.7)
+#
+# to lat 55.670993 deg and long 12.306741 deg
+# distance is 6.16m long at compas heading 177.2
+driveUTM(707942.52, 6174427.06, 186.0)
+#
+# to lat 55.670954 deg and long 12.306652 deg
+# distance is 6.74m long at compas heading 194.9
+driveUTM(707940.79, 6174420.54, 212.0)
+#
+# to lat 55.670923 deg and long 12.306414 deg
+# distance is 7.09m long at compas heading 229.2
+driveUTM(707935.43, 6174415.91, 241.8)
+#
+# to lat 55.670882 deg and long 12.306332 deg
+# distance is 15.36m long at compas heading 254.4
+driveUTM(707920.63, 6174411.78, 240.0)
+#
+# to lat 55.670164 deg and long 12.306339 deg
+# distance is 6.94m long at compas heading 225.6
+driveUTM(707915.68, 6174406.92, 177.0)
+#
+global.drive.holdLine=true
+# to lat 55.670134 deg and long 12.306273 deg
+# distance is 79.95m long at compas heading 177.0
+driveUTM(707919.92, 6174327.08, 177.0)
+#
+# to lat 55.670133 deg and long 12.306186 deg
+# distance is 5.34m long at compas heading 228.4
+driveUTM(707915.93, 6174323.54, 247.8)
+#
+# to lat 55.670079 deg and long 12.305634 deg
+# distance is 5.47m long at compas heading 267.2
+driveUTM(707910.47, 6174323.26, 257.3)
+#
+global.drive.holdLine=true
+# to lat 55.670018 deg and long 12.305591 deg
+# distance is 35.27m long at compas heading 257.3
+driveUTM(707876.05, 6174315.53, 257.3)
+#
+# to lat 55.669956 deg and long 12.305598 deg
+# distance is 7.27m long at compas heading 199.0
+driveUTM(707873.69, 6174308.66, 186.3)
+#
+# ends at lat 55.669956 deg and long 12.305598 deg
+# last distance is 6.88m long at compas heading 173.7
+driveUTM(707874.44, 6174301.81, 173.7)
+driveStop()
+# wait a 10 seconds before saving the MRC log
+smr.do('set "hakoenginespeed" 800') # RPM
+wait(10) : false
+smr.saveMrcLog()
+print('finished pometet_20080821')
+</rule>

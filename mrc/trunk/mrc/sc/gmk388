@@ -1,0 +1,27 @@
+get "guidemark"
+wait 0.5
+%followline "br" :($odoy < -1)
+%stop
+wait 1
+get "guidemark"
+wait 1
+eval $guidemarkok
+%goto "error"
+if ($guidemarkok <1 ) "error"
+if ($guidemarkok == 2) "left"
+if ($guidemarkok == 4) "right"
+goto "error"
+label "left"
+turn -90
+fwd 0.5
+turn 90
+fwd 1
+goto "error"
+label "right"
+turn 90
+fwd 0.5
+turn -90
+fwd 1
+goto "error"
+label "error"
+stop

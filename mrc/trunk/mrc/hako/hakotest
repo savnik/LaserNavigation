@@ -1,0 +1,6 @@
+log "$odox" "$odoy" "$odoth" "$ododencl" "$ododencr"
+set "hakomanual" 0
+fwd 20  : ($cmdtime >100)
+turnr 3 -180
+fwd 20
+

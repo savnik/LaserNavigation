@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ ! -z ${1} ]; then
+        if [ ! -d /opt/smr.${1}/bin ]; then
+                echo "Switching impossible. Path: /opt/smr.${1} not found."
+                exit 1
+        fi
+fi
+
+cnt=$(echo $PATH | grep -c smr)
+
+if [ $cnt -eq 0 ]; then
+	echo "No smr-path in current \$PATH, aborting cowardly."
+	exit 2
+fi
+
+oldepath=`echo $PATH | awk -F/ '{ for(x=1;x<=NF;x++) if(index($x, "smr")!=0) print $x }'`
+
+echo $oldepath
+
+export PATH=`echo $PATH | sed "s/$oldepath/smr.${1}/"`

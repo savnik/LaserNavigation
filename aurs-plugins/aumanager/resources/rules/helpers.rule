@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!-- *** Set of helper functions *** -->
+
+<!-- Rule to assign a variable with the odo-dist at the start of each edge -->
+<!-- Only run it until the first two route elements, then it does not change anymore -->
+<rule name="ododist" if="manager.currentRoute < 2">
+  <init>
+    #Create the required structure
+    global.planner.edgeStartOdo.initcommand = ""
+    global.planner.edgeStartOdo.quality = 0.5
+    global.planner.edgeStartOdo.exitcommand = ""
+  </init>
+  #Set the commands statically
+  global.planner.edgeStartOdo.initcommand = "edgeStartOdo = $ododist"
+  global.planner.edgeStartOdo.exitcommand = "edgeStartOdo = $ododist"
+  
+  #Only set the init in the first command, otherwise do it for the exit command
+  if (manager.currentRoute == 0)
+      global.planner.edgeStartOdo.initcommand = "edgeStartOdo = $ododist"
+  else
+      global.planner.edgeStartOdo.initcommand = "" 
+</rule>

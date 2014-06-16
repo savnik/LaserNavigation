@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<!-- 
+      Sample map of dense orchard @ pometet / KU-Leif
+-->
+<map>
+  <orchard name="dense" coordinates="utm" type="apple">
+    <line number="1" perimeter="1.50">
+      <start x="144.82024" y="390.84933" />
+      <end x="156.73506" y="258.87494" />
+    </line>
+    <line number="2" perimeter="1.50">
+      <start x="148.45647" y="391.28626" />
+      <end x="160.29209" y="259.27014" />
+    </line>
+    <line number="3" perimeter="1.50">
+      <start x="151.88026" y="391.50247" />
+      <end x="163.65378" y="261.08910" />
+    </line>
+    <line number="4" perimeter="1.50">
+      <start x="155.33559" y="391.75884" />
+      <end x="167.24037" y="259.75477" />
+    </line>
+    <line number="5" perimeter="1.50">
+      <start x="158.80972" y="392.14715" />
+      <end x="170.82158" y="260.07723" />
+    </line>
+    <line number="6" perimeter="1.50">
+      <start x="162.37782" y="392.36097" />
+      <end x="174.21954" y="260.43046" />
+    </line>
+    <line number="7" perimeter="1.50">
+      <start x="166.01969" y="389.71606" />
+      <end x="177.71675" y="260.74823" />
+    </line>
+    <line number="8" perimeter="1.50">
+      <start x="169.46908" y="391.44385" />
+      <end x="181.18741" y="261.07173" />
+    </line>
+    <line number="9" perimeter="1.50">
+      <start x="172.80140" y="393.23232" />
+      <end x="184.68562" y="261.34193" />
+    </line>
+    <line number="10" perimeter="1.50">
+      <start x="176.32284" y="393.62376" />
+      <end x="188.19637" y="261.73461" />
+    </line>
+
+    <point number="1" perimeter="0.8">
+      <value x="712.0" y="890.2" />
+    </point>
+    <point number="2" perimeter="0.8">
+      <value x="713.0" y="190.2" />
+    </point>
+  </orchard>
+
+  <border coordinates="utm" type="hedge">
+    <line number="1" perimeter="0.2">
+      <start x="185.74550" y="343.28570" />
+      <end x="193.21391" y="262.04706" />
+    </line>
+    <line number="2" perimeter="0.2">
+      <start x="154.10687" y="252.35503" />
+      <end x="197.34325" y="256.21357" />
+    </line>
+  </border>
+
+  <!-- Should be ignored: -->
+
+  <path coordinates="utm" type="between_trees">
+    <node number="1">
+      <pos x="200" y="300" />
+    </node>
+    <node number="2">
+      <pos x="300" y="300" />
+    </node>
+    <edge connects="1,2" />
+  </path>
+
+  <path coordinates="local" type="black_tape">
+    <node number="1">
+      <pos x="0" y="0" />
+    </node>
+    <node number="2">
+      <pos x="10" y="1" />
+    </node>
+    <edge connects="1,2" />
+  </path>
+</map>

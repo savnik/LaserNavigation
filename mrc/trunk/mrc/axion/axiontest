@@ -1,0 +1,10 @@
+setoffset "curvature" -32128
+setgain "curvature" 0.00025
+setgain "encl" 0.00056
+setoffset "curvatureref"   8.032
+setgain "curvatureref"     4000
+log "$odox" "$odoy" "$odoth" "$ododencl" 
+turnr 10 90
+wait 10
+
+

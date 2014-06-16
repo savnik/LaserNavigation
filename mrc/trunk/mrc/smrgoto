@@ -1,0 +1,5 @@
+read <smrdir ang
+read <smrpos pos
+demo/shortest_path -f $pos -t $1 -g demo/graph1.dgl -a $ang > route
+./smrdemo route
+echo $1 >smrpos

@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<!-- Generate followline code -->
+<rule name="followline" if="true">
+  <init>
+    #Create the required followline structure
+    global.planner.followline.command = ""
+    global.planner.followline.failcond = ""
+    global.planner.followline.successcond = ""
+    global.planner.followline.initcommand = ""
+    global.planner.followline.quality = 0.8
+    global.planner.followline.next.quality = 0.8
+    global.planner.followline.next.failcond = ""
+    global.planner.followline.next.successcond = ""
+    global.planner.followline.next.initcommand = ""
+    global.planner.followline.next.command = ""
+    line = 0
+    distance = 0
+    speed = 0
+    cross = 0
+  </init>
+  #Extract informations from generated route
+  distance = manager.edge("properties.length")
+  speed = manager.edge("linemarker.speed")
+  cross = manager.endconn("linemarker.cross")
+  line  = manager.edge("linemarker.color")
+  
+  #Create static code
+  global.planner.followline.command = 'followline "bm" @v' speed
+  global.planner.followline.failcond = "($nolineb)"
+
+  //Calculate quality (scale as a factor of speed)
+   if (speed < 0.7)
+     global.planner.followline.quality = 0.9 * ((0.70-speed)/(0.40))
+   else
+     global.planner.followline.quality = 0.0
+
+  #Check of there is a tapeline at all... (and set quality to zero if not)
+  if (line != 0)
+    global.planner.followline.quality = 0.0
+  
+  #Set stop conditions
+  if (cross > 0)
+    global.planner.followline.successcond = "($crossingblackline)"
+  else
+    global.planner.followline.successcond = '(($ododist - edgeStartOdo) > ' distance ')'
+
+    #****** Then do the next-cmd stuff ************
+    distance = manager.nextedge("properties.length")
+    speed = manager.nextedge("linemarker.speed")
+    cross = manager.nextconn("linemarker.cross")
+    line  = manager.nextedge("linemarker.color")
+    
+    #Create static code
+    global.planner.followline.next.command = 'followline "bm" @v' speed
+    global.planner.followline.next.failcond = "($nolineb)"
+
+    #Calculate quality (scale as a factor of speed)
+    if (speed < 0.7)
+      global.planner.followline.next.quality = 0.9 * ((0.70-speed)/(0.40))
+    else
+      global.planner.followline.next.quality = 0.0
+
+    #Check of there is a tapeline at all... (and set quality to zero if not)
+    if (line != 0)
+      global.planner.followline.next.quality = 0.0
+  
+    #Set stop conditions
+    if (cross > 0)
+      global.planner.followline.next.successcond = "($crossingblackline)"
+    else
+      global.planner.followline.next.successcond = '(($ododist - edgeStartOdo) > ' distance ')'
+
+  <post>
+  </post>
+</rule>

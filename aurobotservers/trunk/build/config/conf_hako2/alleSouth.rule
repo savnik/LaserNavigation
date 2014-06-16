@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="alleSouthPoly" run="true">
+# converted from KML - offset by 0.02E, -0.01N
+#           map part - offset by -707999.98E, -6174000.01N
+poly.del('alleSouth')
+# poly.addPoint('alleSouth', 707869.54, 6174220.10)
+poly.addPoint('alleSouth', -130.46, 220.10)
+# poly.addPoint('alleSouth', 708108.45, 6174234.52)
+poly.addPoint('alleSouth', 108.45, 234.52)
+mapbase.addMapLine('alleSouth3', -130.46, 220.10, 108.45, 234.52, 1.0, 1)
+poly.setRefCoord('alleSouth', 2) # map coordinate system
+# poly.setRefCoord('alleSouth', 1) # UTM coordinate system
+poly.setOpen('alleSouth') # polygon
+# ends at lat 55.669253 deg and long 12.309261 deg
+</rule>
+

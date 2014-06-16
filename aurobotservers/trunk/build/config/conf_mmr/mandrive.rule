@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!-- obst avoid driver v2.960 -->
+<rule name="mandrive" if="global.drive.odoDest != global.drive.lastOdoDest">
+  <description>
+    manual update of destination
+  </description>
+  driveodo(global.drive.odoDest[0], global.drive.odoDest[1], global.drive.odoDest[2])
+  print("moving destination")
+</rule>

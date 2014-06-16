@@ -1,0 +1,12 @@
+n=10
+label "start"
+ignoreobstacles
+followline "bm" :($drivendist > 4)
+ignoreobstacles
+turnr 0.6 -90
+ignoreobstacles
+fwd -1.2
+ignoreobstacles
+turnr 0.6 -90
+n=n-1
+if(n > 0) "start"

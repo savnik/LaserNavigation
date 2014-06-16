@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<rule name="keepaunav" if="defined('nav.connected')">
+  <description>
+    trying to keep 
+    * aunav an auserver on port 24922
+    running
+  </description>
+  <init>
+  deadCnt = 0
+  allow = 3  # allow time is allowed time to be dead
+  global.alive.nav = false
+  <rule name="navok" if="nav.connected and nav.hostalive and not global.alive.nav">
+     global.alive.nav = true
+     print("nav is alive after " deadCnt " seconds to start")
+     deadCnt = 0
+     allow = 3  # seen alive to dead detect
+  </rule>
+  <rule name="navdeadCnt" if="not nav.connected or not nav.hostalive">
+     if (deadCnt < 0.51)
+       print("nav seems to be dying " deadCnt " : nav.connected=" nav.connected ", nav.alive=" nav.hostalive)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name="navdead" if="deadCnt > allow">
+     print("nav is assumed dead after " deadCnt " seconds with no responce")
+     print(" - nav status: nav.connected=" nav.connected ", nav.alive=" nav.hostalive)
+     deadCnt = 0
+     global.alive.nav = false
+     allow = 30 # allow for start-up time
+     core.send("bash ./startuserver aunav -p 24922")
+  </rule>
+  </init>
+  print("Started monitoring of nav")
+  wait() : false
+</rule>
+

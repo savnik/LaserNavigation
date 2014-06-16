@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : robot.xml
+    Created on : 6. oktober 2009, 11:35
+    Author     : MARG TEAM
+    Description:
+        Purpose of the document follows.
+    updated 31 oct 2009 - /christian
+-->
+
+<robot>
+    <name>HAKO2</name>
+    <module>
+        <name>cam</name>
+        <host>hako2</host>
+        <port>24920</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>laser</name>
+        <host>hako2</host>
+        <port>24919</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>nav</name>
+        <host>hako2</host>
+        <port>24922</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>keeper1</name>
+        <host>hako1</host>
+        <port>24926</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <module>
+        <name>keeper2</name>
+        <host>hako2</host>
+        <port>24926</port>
+        <autoConnect>true</autoConnect>
+    </module>
+    <controlButtons>
+        <start moduleName="nav" command="var global.drive.pause='0'"/>
+        <pause moduleName="nav" command="var global.drive.pause='1'"/>
+        <stop moduleName="nav" command="var global.drive.pause='1'"/>
+    </controlButtons>
+</robot>

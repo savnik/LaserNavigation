@@ -1,0 +1,13 @@
+log "$irfl" "$irfm" "$irfr"
+count=0
+label "start"
+n=3
+label "drive"
+followline "bm" @v0.3 :($drivendist > 0.2 & $crossingblackline)
+n=n-1
+if (n>0) "drive"
+fwd 0.21
+turn 180 @v0.2
+count=count+1
+eval count
+goto "start"

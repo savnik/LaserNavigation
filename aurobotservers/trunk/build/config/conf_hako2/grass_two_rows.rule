@@ -1,0 +1,34 @@
+<rule name="grass_two_rows" run="true">
+<description>
+Converted from google earth plan - check that name is legal
+Heading is estimated from line length, and may be inappropriate
+</description>
+<init>
+  global.drive.mission='grass_two_rows'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+  smr.speed = 1.0 # m/s
+</init>
+#
+# to lat 55.669923 deg and long 12.304332 deg
+driveUTM(707831.34, 6174298.44, 263.4)
+#
+# to lat 55.669880 deg and long 12.304274 deg
+# distance is 36.53m long at compas heading 263.4
+driveUTM(707795.06, 6174294.26, 263.4)
+#
+# to lat 55.669848 deg and long 12.304364 deg
+# distance is 6.02m long at compas heading 214.5
+driveUTM(707791.64, 6174289.30, 166.8)
+#
+# to lat 55.669868 deg and long 12.304939 deg
+# distance is 6.67m long at compas heading 119.1
+driveUTM(707797.47, 6174286.06, 83.8)
+#
+# ends at lat 55.669868 deg and long 12.304939 deg
+# last distance is 36.25m long at compas heading 83.8
+driveUTM(707833.51, 6174289.99, 83.8)
+print('finished grass_two_rows')
+</rule>

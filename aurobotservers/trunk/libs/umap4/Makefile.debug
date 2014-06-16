@@ -1,0 +1,60 @@
+# makefile
+# preprocessor flags like -I(include dir)
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include 
+#                  and -O0 (no optimize and -g3 full debug info
+LDFLAGS = -lcxcore -lcv -L../lib -lugen4o -lurob4o -lugen4o
+# C++ compiler flags
+CXXFLAGS = -O0 -g3 -Wall -Wno-deprecated
+
+# Object files to produce before link
+objects =  uposev.o upose.o \
+           uprobpoly.o uprobpolyqueue.o \
+           umanoeuvre.o umanarc.o umanline.o \
+	   upose2pose.o umanseq.o umanppseq.o
+# executable file name
+exe = umap4
+lib = libumap4o.a
+
+
+# compile all - all objects depend on all other
+all: $(objects)
+#	c++ -c $(objects) $(LDFLAGS)
+#	c++ -o $(exe) $(objects) $(LDFLAGS)
+
+.PHONY : clean install
+clean :
+	-rm -f $(objects) $(lib)
+	-@rm -fr *~ .deps
+
+
+install:
+	-rm ../include/umap4/*.h
+	cp *.h ../include/umap4
+	ar -r $(lib) $(objects)
+#	-ar -d $(lib) $(exe).o
+	ranlib $(lib)
+	cp $(lib) ../lib
+
+######################################################################
+#
+# Automatic dependencies
+
+DEPS_MAGIC := $(shell mkdir -p .deps)
+
+
+%.o: .deps/%.d
+
+.deps/%.d: src/%.c
+	@cc $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' 
+
+.deps/%.d: %.cpp
+	@g++ $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' > $@
+
+
+
+######################################################################
+#
+# Include automatic dependencies
+
+-include $(patsubst %.o, .deps/%.d, $(objects))

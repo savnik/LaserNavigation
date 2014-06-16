@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!-- Generate filldrive code -->
+<rule name="filldrive"  if="true">
+  <init>
+    #Create the required followline structure
+    global.planner.filldrive.command = ""
+    global.planner.filldrive.failcond = ""
+    global.planner.filldrive.quality = 0.8
+    
+  </init>
+  #Create static code
+  global.planner.filldrive.command = 'drive '
+  global.planner.filldrive.quality = 0.3
+  global.planner.filldrive.failcond = "($drivendist > 0.30)"
+  <post>
+  </post>
+</rule>

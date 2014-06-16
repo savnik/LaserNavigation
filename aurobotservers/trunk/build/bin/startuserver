@@ -1,0 +1,34 @@
+#! /bin/bash
+#export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/lib/svs":$LD_LIBRARY_PATH
+# if no parameters, then assume server name is aukeeper
+# else assume first parameter is server name and
+# following parameters are for the server
+# like:
+#    startServer aukeeper -p 24926
+if [ $# -eq 0 ]
+then
+  echo using default name 'aukeeper'
+  serverName=aukeeper
+else
+  serverName=$1
+fi
+serverSource=userver
+echo starting a "$serverName"
+if [ ! -e "$serverName" ] || [ "$serverSource" -nt "$serverName" ]
+then
+  echo made new "$serverName" from userver
+  cp -f userver "$serverName"
+fi
+if [ $( pgrep -x "$serverName" ) ]
+then
+  echo trying to kill "$serverName"
+  killall "$serverName" > /dev/null
+  sleep 1.5
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo trying to 9 kill "$serverName"
+    killall -9 "$serverName" > /dev/null
+  fi
+fi
+./"$serverName" -a $2 $3 $4 > "$serverName"_out 2> "$serverName"_err &
+echo started "$serverName" -a $2 $3 $4

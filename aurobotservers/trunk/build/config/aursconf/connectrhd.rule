@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<rule name="connectrhd" if="defined('rhd.connected')">
+  <description>
+    trying to keep write connection to rhd
+    port 24902
+    *** NB! this rule is not needed - better handled by aurhdif alone
+  </description>
+  <init>
+  global.alive.rhd = false
+  <rule name="rhdconnect" if="not rhd.connected and
+                              core.clients > 0 and
+                              not global.alive.rhd">
+     global.alive.rhd = true
+     print("Connecting to rhd port " rhd.host ":" rhd.port " (write=" rhd.write ")")
+     core.send("rhd connect")
+  </rule>
+  <rule name="rhdhup" if="rhd.connected and
+                          core.clients == 0 and
+                          global.alive.rhd">
+     global.alive.rhd = false
+     print("disconnecting rhd")
+     core.send("rhd hup")
+  </rule>
+  </init>
+  print("Started rhd monitoring write connect")
+  wait() : false
+</rule>
+

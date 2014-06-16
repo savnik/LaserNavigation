@@ -1,0 +1,28 @@
+%SMRCL script som bruger avoid plugin til at finde vej
+
+maalx=2.0
+maaly=0.0
+
+tal=atan2(maaly,maalx)/3.14169*180
+turn tal
+
+label "loop"
+
+stringcat "avoid x=" maalx " y=" maaly
+
+laser "$string"
+label "vent"
+wait 0.1
+if(tal == $l3) "vent"
+tal=$l3
+
+eval $l0; $l1; $l2; $l3; $l4; $l5; $l6; $l7; $l8 
+
+ignoreobstacles
+turn $l0
+ignoreobstacles 
+fwd $l1 
+ignoreobstacles
+turn $l2 
+
+if($l4==0) "loop"

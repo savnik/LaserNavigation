@@ -1,0 +1,66 @@
+# makefile
+# preprocessor flags like -I(include dir)
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include 
+#                  and -O0 (no optimize and -g3 full debug info
+LDFLAGS = -lcxcore -lcv -lhighgui \
+          -L../lib -lurob4o -lugen4o -lumap4o \
+	  -lpng -ldl -rdynamic -lcurses -lreadline -lurob4o 
+# extra preprocessor defines (mainly for module testcode)
+# change NO_USE_HIGHGUI to USE_HIGHGUI for X-display direct
+# if NO_USE_HIGHGUI, then -lhighgui may be removed from LDFLAGS
+DEFINES = -D USE_HIGHGUI
+# C++ compiler flags
+CXXFLAGS = -O0 -g3 -Wall $(DEFINES)
+
+# Object files to produce before link
+objects = auclient.o           ufunctiondisp.o     ureslaserif.o     \
+	uclientcamifgmk.o      ufunctionlaserif.o  ureslaserifobst.o \
+	uclientcamifpath.o     ugmkpool.o          ureslaserifroad.o \
+	uclientfuncgmk.o       ulaserdataset.o     ureslaserifscan.o \
+	uclientfuncpath.o      unavpaint.o         ureslaserifvar.o  \
+	uclienthandlercamif.o  uobstaclehist.o     userverstatic.o   \
+	ufeaturepool.o         urescamifimg.o      uvisdata.o        \
+	ufunctioncamif.o       uresdisp.o          urescamifcam.o    \
+	uresnavifman.o         urespoly.o          ufuncpoly.o \
+        ureslaserifsf.o        ufunctionlaserifscan.o
+
+# executable file name
+exe = auclient
+
+# compile all - all objects depend on all other
+all: $(objects)
+	c++ -o $(exe) $(objects) $(LDFLAGS)
+  
+.PHONY : clean install
+clean :
+	rm -f $(exe) $(objects)
+	-@rm -fr *~ .deps
+
+
+install:
+	cp $(exe) ../bin
+
+
+######################################################################
+#
+# Automatic dependencies
+
+DEPS_MAGIC := $(shell mkdir -p .deps)
+
+
+%.o: .deps/%.d
+
+.deps/%.d: src/%.c
+	@cc $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' 
+
+.deps/%.d: %.cpp
+	@g++ $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' > $@
+
+
+
+######################################################################
+#
+# Include automatic dependencies
+
+-include $(patsubst %.o, .deps/%.d, $(objects))

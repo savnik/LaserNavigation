@@ -1,0 +1,58 @@
+Debug file for the robot initialization
+---------------------------------------
+Thu Oct 23 16:24:06 2008
+---------------------------------------
+
+Module : robotinfo
+   type      differential     enum number        0
+   name      mmr
+
+Module : odometry
+   cl           -0.000123
+   cr           -0.000123
+   w            0.710000
+   robotlength  0.265000
+   ts           0.010000
+   maxtick          1000
+   control             0
+   enctype             0
+
+Module : motion control
+   ts           0.010000
+   line_gain    0.050000
+   line_tau     5.000000
+   line_alfa    0.300000
+   wall_gain    1.000000
+   wall_tau     0.700000
+   wall_alfa    0.200000
+   gain         1.000000
+   tau          0.160000
+   alfa         0.200000
+   drive_kangle 2.250000
+   drive_kdist  4.800000
+   w            0.710000
+   robotlength  0.265000
+   lim          0.200000
+   stopdist     0.000000
+   alarmdist    0.100000
+   velcmd       0.050000
+   acccmd       0.300000
+   nolinedist   0.200000
+
+Module : motor control
+   velscalel    -538.000000
+   velscaler    -538.000000
+   kp           0.000000
+   ki           0.000000
+
+Module : line sensor
+   size                8
+   k_filt       0.800000
+
+Module : gpsmouse
+   hostname     localhost
+   port             9500
+   SBAS                0
+   run                 1
+   use                 1
+

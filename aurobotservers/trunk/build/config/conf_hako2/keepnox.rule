@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<rule name="keepnox" if="defined('nox.connected')">
+  <description>
+    trying to keep 
+    * auclientnox on port 24928
+    running
+  </description>
+  <init>
+  global.alive.nox = false
+  deadCnt = 0
+  allow = 10  # allow time is allowed time to be dead
+  <rule name="noxok" if="nox.connected and nox.hostalive and not global.alive.nox">
+     global.alive.nox = true
+     print("nox is alive after " deadCnt " seconds to start")
+     deadCnt = 0
+     allow = 3  # seen alive to dead detect
+  </rule>
+  <rule name="noxdeadCnt" if="not nox.connected or not nox.hostalive">
+     if (deadCnt < 0.51)
+       print("nox seems to be dying " deadCnt " : nox.connected=" nox.connected ", nox.alive=" nox.hostalive)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name="noxdead" if="deadCnt > allow">
+     print("nox is assumed dead after " deadCnt " seconds with no responce")
+     print(" - nox status: nox.connected=" nox.connected ", nox.alive=" nox.hostalive)
+     deadCnt = 0
+     global.alive.nox = false
+     allow = 30 # allow for start-up time
+     core.send("bash nice ./startserver auclientnox -p 24928")
+  </rule>
+  </init>
+  print("Started monitoring of nox")
+  wait() : false
+</rule>
+

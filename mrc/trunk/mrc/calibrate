@@ -1,0 +1,30 @@
+echo starting calibration
+SMRCLDIR=/vhome/naa/robot2005/src/smrdemo/sc
+MYMATLABDIR=/vhome/naa/robot2005/src/smrdemo/matlab
+ssh $1 /vhome/naa/robot2005/src/smrdemo/remote  $SMRCLDIR"/linecalib"
+rm calibout
+matlab -nodisplay <$MYMATLABDIR"/linecalib.m"  >calibout
+if ! test -a tempcalib ; then
+  echo line calibration failed !
+  exit
+fi
+cp tempcalib "calib/"$1"_demo_ls_calib.dat"
+ssh $1 /vhome/naa/robot2005/src/smrdemo/remote  $SMRCLDIR"/odocalib"
+rm calibout
+matlab -nodisplay <$MYMATLABDIR"/odocalib.m"  >calibout
+if ! test -a tempcalib ; then
+  echo odometry calibration failed !
+  exit
+fi
+cp tempcalib "calib/"$1"_demo_odo_calib.dat"
+
+ssh $1 /vhome/naa/robot2005/src/smrdemo/remote  $SMRCLDIR"/ircalib"
+rm calibout
+matlab -nodisplay <$MYMATLABDIR"/ircalib.m" >calibout
+if ! test -a tempcalib ; then
+  echo IR calibration calibration failed !
+  exit
+fi
+
+cp tempcalib "calib/"$1"_demo_ir_calib.dat"
+

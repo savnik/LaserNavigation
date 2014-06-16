@@ -1,0 +1,13 @@
+#!/bin/bash
+
+killall -q rhd
+
+pkill keeper
+pkill ulmsserver
+pkill ucamserver
+pkill keeper
+pkill aunav
+pkill auservertest
+
+echo "Mobotware shutdown"
+exit 0

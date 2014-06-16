@@ -1,0 +1,17 @@
+get "guidemark"
+wait 1.5
+get "guidemark"
+wait 1
+oldcode = 0
+n=0
+label "again"
+get "guidemark"
+wait 2 : ($guidemarkok)
+eval $guidemarkok
+code=$guidemarkok
+if (code ==oldcode | code < 1) "again"
+tointstring  code
+stringcat "Guidemark number  " "$str"
+speak "$string"
+oldcode = code
+goto "again"

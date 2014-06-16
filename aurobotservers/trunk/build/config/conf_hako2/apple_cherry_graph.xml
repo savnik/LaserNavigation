@@ -1,0 +1,271 @@
+<?xml version="1.0" ?>
+<!--
+   Graph created from orchard measurements. Created: 09-Jun-2009
+   Combined pometet.apple and cherry orchard
+-->
+<!-- offset by x+=0.500 and y+=-0.500 by mapoffset utility -->
+<graph name="ku_life">
+  <nodetype name="waypoint">
+    <dimension shape="circle" radius="0.05" />
+    <connector name="a" x="0.500" y="-0.500" th="0.00" autoconnect="1" />
+    <connector name="b" x="0.500" y="-0.500" th="180.00" autoconnect="1" />
+  </nodetype>
+  <node name="taastrup" x="708000.0" y="6174000.0" th="0.0">
+    
+    <node name="applepath_1-2N" type="waypoint" x="146.544" y="392.010" th="-84.929"/>
+    <node name="applepath_1-2S" type="waypoint" x="158.417" y="257.037" th="-84.929"/>
+    <node name="applepath_2-3N" type="waypoint" x="150.075" y="392.321" th="-84.929"/>
+    <node name="applepath_2-3S" type="waypoint" x="161.947" y="257.358" th="-84.929"/>
+    <node name="applepath_3-4N" type="waypoint" x="153.509" y="392.623" th="-84.929"/>
+    <node name="applepath_3-4S" type="waypoint" x="165.415" y="257.673" th="-84.929"/>
+    <node name="applepath_4-5N" type="waypoint" x="156.975" y="392.929" th="-84.929"/>
+    <node name="applepath_4-5S" type="waypoint" x="168.924" y="257.992" th="-84.929"/>
+    <node name="applepath_5-6N" type="waypoint" x="160.495" y="393.239" th="-84.929"/>
+    <node name="applepath_5-6S" type="waypoint" x="172.416" y="258.309" th="-84.929"/>
+    <node name="applepath_6-7N" type="waypoint" x="163.962" y="393.544" th="-84.929"/>
+    <node name="applepath_6-7S" type="waypoint" x="175.865" y="258.623" th="-84.929"/>
+    <node name="applepath_7-8N" type="waypoint" x="167.439" y="393.850" th="-84.929"/>
+    <node name="applepath_7-8S" type="waypoint" x="179.349" y="258.940" th="-84.929"/>
+    <node name="applepath_8-9N" type="waypoint" x="170.961" y="394.160" th="-84.929"/>
+    <node name="applepath_8-9S" type="waypoint" x="182.832" y="259.256" th="-84.929"/>
+    <node name="applepath_9-10N" type="waypoint" x="174.588" y="394.468" th="-84.929"/>
+    <node name="applepath_9-10S" type="waypoint" x="186.168" y="259.575" th="-84.929"/>
+
+    <node name="appletrans_1-2N" type="waypoint" x="146.874" y="395.502" th="5.271"/>
+    <node name="appletrans_1-2S" type="waypoint" x="159.375" y="254.552" th="5.271"/>
+    <node name="appletrans_2-3N" type="waypoint" x="150.405" y="395.821" th="5.271"/>
+    <node name="appletrans_2-3S" type="waypoint" x="162.906" y="254.871" th="5.271"/>
+    <node name="appletrans_3-4N" type="waypoint" x="153.837" y="396.130" th="5.271"/>
+    <node name="appletrans_3-4S" type="waypoint" x="166.375" y="255.184" th="5.271"/>
+    <node name="appletrans_4-5N" type="waypoint" x="157.302" y="396.443" th="5.271"/>
+    <node name="appletrans_4-5S" type="waypoint" x="169.886" y="255.501" th="5.271"/>
+    <node name="appletrans_5-6N" type="waypoint" x="160.822" y="396.761" th="5.271"/>
+    <node name="appletrans_5-6S" type="waypoint" x="173.376" y="255.816" th="5.271"/>
+    <node name="appletrans_6-7N" type="waypoint" x="164.289" y="397.074" th="5.271"/>
+    <node name="appletrans_6-7S" type="waypoint" x="176.826" y="256.127" th="5.271"/>
+    <node name="appletrans_7-8N" type="waypoint" x="167.765" y="397.388" th="5.271"/>
+    <node name="appletrans_7-8S" type="waypoint" x="180.310" y="256.442" th="5.271"/>
+    <node name="appletrans_8-9N" type="waypoint" x="171.287" y="397.706" th="5.271"/>
+    <node name="appletrans_8-9S" type="waypoint" x="183.792" y="256.756" th="5.271"/>
+    <node name="appletrans_9-10N" type="waypoint" x="174.783" y="398.022" th="5.271"/>
+    <node name="appletrans_9-10S" type="waypoint" x="187.298" y="256.073" th="5.271"/>
+    
+    <edge start="applepath_1-2N.a" end="applepath_1-2S.b" length="132.506"/>
+    <edge start="applepath_1-2N.b" end="appletrans_2-3N.b" length="4.647"/>
+    <edge start="applepath_1-2S.b" end="applepath_1-2N.a" length="132.506"/>
+    <edge start="applepath_1-2S.a" end="appletrans_2-3S.b" length="5.345"/>
+    <edge start="applepath_2-3N.a" end="applepath_2-3S.b" length="132.496"/>
+    <edge start="applepath_2-3N.b" end="appletrans_1-2N.a" length="4.651"/>
+    <edge start="applepath_2-3N.b" end="appletrans_3-4N.b" length="4.577"/>
+    <edge start="applepath_2-3S.b" end="applepath_2-3N.a" length="132.496"/>
+    <edge start="applepath_2-3S.a" end="appletrans_1-2S.a" length="5.348"/>
+    <edge start="applepath_2-3S.a" end="appletrans_3-4S.b" length="5.305"/>
+    <edge start="applepath_3-4N.a" end="applepath_3-4S.b" length="132.486"/>
+    <edge start="applepath_3-4N.b" end="appletrans_2-3N.a" length="4.582"/>
+    <edge start="applepath_3-4N.b" end="appletrans_4-5N.b" length="4.606"/>
+    <edge start="applepath_3-4S.b" end="applepath_3-4N.a" length="132.486"/>
+    <edge start="applepath_3-4S.a" end="appletrans_2-3S.a" length="5.308"/>
+    <edge start="applepath_3-4S.a" end="appletrans_4-5S.b" length="5.336"/>
+    <edge start="applepath_4-5N.a" end="applepath_4-5S.b" length="132.477"/>
+    <edge start="applepath_4-5N.b" end="appletrans_3-4N.a" length="4.612"/>
+    <edge start="applepath_4-5N.b" end="appletrans_5-6N.b" length="4.653"/>
+    <edge start="applepath_4-5S.b" end="applepath_4-5N.a" length="132.477"/>
+    <edge start="applepath_4-5S.a" end="appletrans_3-4S.a" length="5.337"/>
+    <edge start="applepath_4-5S.a" end="appletrans_5-6S.b" length="5.325"/>
+    <edge start="applepath_5-6N.a" end="applepath_5-6S.b" length="132.467"/>
+    <edge start="applepath_5-6N.b" end="appletrans_4-5N.a" length="4.659"/>
+    <edge start="applepath_5-6N.b" end="appletrans_6-7N.b" length="4.618"/>
+    <edge start="applepath_5-6S.b" end="applepath_5-6N.a" length="132.467"/>
+    <edge start="applepath_5-6S.a" end="appletrans_4-5S.a" length="5.325"/>
+    <edge start="applepath_5-6S.a" end="appletrans_6-7S.b" length="5.298"/>
+    <edge start="applepath_6-7N.a" end="applepath_6-7S.b" length="132.457"/>
+    <edge start="applepath_6-7N.b" end="appletrans_5-6N.a" length="4.623"/>
+    <edge start="applepath_6-7N.b" end="appletrans_7-8N.b" length="4.630"/>
+    <edge start="applepath_6-7S.b" end="applepath_6-7N.a" length="132.457"/>
+    <edge start="applepath_6-7S.a" end="appletrans_5-6S.a" length="5.300"/>
+    <edge start="applepath_6-7S.a" end="appletrans_7-8S.b" length="5.323"/>
+    <edge start="applepath_7-8N.a" end="applepath_7-8S.b" length="132.447"/>
+    <edge start="applepath_7-8N.b" end="appletrans_6-7N.a" length="4.635"/>
+    <edge start="applepath_7-8N.b" end="appletrans_8-9N.b" length="4.670"/>
+    <edge start="applepath_7-8S.b" end="applepath_7-8N.a" length="132.447"/>
+    <edge start="applepath_7-8S.a" end="appletrans_6-7S.a" length="5.325"/>
+    <edge start="applepath_7-8S.a" end="appletrans_8-9S.b" length="5.323"/>
+    <edge start="applepath_8-9N.a" end="applepath_8-9S.b" length="132.437"/>
+    <edge start="applepath_8-9N.b" end="appletrans_7-8N.a" length="4.675"/>
+    <edge start="applepath_8-9N.b" end="appletrans_9-10N.b" length="4.656"/>
+    <edge start="applepath_8-9S.b" end="applepath_8-9N.a" length="132.437"/>
+    <edge start="applepath_8-9S.a" end="appletrans_7-8S.a" length="5.325"/>
+    <edge start="applepath_8-9S.a" end="appletrans_9-10S.b" length="5.340"/>
+    <edge start="applepath_9-10N.a" end="applepath_9-10S.b" length="132.427"/>
+    <edge start="applepath_9-10N.b" end="appletrans_8-9N.a" length="4.660"/>
+    <edge start="applepath_9-10S.b" end="applepath_9-10N.a" length="132.427"/>
+    <edge start="applepath_9-10S.a" end="appletrans_8-9S.a" length="5.343"/>
+    <edge start="appletrans_1-2N.a" end="appletrans_2-3N.b" length="3.545"/>
+    <edge start="appletrans_1-2S.a" end="appletrans_2-3S.b" length="3.545"/>
+    <edge start="appletrans_2-3N.b" end="appletrans_1-2N.a" length="3.545"/>
+    <edge start="appletrans_2-3N.a" end="appletrans_3-4N.b" length="3.446"/>
+    <edge start="appletrans_2-3S.b" end="appletrans_1-2S.a" length="3.545"/>
+    <edge start="appletrans_2-3S.a" end="appletrans_3-4S.b" length="3.483"/>
+    <edge start="appletrans_3-4N.b" end="appletrans_2-3N.a" length="3.446"/>
+    <edge start="appletrans_3-4N.a" end="appletrans_4-5N.b" length="3.479"/>
+    <edge start="appletrans_3-4S.b" end="appletrans_2-3S.a" length="3.483"/>
+    <edge start="appletrans_3-4S.a" end="appletrans_4-5S.b" length="3.525"/>
+    <edge start="appletrans_4-5N.b" end="appletrans_3-4N.a" length="3.479"/>
+    <edge start="appletrans_4-5N.a" end="appletrans_5-6N.b" length="3.535"/>
+    <edge start="appletrans_4-5S.b" end="appletrans_3-4S.a" length="3.525"/>
+    <edge start="appletrans_4-5S.a" end="appletrans_5-6S.b" length="3.505"/>
+    <edge start="appletrans_5-6N.b" end="appletrans_4-5N.a" length="3.535"/>
+    <edge start="appletrans_5-6N.a" end="appletrans_6-7N.b" length="3.481"/>
+    <edge start="appletrans_5-6S.b" end="appletrans_4-5S.a" length="3.505"/>
+    <edge start="appletrans_5-6S.a" end="appletrans_6-7S.b" length="3.463"/>
+    <edge start="appletrans_6-7N.b" end="appletrans_5-6N.a" length="3.481"/>
+    <edge start="appletrans_6-7N.a" end="appletrans_7-8N.b" length="3.490"/>
+    <edge start="appletrans_6-7S.b" end="appletrans_5-6S.a" length="3.463"/>
+    <edge start="appletrans_6-7S.a" end="appletrans_7-8S.b" length="3.499"/>
+    <edge start="appletrans_7-8N.b" end="appletrans_6-7N.a" length="3.490"/>
+    <edge start="appletrans_7-8N.a" end="appletrans_8-9N.b" length="3.537"/>
+    <edge start="appletrans_7-8S.b" end="appletrans_6-7S.a" length="3.499"/>
+    <edge start="appletrans_7-8S.a" end="appletrans_8-9S.b" length="3.496"/>
+    <edge start="appletrans_8-9N.b" end="appletrans_7-8N.a" length="3.537"/>
+    <edge start="appletrans_8-9N.a" end="appletrans_9-10N.b" length="3.510"/>
+    <edge start="appletrans_8-9S.b" end="appletrans_7-8S.a" length="3.496"/>
+    <edge start="appletrans_8-9S.a" end="appletrans_9-10S.b" length="3.520"/>
+    <edge start="appletrans_9-10N.b" end="appletrans_8-9N.a" length="3.510"/>
+    <edge start="appletrans_9-10S.b" end="appletrans_8-9S.a" length="3.520"/>
+    <!-- 
+    -->
+    <node name="cherrypath_0-1N" type="waypoint" x="-173.000" y="521.530" th="-83.140"/>
+    <node name="cherrypath_0-1S" type="waypoint" x="-148.350" y="315.742" th="-83.140"/>
+    <node name="cherrypath_1-2N" type="waypoint" x="-168.113" y="522.620" th="-83.140"/>
+    <node name="cherrypath_1-2S" type="waypoint" x="-143.418" y="316.862" th="-83.140"/>
+    <node name="cherrypath_2-3N" type="waypoint" x="-163.242" y="523.707" th="-83.140"/>
+    <node name="cherrypath_2-3S" type="waypoint" x="-138.493" y="317.985" th="-83.140"/>
+    <node name="cherrypath_3-4N" type="waypoint" x="-158.370" y="524.795" th="-83.140"/>
+    <node name="cherrypath_3-4S" type="waypoint" x="-133.568" y="319.108" th="-83.140"/>
+    <node name="cherrypath_4-5N" type="waypoint" x="-153.498" y="525.882" th="-83.140"/>
+    <node name="cherrypath_4-5S" type="waypoint" x="-128.643" y="320.231" th="-83.140"/>
+    <node name="cherrypath_5-6N" type="waypoint" x="-148.627" y="526.970" th="-83.140"/>
+    <node name="cherrypath_5-6S" type="waypoint" x="-123.718" y="321.354" th="-83.140"/>
+    <node name="cherrypath_6-7N" type="waypoint" x="-143.755" y="528.057" th="-83.140"/>
+    <node name="cherrypath_6-7S" type="waypoint" x="-118.792" y="322.477" th="-83.140"/>
+    <node name="cherrypath_7-8N" type="waypoint" x="-138.883" y="529.144" th="-83.140"/>
+    <node name="cherrypath_7-8S" type="waypoint" x="-113.867" y="323.600" th="-83.140"/>
+    <node name="cherrypath_8-9N" type="waypoint" x="-134.011" y="530.232" th="-83.140"/>
+    <node name="cherrypath_8-9S" type="waypoint" x="-108.942" y="324.723" th="-83.140"/>
+    <node name="cherrypath_9-10N" type="waypoint" x="-129.140" y="531.319" th="-83.140"/>
+    <node name="cherrypath_9-10S" type="waypoint" x="-104.017" y="325.846" th="-83.140"/>
+    <node name="cherrypath_10-11N" type="waypoint" x="-123.770" y="532.400" th="-83.140"/>
+    <node name="cherrypath_10-11S" type="waypoint" x="-98.600" y="326.960" th="-83.140"/>
+    <node name="cherrytrans_1-2N" type="waypoint" x="-168.592" y="527.1" th="12.58"/>
+    <node name="cherrytrans_1-2S" type="waypoint" x="-142.939" y="311.869" th="12.58"/>
+    <node name="cherrytrans_2-3N" type="waypoint" x="-163.722" y="528.2" th="12.58"/>
+    <node name="cherrytrans_2-3S" type="waypoint" x="-138.013" y="312.992" th="12.58"/>
+    <node name="cherrytrans_3-4N" type="waypoint" x="-158.851" y="529.3" th="12.58"/>
+    <node name="cherrytrans_3-4S" type="waypoint" x="-133.086" y="314.116" th="12.58"/>
+    <node name="cherrytrans_4-5N" type="waypoint" x="-153.981" y="530.4" th="12.58"/>
+    <node name="cherrytrans_4-5S" type="waypoint" x="-128.160" y="315.239" th="12.58"/>
+    <node name="cherrytrans_5-6N" type="waypoint" x="-149.110" y="531.5" th="12.58"/>
+    <node name="cherrytrans_5-6S" type="waypoint" x="-123.234" y="316.362" th="12.58"/>
+    <node name="cherrytrans_6-7N" type="waypoint" x="-144.239" y="532.5" th="12.58"/>
+    <node name="cherrytrans_6-7S" type="waypoint" x="-118.308" y="317.485" th="12.58"/>
+    <node name="cherrytrans_7-8N" type="waypoint" x="-139.369" y="533.6" th="12.58"/>
+    <node name="cherrytrans_7-8S" type="waypoint" x="-113.381" y="318.609" th="12.58"/>
+    <node name="cherrytrans_8-9N" type="waypoint" x="-134.498" y="535.2" th="12.58"/>
+    <node name="cherrytrans_8-9S" type="waypoint" x="-108.455" y="319.732" th="12.58"/>
+    <node name="cherrytrans_9-10N" type="waypoint" x="-129.628" y="535.5" th="8.0"/>
+    <node name="cherrytrans_9-10S" type="waypoint" x="-103.529" y="320.855" th="12.58"/>
+
+    <edge start="cherrypath_0-1N.a" end="cherrypath_0-1S.b" length="207.234"/>
+    <edge start="cherrypath_0-1N.b" end="cherrytrans_1-2N.b" length="6.120"/>
+    <edge start="cherrypath_0-1S.b" end="cherrypath_0-1N.a" length="207.234"/>
+    <edge start="cherrypath_0-1S.a" end="cherrytrans_1-2S.b" length="6.120"/>
+
+    <edge start="cherrypath_1-2N.a" end="cherrypath_1-2S.b" length="207.234"/>
+    <edge start="cherrypath_1-2N.b" end="cherrytrans_2-3N.b" length="6.714"/>
+    <edge start="cherrypath_1-2S.b" end="cherrypath_1-2N.a" length="207.234"/>
+    <edge start="cherrypath_1-2S.a" end="cherrytrans_2-3S.b" length="6.120"/>
+    <edge start="cherrypath_2-3N.a" end="cherrypath_2-3S.b" length="207.205"/>
+    <edge start="cherrypath_2-3N.b" end="cherrytrans_1-2N.a" length="6.088"/>
+    <edge start="cherrypath_2-3N.b" end="cherrytrans_3-4N.b" length="6.713"/>
+    <edge start="cherrypath_2-3S.b" end="cherrypath_2-3N.a" length="207.205"/>
+    <edge start="cherrypath_2-3S.a" end="cherrytrans_1-2S.a" length="6.778"/>
+    <edge start="cherrypath_2-3S.a" end="cherrytrans_3-4S.b" length="6.121"/>
+    <edge start="cherrypath_3-4N.a" end="cherrypath_3-4S.b" length="207.176"/>
+    <edge start="cherrypath_3-4N.b" end="cherrytrans_2-3N.a" length="6.089"/>
+    <edge start="cherrypath_3-4N.b" end="cherrytrans_4-5N.b" length="6.712"/>
+    <edge start="cherrypath_3-4S.b" end="cherrypath_3-4N.a" length="207.176"/>
+    <edge start="cherrypath_3-4S.a" end="cherrytrans_2-3S.a" length="6.777"/>
+    <edge start="cherrypath_3-4S.a" end="cherrytrans_4-5S.b" length="6.122"/>
+    <edge start="cherrypath_4-5N.a" end="cherrypath_4-5S.b" length="207.147"/>
+    <edge start="cherrypath_4-5N.b" end="cherrytrans_3-4N.a" length="6.090"/>
+    <edge start="cherrypath_4-5N.b" end="cherrytrans_5-6N.b" length="6.711"/>
+    <edge start="cherrypath_4-5S.b" end="cherrypath_4-5N.a" length="207.147"/>
+    <edge start="cherrypath_4-5S.a" end="cherrytrans_3-4S.a" length="6.776"/>
+    <edge start="cherrypath_4-5S.a" end="cherrytrans_5-6S.b" length="6.123"/>
+    <edge start="cherrypath_5-6N.a" end="cherrypath_5-6S.b" length="207.118"/>
+    <edge start="cherrypath_5-6N.b" end="cherrytrans_4-5N.a" length="6.091"/>
+    <edge start="cherrypath_5-6N.b" end="cherrytrans_6-7N.b" length="6.710"/>
+    <edge start="cherrypath_5-6S.b" end="cherrypath_5-6N.a" length="207.118"/>
+    <edge start="cherrypath_5-6S.a" end="cherrytrans_4-5S.a" length="6.775"/>
+    <edge start="cherrypath_5-6S.a" end="cherrytrans_6-7S.b" length="6.124"/>
+    <edge start="cherrypath_6-7N.a" end="cherrypath_6-7S.b" length="207.089"/>
+    <edge start="cherrypath_6-7N.b" end="cherrytrans_5-6N.a" length="6.091"/>
+    <edge start="cherrypath_6-7N.b" end="cherrytrans_7-8N.b" length="6.710"/>
+    <edge start="cherrypath_6-7S.b" end="cherrypath_6-7N.a" length="207.089"/>
+    <edge start="cherrypath_6-7S.a" end="cherrytrans_5-6S.a" length="6.775"/>
+    <edge start="cherrypath_6-7S.a" end="cherrytrans_7-8S.b" length="6.125"/>
+    <edge start="cherrypath_7-8N.a" end="cherrypath_7-8S.b" length="207.061"/>
+    <edge start="cherrypath_7-8N.b" end="cherrytrans_6-7N.a" length="6.092"/>
+    <edge start="cherrypath_7-8N.b" end="cherrytrans_8-9N.b" length="6.709"/>
+    <edge start="cherrypath_7-8S.b" end="cherrypath_7-8N.a" length="207.061"/>
+    <edge start="cherrypath_7-8S.a" end="cherrytrans_6-7S.a" length="6.774"/>
+    <edge start="cherrypath_7-8S.a" end="cherrytrans_8-9S.b" length="6.125"/>
+    <edge start="cherrypath_8-9N.a" end="cherrypath_8-9S.b" length="207.032"/>
+    <edge start="cherrypath_8-9N.b" end="cherrytrans_7-8N.a" length="6.093"/>
+    <edge start="cherrypath_8-9N.b" end="cherrytrans_9-10N.b" length="6.708"/>
+    <edge start="cherrypath_8-9S.b" end="cherrypath_8-9N.a" length="207.032"/>
+    <edge start="cherrypath_8-9S.a" end="cherrytrans_7-8S.a" length="6.773"/>
+    <edge start="cherrypath_8-9S.a" end="cherrytrans_9-10S.b" length="6.126"/>
+    <edge start="cherrypath_9-10N.a" end="cherrypath_9-10S.b" length="207.003"/>
+    <edge start="cherrypath_9-10N.b" end="cherrytrans_8-9N.a" length="6.094"/>
+    <edge start="cherrypath_9-10S.b" end="cherrypath_9-10N.a" length="207.003"/>
+    <edge start="cherrypath_9-10S.a" end="cherrytrans_8-9S.a" length="6.772"/>
+    <edge start="cherrytrans_1-2N.a" end="cherrytrans_2-3N.b" length="4.990"/>
+    <edge start="cherrytrans_1-2S.a" end="cherrytrans_2-3S.b" length="5.053"/>
+    <edge start="cherrytrans_2-3N.b" end="cherrytrans_1-2N.a" length="4.990"/>
+    <edge start="cherrytrans_2-3N.a" end="cherrytrans_3-4N.b" length="4.990"/>
+    <edge start="cherrytrans_2-3S.b" end="cherrytrans_1-2S.a" length="5.053"/>
+    <edge start="cherrytrans_2-3S.a" end="cherrytrans_3-4S.b" length="5.053"/>
+    <edge start="cherrytrans_3-4N.b" end="cherrytrans_2-3N.a" length="4.990"/>
+    <edge start="cherrytrans_3-4N.a" end="cherrytrans_4-5N.b" length="4.990"/>
+    <edge start="cherrytrans_3-4S.b" end="cherrytrans_2-3S.a" length="5.053"/>
+    <edge start="cherrytrans_3-4S.a" end="cherrytrans_4-5S.b" length="5.053"/>
+    <edge start="cherrytrans_4-5N.b" end="cherrytrans_3-4N.a" length="4.990"/>
+    <edge start="cherrytrans_4-5N.a" end="cherrytrans_5-6N.b" length="4.990"/>
+    <edge start="cherrytrans_4-5S.b" end="cherrytrans_3-4S.a" length="5.053"/>
+    <edge start="cherrytrans_4-5S.a" end="cherrytrans_5-6S.b" length="5.053"/>
+    <edge start="cherrytrans_5-6N.b" end="cherrytrans_4-5N.a" length="4.990"/>
+    <edge start="cherrytrans_5-6N.a" end="cherrytrans_6-7N.b" length="4.990"/>
+    <edge start="cherrytrans_5-6S.b" end="cherrytrans_4-5S.a" length="5.053"/>
+    <edge start="cherrytrans_5-6S.a" end="cherrytrans_6-7S.b" length="5.053"/>
+    <edge start="cherrytrans_6-7N.b" end="cherrytrans_5-6N.a" length="4.990"/>
+    <edge start="cherrytrans_6-7N.a" end="cherrytrans_7-8N.b" length="4.990"/>
+    <edge start="cherrytrans_6-7S.b" end="cherrytrans_5-6S.a" length="5.053"/>
+    <edge start="cherrytrans_6-7S.a" end="cherrytrans_7-8S.b" length="5.053"/>
+    <edge start="cherrytrans_7-8N.b" end="cherrytrans_6-7N.a" length="4.990"/>
+    <edge start="cherrytrans_7-8N.a" end="cherrytrans_8-9N.b" length="4.990"/>
+    <edge start="cherrytrans_7-8S.b" end="cherrytrans_6-7S.a" length="5.053"/>
+    <edge start="cherrytrans_7-8S.a" end="cherrytrans_8-9S.b" length="5.053"/>
+    <edge start="cherrytrans_8-9N.b" end="cherrytrans_7-8N.a" length="4.990"/>
+    <edge start="cherrytrans_8-9N.a" end="cherrytrans_9-10N.b" length="4.990"/>
+    <edge start="cherrytrans_8-9S.b" end="cherrytrans_7-8S.a" length="5.053"/>
+    <edge start="cherrytrans_8-9S.a" end="cherrytrans_9-10S.b" length="5.053"/>
+    <edge start="cherrytrans_9-10N.b" end="cherrytrans_8-9N.a" length="4.990"/>
+    <edge start="cherrytrans_9-10S.b" end="cherrytrans_8-9S.a" length="5.053"/>
+
+    <edge start="cherrypath_10-11S.b" end="cherrypath_10-11N.a" length="207.003"/>
+    <edge start="cherrypath_10-11S.a" end="cherrytrans_9-10S.a" length="6.126"/>
+    <edge start="cherrypath_10-11N.b" end="cherrytrans_9-10N.a" length="6.126"/>
+
+  </node>
+</graph>

@@ -1,0 +1,40 @@
+log "$odox" "$odoy" "$odoth" "$l0" "$l1" "$l2"
+s=0.2
+n=0
+rounds=0
+targetrounds=5
+pi=3.1415
+wait 1
+laser "push cmd='mrcobst width=0.8' t=0.2"
+wait 0.5
+
+laser "resetlocalizer"
+
+laser "addline startx='0' starty='0.0' endx='40' endy='0.0'"
+
+
+laser "setinitpose x=20 y=1 th=0"
+laser "setinitcov Cx=0.03 Cy=0.03 Cth=0.04"
+ targetxw=100
+  targetyw=1
+  targetthw=0
+
+laser "push t='1' cmd='localize'"
+wait 1
+label "updatetarget"
+driveonw targetxw targetyw targetthw "rad" @v0.2:($drivendist >10)
+fwd 0.05
+turn 180
+if (targetthw >0.5) "forward"
+  targetthw=3.1415
+goto "lab1"
+label "forward"  
+  targetthw=0
+label "lab1"
+n=n+1
+eval n
+goto "updatetarget"
+
+label "end"
+stop
+

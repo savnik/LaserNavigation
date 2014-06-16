@@ -1,0 +1,9 @@
+This plugin is for the Phidget 4-channel bridge amplifier, and is intended for 3 strain-gage bridges - for helicopter theader force measurement
+
+It requires that the phidget linux library is installed - see 
+
+http://www.phidgets.com/docs/OS_-_Linux
+
+(after the last 'sudo make install' the includefile and library is in /usr/include and /usr/lib (should have been in /usr/local/lib ... - may be changed in the future)
+
+Christian 9 dec 2012

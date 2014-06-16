@@ -1,0 +1,49 @@
+tgx=2
+tgy=0
+obx=1
+oby=0.2
+v=0.2
+state=0
+wc=0
+log "$odox" "$odoy" "$odoth" "wc"
+label "start"
+wait 0.05
+switch (state)
+  dx=obx-$odox
+  dy=oby-$odoy
+  d=hypot(dx,dy)
+  if (d >0.5) "c0"
+     v=0.1
+  label "c0"
+  thtmp=atan2(dy,dx)+asin(0.2/d)-$odoth
+  wc=thtmp/0.2*0.8
+  if ($odoth-atan2(dy,dx)< 1.47) "c1"
+    state=1
+    v=0.2
+  wc=-1
+  label "c1"
+case 1
+  v=0.1
+  wc=-0.5
+  if ($odoth > atan2(tgy-$odoy,tgx-$odox)) "c2"
+    state=2
+    wc=0
+    v=0.2
+  label "c2"
+case 2
+  wc=(atan2(tgy-$odoy,tgx-$odox)-$odoth)
+endswitch
+if (wc <1) "c3"
+  wc=1
+goto "ce"
+label "c3"
+if (wc >-1) "ce"
+   wc=-1
+label "ce"
+vl=v-0.13*wc
+vr=v+0.13*wc
+motorcmds vl vr
+if (hypot(tgy-$odoy,tgx-$odox)>0.03) "start"
+motorcmds 0 0
+
+  

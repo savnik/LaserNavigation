@@ -1,0 +1,160 @@
+
+<!-- Graph describing the ground floor of building 326 -->
+
+<graph name="326 groundfloor">
+	<!-- Nodes definitions -->
+	<node name="6" x="0.0" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="8" x="3.2" y="0.0"><!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="10" x="6.4" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="12" x="9.6" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="14" x="12.8" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="16" x="16.0" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="18" x="19.2" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="22" x="25.6" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="26" x="32.0" y="0.0"> <!-- Hall Office -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="5a" x="5.4" y="3.5"> <!-- Laboratory loop -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="5b" x="6.4" y="3.5"> <!-- Laboratory loop -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="5c" x="8.4" y="3.5"> <!-- Laboratory loop -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+	<node name="13" x="11.0" y="0.0"> <!-- Laboratory loop -->
+		<connector name="a" angle="0.0"/>
+		<connector name="b" angle="90.0"/>
+		<connector name="c" angle="180.0"/>
+		<connector name="d" angle="270.0"/>
+	</node>
+  <node name="100" x="100.0" y="0.0"> <!-- Unreachable node -->
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  
+  <!-- Example code of node-in-node -->
+  <!--node name="lab13" x="0.0" y="0.0" width="10.0" heigth="20.0">
+    <connector name="halldoor" x="5.0" y="0.0" type="door"/>
+    <connector name="lab5door" x="0.0" y="1.0" type="door"/>
+    <node name="ARTV" x ="4.0" y="3.0">
+      <connector name="a" angle="0.0"/>
+      <connector name="b" angle="90.0"/>
+      <connector name="c" angle="180.0"/>
+      <connector name="d" angle="270.0"/>
+    </node>
+    <path start="lab13.halldoor" end="ATRV.a" length="3.0" directional="false"/>
+    <path start="lab13.lab5door" end="ATRV.c" length="4.0" directional="false"/>
+  </node-->
+  
+  <!-- Path descriptions (Arcs)
+       Connection from start="nodename.connectorname" to end="..." of a length (cost) -->
+  <edge start="6.a" end="8.c" directional="false">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="8.a" end="10.c" directional="false">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="10.a" end="12.c" directional="true">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="12.a" end="14.c" directional="false">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="14.a" end="16.c" directional="false">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="16.a" end="18.c" directional="false">
+		<properties length="3.2" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="18.a" end="22.c" directional="false">
+		<properties length="6.4" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="22.a" end="26.c" directional="false">
+		<properties length="6.4" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="8.b" end="5a.c" directional="false">
+		<properties length="5.0" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="5a.a" end="5b.c" directional="false">
+		<properties length="1.0" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="5c.c" end="5b.a" directional="true">
+		<properties length="2.0" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+	<edge start="5c.a" end="13.c" directional="false">
+		<properties length="2.6" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+  <edge start="13.a" end="14.b" directional="false">
+		<properties length="6.0" straight="true" />
+		<linemarker color="black" width="0.04" speed="0.2" />
+	</edge>
+</graph>
+

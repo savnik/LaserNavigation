@@ -1,0 +1,19 @@
+log "$odox" "$odoy" "$odoth"
+turnr 0.3 90 @v0.2
+stop
+ignoreobstacles
+fwd 0.5
+turnr 0.3 90 @v-0.2
+stop
+ignoreobstacles
+fwd 0.5
+turnr 0.3 -90 @v0.2
+stop
+ignoreobstacles
+fwd 0.5
+turnr 0.3 -90 @v-0.2
+stop
+ignoreobstacles
+fwd 0.5
+
+

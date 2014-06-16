@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rule name="mmr49" run="false">
+  <init>
+    global.drive.compasHeading=false # means math heading (east is 0)
+    global.drive.radians=false # means degrees
+    global.drive.continueDist = 0.5 # meter, relaxed driving
+    global.drive.holdLine=true
+    # global.drive.continueDist = 0 # meter, tight driving
+    # core.send('laser resetLocalizer')
+    #core.send('laser setInitCov cx=0.04 cy=0.04 cth=0.09')
+  </init>
+  missionStart("mmr49")
+  if (not laser.connected)
+  <block>
+     print("rule mmr49: Waiting for laser")
+     wait(199) : laser.connected 
+     print("rule mmr49: Waiting for laser finished - now connected")
+  </block>
+  core.send('laser setInitCov cx=0.04 cy=0.04 cth=0.09')
+  core.send('laser setInitPose x=13.5 y=5.7 th=-2.05')
+  wait(0.2)
+  smr.speed = 0.22  
+  smrctl.directOrWait = false
+  driveMap(18, 1.15, 0)
+  # door in lab 17 (west)
+  driveMap(25.8, 4.25, 0)
+  # in lab 17 
+  driveMap(33.0, 4.7, 0)
+  # corridor
+  driveMap(36.5, 1.15, 0)
+  driveMap(43.0, 1.40, 0)
+  driveMap(6.0, 1.15, 180)
+  #
+  missionEnd()
+  # wait a bit before saving the MRC log
+  wait(2) : false
+  <post>
+    smr.saveMrcLog()
+    print('rule mmr49 finished')
+  </post>
+</rule>

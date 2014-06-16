@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<rule name="keepulmsserver" if="defined('laser.connected')">
+  <description>
+    trying to keep
+    * ulmsserver on port 24919
+    running
+  </description>
+  <init>
+  deadCnt = 0
+  allow = 9  # allow time, is allowed time to be dead
+  global.alive.laser = false
+  <rule name="laserok" if="laser.connected and 
+                           laser.hostalive and 
+                           not global.alive.laser">
+     global.alive.laser = true
+     print("laser is alive after " deadCnt " seconds to start")
+     deadCnt = 0
+     allow = 9  # seen alive to dead detect
+  </rule>
+  <rule name="laserdeadCnt" if="not laser.connected or not laser.hostalive">
+     if (deadCnt < 0.51)
+       print("laser seems to be dying " deadCnt " : laser.connected=" laser.connected ", laser.alive=" laser.hostalive)
+     deadCnt = deadCnt + rulestate.sampletime
+  </rule>
+  <rule name="laserdead" if="deadCnt > allow">
+     print("laser is assumed dead after " deadCnt " seconds with no responce")
+     print(" - laser status: laser.connected=" laser.connected ", laser.alive=" laser.hostalive)
+     deadCnt = 0
+     global.alive.laser = false
+     allow = 35 # allow for start-up time
+     core.send("bash ./startserver ulmsserver -p 24919")
+  </rule>
+  </init>
+  print("Started monitoring of laser")
+  wait() : false
+</rule>
+

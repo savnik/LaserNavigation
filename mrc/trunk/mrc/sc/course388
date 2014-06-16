@@ -1,0 +1,376 @@
+log "$odoy"
+laser "scanget"
+vision "imageget all"
+wait 1
+d=0.5
+s=0.2
+n=0
+rounds=0
+targetrounds=5
+pi=3.1416
+vd=0.30
+vt=0.2
+vl=0.3
+vh=0.55
+id=1
+
+array "gmx" 15
+array "gmy" 15
+array "gmth" 15
+gmx[0]=0
+gmx[1]=0
+gmx[2]=4
+gmx[3]=4
+gmx[4]=0
+gmx[5]=0
+gmx[6]=4
+gmx[7]=4
+gmx[8]=0
+gmx[9]=4
+gmx[10]=0.4
+gmx[11]=3.6
+gmx[12]=2
+gmx[13]=2
+gmx[14]=0.5
+
+gmy[0]=1.5
+gmy[1]=1.5
+gmy[2]=1.5
+gmy[3]=1.5
+gmy[4]=3.5
+gmy[5]=3.5
+gmy[6]=3.5
+gmy[7]=3.5
+gmy[8]=4.7
+gmy[9]=4.6
+gmy[10]=5
+gmy[11]=5
+gmy[12]=4.1
+gmy[13]=4.1
+gmy[14]=0
+
+gmth[0]=pi
+gmth[1]=0
+gmth[2]=pi
+gmth[3]=0
+gmth[4]=pi
+gmth[5]=0
+gmth[6]=pi
+gmth[7]=0
+gmth[8]=0
+gmth[9]=pi
+gmth[10]=-pi/2
+gmth[11]=-pi/2
+gmth[12]=pi
+gmth[13]=0
+gmth[14]=pi/2
+
+array "route" 7
+route[0]=1
+route[1]=5
+route[2]=10
+route[3]=9
+route[4]=2
+route[5]=14
+
+laser "resetlocalizer"
+laser "resetplanner"
+laser "addline startx=0 starty=0  endx=1.8 endy=0"
+laser "addline startx=3.2 starty=0  endx=4 endy=0"
+laser "addline startx=0 starty=0  endx=0 endy=1.8"
+laser "addline startx=4 starty=0  endx=4 endy=1.8"
+
+laser "addline startx=0 starty=3.2  endx=0 endy=5"
+laser "addline startx=0 starty=5  endx=1.8 endy=5"
+laser "addline startx=4 starty=3.2  endx=4 endy=5"
+laser "addline startx=2.2 starty=5  endx=4 endy=5"
+
+
+
+laser "addline startx='2.3' starty='2.5' endx='2.3' endy='3.1'"
+laser "addline startx='1.7' starty='2.5' endx='1.7' endy='3.1'"
+
+laser "addline startx='2.3' starty='3.1' endx='3.1' endy='3.1'"
+laser "addline startx='1.7' starty='3.1' endx='0.9' endy='3.1'"
+
+laser "addline startx='3.1' starty='3.1' endx='3.1' endy='4.3'"
+laser "addline startx='0.9' starty='3.1' endx='0.9' endy='4.3'"
+
+laser "addline startx='0.9' starty='4.3' endx='3.1' endy='4.3'"
+
+laser "addline startx='1.3' starty='3.7' endx='2.7' endy='3.7'"
+
+laser "addline startx='2.0' starty='3.7' endx='2.0' endy='4.3'"
+
+
+v=0.3
+d=0.25
+
+
+laser "setinitpose x=0.4 y=0.4 th=0.71"
+laser "setinitcov Cx=0.004 Cy=0.004 Cth=0.01"
+
+laser "localize"
+%turn 90 @v vt
+idle
+%laser "localize"
+%wait 0.5
+laser "push t='1.0' cmd='localize'"
+%goto "gmkstart"
+%goto "findbox"
+label "gmkstart"
+
+curgmk=1
+label "nextgmk"
+call "gmkspeak"
+routetgtth=gmth[curgmk]
+routetgtx=gmx[curgmk] + 0.35*cos(routetgtth)
+routetgty=gmy[curgmk] + 0.35*sin(routetgtth)
+call "runroute"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+th = normalizeanglerad(gmth[curgmk]-$res2+3.14)
+turn th "rad" @v vt
+fwd -0.15 @v vd
+idle
+get "guidemark"
+wait 2:($guidemarkok)
+curgmk=$guidemarkok
+ignoreobstacles
+fwd 0.15 @v vd
+idle
+if (curgmk >0 & (curgmk!= 14)) "nextgmk"
+
+label "findballs"
+speak "Looking for balls"
+routetgtth=-1.57
+routetgtx=2.6
+routetgty=0.1
+call "runroute"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+th = normalizeanglerad(routetgtth-$res2)
+turn th "rad" @v vt
+fwd -0.40 @v vd
+idle
+red=0
+blue=0
+vision "b2 smrcl"
+wait 1
+tointstring  $vis6
+stringcat "red balls I'm seeing " "$str" 
+speak "$string"
+red=red+$vis6
+vision "b2 blue smrcl"
+wait 1
+tointstring  $vis6
+stringcat "blue balls I'm seeing " "$str" ""
+speak "$string"
+blue=blue+$vis6
+
+fwd 0.15
+routetgtx=3.4
+routetgty=0.8
+call "runroute"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+th = normalizeanglerad(routetgtth-$res2)
+turn th "rad" @v vt
+fwd -0.45 @v vd
+idle
+vision "b2 smrcl"
+wait 1
+tointstring  $vis6
+stringcat "red balls I'm seeing " "$str" 
+speak "$string"
+red=red+$vis6
+vision "b2 blue smrcl"
+wait 1
+tointstring  $vis6
+stringcat "blue balls I'm seeing " "$str" ""
+speak "$string"
+blue=blue+$vis6
+tointstring  red
+stringcat "Total number of red  balls" "$str" 
+speak "$string"
+
+tointstring  blue
+stringcat "Total number of blue  balls" "$str" 
+speak "$string"
+
+label "findbox"
+
+routetgtth=-3*3.14/4-0.4
+routetgtx= 3.6
+routetgty=2.1
+call "runroute"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+th = normalizeanglerad(routetgtth-$res2)
+turn th "rad" @v vt
+idle
+wait 1
+get "guidemark"
+wait 2:($guidemarkok)
+gmx=$gmkx
+gmy=$gmky
+tointstring  $guidemarkok
+stringcat "Guidemark number  " "$str"
+speak "$string"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+eval $res0; $res1;$res2 ;gmx;gmy
+
+xpos=($res0+gmx*cos($res2)-gmy*sin($res2))*100
+ypos=($res1+gmx*sin($res2)+gmy*cos($res2))*100
+tointstring  xpos
+stringcat "x= " "$str" 
+speak "$string"
+tointstring  ypos
+stringcat "y= " "$str" 
+speak "$string"
+eval xpos;ypos
+routetgtth=0.71
+routetgtx= 0.4
+routetgty=0.4
+call "runroute"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+th = normalizeanglerad(routetgtth-$res2)
+turn th "rad" @v vt
+fwd -0.2
+idle
+speak "mission completed"
+goto "end"
+
+
+
+targetxo=2.0
+targetyo=2.1
+targetth=pi/2
+call "gototargetw"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+eval $res0 ; $res1;$res2
+label "mainloop"
+driveonw 2.0 3.4 90 @v v:($targetdist <d)
+driveonw 2.8 3.4 0 :($targetdist <d)
+driveonw 2.8 4.0 90 :($targetdist <d)
+driveonw 2.5 4.0 180 :($targetdist <0.1)
+ignoreobstacles
+fwd 0.1
+idle
+wait 0.5
+driveonw 2.8 4.0 180 @v-0.2:($targetdist >-0.1)
+fwd -0.1
+turn 90 @v0.15
+driveonw  2.8 3.4 -90 @v v :($targetdist <d)
+driveonw  1.2  3.4 180 :($targetdist <d)
+driveonw  1.2 4.0 90:($targetdist <d)
+driveonw  1.5  4.0  0 :($targetdist <0.1)
+ignoreobstacles
+fwd 0.1
+idle
+wait 0.5
+driveonw 1.2 4.0 0 @v-0.2:($targetdist >-0.1)
+fwd -0.1
+turn -90 @v0.15
+driveonw  1.2 3.4 -90 @v v :($targetdist <d)
+driveonw  2.0  3.4 0 :($targetdist <d)
+driveonw  2.0  2.0 -90:($targetdist <d)
+fwd 0.1
+laser "setinitcov Cx=0.004 Cy=0.004 Cth=0.01"
+
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+eval $res0 ; $res1;$res2
+targetxo=0.5
+targetyo=0.5
+targetth=0
+call "gototargetw"
+
+goto "end"
+
+label "gototargetw"
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+gtdx=targetxo-$res0
+gtdy=targetyo-$res1
+gtth=atan2(gtdy,gtdx)
+gtth1=normalizeanglerad(gtth-$res2)
+turn gtth1 "rad" :(abs(gtth1) <0.02)
+drivew targetxo targetyo gtth "rad":($targetdist <0.3)
+fwd 0.3
+gtth1=normalizeanglerad(targetth-gtth)
+turn gtth1 "rad" :(abs(gtth1) <0.02)
+return
+
+label "runroute"
+% find current pose in worldcoordinates
+invtrans $l0 $l1 $l2 $odox $odoy $odoth
+id=id+1
+stringcat "findroute startx= " $res0 "starty=" $res1 "endx=" routetgtx "endy=" routetgty " 
+laser "$string" 
+wait 1 :($l9==id)
+rstart=$l4
+eval rstart
+cp=rstart+1
+label "nextpoint"
+id=id+1
+cp=cp-1
+stringcat "getpoint p=" cp " id=" id
+laser "$string"
+wait 0.5 :($l9==id)
+dx=$l5-$res0
+dy=$l6-$res1
+if (hypot(dx,dy)<0.1) "nextpoint"
+th1=atan2(dy, dx)
+xgold=$res0
+ygold=$res1
+thgold=th1
+th= normalizeanglerad(th1-$res2) 
+turn th "rad" @v vt
+idle
+label "routecontinue"
+xg=$l5
+yg=$l6
+thg=$l7
+dth=abs(normalizeanglerad(thg-thgold))
+cp=cp-1
+if (cp < 0) "endroute"
+stringcat  "getpoint p=" cp
+laser "$string"
+if (dth >0.4)  "turning"
+v=vh
+if(hypot(xg-xgold,yg-ygold)>1) "hispeed"
+v=vl
+label "hispeed"
+ignoreobstacles
+drivew xg yg thg "rad" @v v:($targetdist <0.5)
+goto "routetypeend"
+label "turning"
+v=vl
+drivew xgold ygold thgold "rad" @v v:($targetdist <0.25)
+if(hypot(xg-xgold,yg-ygold)<1) "lospeed"
+   drivew xg yg thg "rad" @v v:($drivendist>0.5)
+   v=vh
+label "lospeed"
+drivew xg yg thg "rad" @v v:($targetdist <0.5)
+
+label "routetypeend"
+xgold=xg
+ygold=yg
+thgold=thg
+goto "routecontinue"
+label "endroute"
+ignoreobstacles
+ignoreobstacles
+driveonw xg yg thg "rad" @v vl:($targetdist <0.25)
+ignoreobstacles 
+fwd 0.25 @v 0.2
+return
+
+label "gmkspeak"
+tointstring  curgmk
+stringcat "Going to Guidemark number  " "$str"
+speak "$string"
+return
+
+label "end"
+
+
+
+
+
+

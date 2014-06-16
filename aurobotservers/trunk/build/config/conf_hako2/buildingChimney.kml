@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>KmlFile</name>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>buildingChimney</name>
+		<description>Bygning ved siden af hako bygning (97)</description>
+		<styleUrl>#msn_ylw-pushpin</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+12.30621033309868,55.67003768087054,0 12.30595072984612,55.67003326097926,0 12.30595784298295,55.66957658679811,0 12.30593911773701,55.66957407066474,0 12.30593968095778,55.66956162343845,0 12.30587981587681,55.66956409506729,0 12.30588274468635,55.66955182214187,0 12.30594418677029,55.66954335825493,0 12.3059459233798,55.66946192396627,0 12.30596672936946,55.66946086047595,0 12.30597065815623,55.66937826051073,0 12.30622636393833,55.66938428888713,0 </coordinates>
+		</LineString>
+	</Placemark>
+</Document>
+</kml>

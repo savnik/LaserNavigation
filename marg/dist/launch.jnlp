@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="${jnlp.codebase}" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>MARG 0.1</title>
+        <vendor>Daniel</vendor>
+        <homepage href=""/>
+        <description>MARG 0.1</description>
+        <description kind="short">MARG 0.1</description>
+    </information>
+<security>
+<all-permissions/>
+</security>
+    <resources>
+<j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.5+"/>
+<jar eager="true" href="marg2.jar" main="true"/>
+    </resources>
+    <applet-desc height="700" main-class="marg.gui.MargGUI" name="MARG 0.1" width="1024">
+    </applet-desc>
+</jnlp>

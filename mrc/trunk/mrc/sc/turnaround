@@ -1,0 +1,5 @@
+turnr 0.2 90 @v-0.1
+idle
+turnr 0.2 -90 @v0.1
+stop
+

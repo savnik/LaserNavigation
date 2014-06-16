@@ -1,0 +1,38 @@
+IAU_MAT library
+===============
+
+Description
+-----------
+The IAU_MAT library is a portable C library featuring usefull matrix functions
+for use in for instance real time programs.
+
+Contents
+--------
+See index.out file.
+
+The source of the library is divided into 3 files:
+	matcore.c containing the basic matrix functions
+	matio.c  containing the IO functions of the library
+	matinv.c containing matrix inversion routines 
+
+How to use
+----------
+See the demo.c demonstration program and makefile.
+On UNIX: #include <iau_mat.h> link with iau_mat.a
+On OS-9: #include <iau_mat.h> link with -liau_mat.l
+On TPU:  -
+On DSP:  -
+On PC:	 -
+
+Installation
+------------
+Edit the makefile in question, do make and make install.
+On UNIX: makefile.unx
+On OS-9: makefile.os9
+On TPU:  -
+On DSP:  -
+On PC:	 -
+
+The definition of RUNCHK in iau_mat.h controls runtime checking of dimensions
+etc, default is defined.
+

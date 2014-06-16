@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<rule name="keepnav" if="defined('nav.connected')">
+  <description>
+    * This rule is trying to keep nav server running, when the
+    number of clients is more than required in global.requiredclients and
+    the variable global.keep.aunav is true.
+    * This rule starts when the nav interface module is available (and
+    has created the variable nav.connected).
+    * When number of clients falls below the number of required, then
+    the server is closed (if it was started by the keeper).
+    * If the nav server is running already then the keeper will monitor the running
+    instance and restart it if it crashes. The server is crashed if no "alive" signal
+    is received within 3 seconds (value in alive rule below)
+  </description>
+  <init>
+    # define global status variables
+    global.alive.nav = false
+    global.alive.navStarted = false
+    allow = 7  # allow time is allowed time to be dead
+    if (not defined('global.keep.aunav'))
+      global.keep.aunav=false
+    deadCnt = allow + 1
+    <rule name="alive" if="nav.connected[1] and
+                          nav.hostalive and
+                          not global.alive.nav">
+      global.alive.nav = true
+      print("nav is alive after " deadCnt " secs to start")
+      deadCnt = 0
+      allow = 3  # seen alive to dead detect
+    </rule>
+    <rule name="deadCnt" if="not nav.connected[1] or not nav.hostalive">
+      if (deadCnt &lt; 0.51)
+        print("nav seems to be dying " deadCnt " : nav.connected=" nav.connected[1] ", nav.alive=" nav.hostalive)
+      deadCnt = deadCnt + rulestate.sampletime
+    </rule>
+    <rule name="noclient" if="nav.connected[1] and
+                              global.requiredclients > core.clients and
+                              global.alive.navStarted">
+      global.alive.navStarted = false
+      print("Closing nav server - as there is no clients left on port " core.port)
+      core.send("nav quit")
+    </rule>
+    <rule name="dead" if="deadCnt >= allow and global.alive.nav">
+      print("nav dead after " deadCnt " secs with no responce")
+      print(" - nav status: nav.connected=" nav.connected[1] ", nav.alive=" nav.hostalive)
+      global.alive.nav = false
+      global.alive.navStarted = false
+    </rule>
+    <rule name="start" if="core.clients >= global.requiredclients and
+                          global.keep.aunav and
+                          not global.alive.nav and
+                          not global.alive.navStarted">
+      deadCnt = 0
+      global.alive.navStarted = true
+      allow = 30 # allow for start-up time
+      core.send("bash nice --adjustment=8 /usr/local/smr/bin/startserver aunav")
+    </rule>
+  </init>
+  # keep monitoring rule active
+  print("Started monitoring of aunav")
+  wait() : false
+</rule>
+

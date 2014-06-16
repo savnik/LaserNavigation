@@ -1,0 +1,6 @@
+log "$targetdist"
+drive 1.5 0 0 :($targetdist <0.3)
+drive 1.5 1.5 1.57 "rad" :($targetdist <0.3)
+driveon 0 1.5 3.1416 "rad":($targetdist <0.3)
+driveon 0 0 -1.57 "rad":($targetdist <0.3)
+fwd 0.3

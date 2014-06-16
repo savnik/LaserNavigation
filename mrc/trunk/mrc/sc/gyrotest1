@@ -1,0 +1,14 @@
+log "$gyrorate" "$odoth"
+routeinput "mrc" "odoconnect" "dth" "$gyrorate"
+set "$gyro1off"	-4.92
+set "$gyro1gain" -0.001279
+set "gyrotype"  1
+set "odocontrol" 1
+eval $odoth
+
+fwd 3 @v0.3
+turn 180 @v0.2
+fwd 3 @v0.3
+eval $odoth
+label "end"
+

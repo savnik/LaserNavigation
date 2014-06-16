@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!--
+    Map created from orchard measurements. Created: 09-Jun-2009
+-->
+<map nodename="cherry">
+  <line number="1" perimeter="1.500">
+    <start x="-171.049" y="522.576"/>
+    <end x="-146.381" y="316.801"/>
+  </line>
+  <line number="2" perimeter="1.500">
+    <start x="-166.177" y="523.663"/>
+    <end x="-141.456" y="317.924"/>
+  </line>
+  <line number="3" perimeter="1.500">
+    <start x="-161.306" y="524.751"/>
+    <end x="-136.531" y="319.047"/>
+  </line>
+  <line number="4" perimeter="1.500">
+    <start x="-156.434" y="525.838"/>
+    <end x="-131.605" y="320.170"/>
+  </line>
+  <line number="5" perimeter="1.500">
+    <start x="-151.562" y="526.926"/>
+    <end x="-126.680" y="321.293"/>
+  </line>
+  <line number="6" perimeter="1.500">
+    <start x="-146.691" y="528.013"/>
+    <end x="-121.755" y="322.416"/>
+  </line>
+  <line number="7" perimeter="1.500">
+    <start x="-141.819" y="529.101"/>
+    <end x="-116.830" y="323.539"/>
+  </line>
+  <line number="8" perimeter="1.500">
+    <start x="-136.947" y="530.188"/>
+    <end x="-111.904" y="324.662"/>
+  </line>
+  <line number="9" perimeter="1.500">
+    <start x="-132.076" y="531.276"/>
+    <end x="-106.979" y="325.785"/>
+  </line>
+  <line number="10" perimeter="1.500">
+    <start x="-127.204" y="532.363"/>
+    <end x="-102.054" y="326.908"/>
+  </line>
+</map>

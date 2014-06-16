@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="areaSouthPoly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('areaSouth')
+poly.addPoint('areaSouth', 707891.5, 6174124.0)
+poly.addPoint('areaSouth', 707854.0, 6174122.0)
+poly.addPoint('areaSouth', 707856.0, 6174088.0)
+poly.addPoint('areaSouth', 707895.0, 6174090.7)
+poly.setRefCoord('areaSouth', 1) # UTM coordinate system
+poly.setClosed('areaSouth') # polygon
+</rule>
+

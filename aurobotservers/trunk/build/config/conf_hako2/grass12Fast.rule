@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rule name="grass12Fast" run="true">
+  <init>
+    # converted from KML - offset by 0.00E, 0.00N
+    #           map part - offset by -708000.00E, -6174000.00N
+    poly.del('grass12Fast')
+    poly.addPoint('grass12Fast', -180.00, 300.00)
+    poly.addPoint('grass12Fast', -180.00, 250.00)
+    poly.addPoint('grass12Fast', -165.00, 250.00)
+    poly.addPoint('grass12Fast', -165.00, 300.00)
+    poly.setRefCoord('grass12Fast', 2) # map coordinate system
+    poly.setClosed('grass12Fast') # polygon
+    toolPos[1] = 0.0; // coordinate center must be inside (y coordinate)
+    toolPos[0] = 0.0; // x coordinate
+    outSpeed = smr.speed
+    inSpeed = 0.8
+    <rule name="isIn" if="poly.isInside('grassFastArea', mapPose.pose, toolPos)">
+      print('has entered grassFastArea, speed ' smr.speed " to " inSpeed)
+      # place enter-area actions here
+      smr.speed=inSpeed
+      wait() : not poly.isInside('grassFastArea', mapPose.pose, toolPos)
+      print('has left grassFastArea, speed ' smr.speed " to " outSpeed)
+      # place leave-area actions here
+      smr.speed=outSpeed
+    </rule>
+  </init>
+  wait() : false;
+</rule>

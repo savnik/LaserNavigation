@@ -1,0 +1,14 @@
+CFLAGS = -g -O2 -Wall -pedantic -fPIC -DDGL_STATS
+LNFLAGS =
+OBJECTS = avl.o tavl.o tree.o heap.o graph.o helpers.o graph_v1.o graph_v2.o
+INCLUDES = avl.h tavl.h tree.h heap.h graph.h type.h graph_v1.h graph_v2.h helpers.h
+LIBRARY = libdgl.a
+
+$(LIBRARY): $(OBJECTS) $(INCLUDES)
+	ar r $@ $(OBJECTS); ranlib $@
+
+.c.o:
+	gcc -c $(CFLAGS) $< -o $@
+
+clean:
+	rm -f *.o *.a

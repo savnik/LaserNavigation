@@ -1,0 +1,380 @@
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+<?xml version="1.0" encoding="UTF-8"?>
+<auClient name="auClient" version="2.403">
+<help subject="var list" name="">
+Description:                  Variables and methods for this resource
+version=200                   (r) Version of this resource
+struct="core"                 new
+core='struct';                Variables related to the server core.
+odoPose='struct';             Variables and methods for this resource
+mapPose='struct';             Variables and methods for this resource
+utmPose='struct';             Variables and methods for this resource
+disp='struct';                Camera server road path detection variables
+poly='struct';                Variables and methods for this resource
+cam='struct';                 socket connection status
+camImg='struct';              Camera server interface image copy handling
+camGmk='struct';              Camera server interface guidemark variables
+camPath='struct';             Camera server road path detection variables
+laser='struct';               socket connection status
+laserScan='struct';           Variables and methods for this resource
+laserObst='struct';           Laser scanner server obstacle detection results
+laserRoad='struct';           Laser scanner server road detection interface
+navMan='struct';              Navigation server manoeuvre interface
+nav='struct';                 socket connection status
+ifVar='struct';               Variable related to a server interface client
+posehist='struct';            new
+rhd='struct';                 Variables and methods for this resource
+nox='struct';                 socket connection status
+keep2='struct';               socket connection status
+keep1='struct';               socket connection status
+</help>
+<var info="done"/>
+<var name="rhd.version" typ="d" size="1" value="485"/>
+<var name="rhd.host" typ="s" size="5" value="hako1"/>
+<var name="rhd.port" typ="d" size="1" value="24902"/>
+<var name="rhd.connected" typ="d" size="1" value="1"/>
+<var name="rhd.keep" typ="d" size="1" value="1"/>
+<var name="rhd.sampleTime" typ="d" size="1" value="0.1"/>
+<var name="rhd.writeAccess" typ="d" size="1" value="1"/>
+<var name="rhd.writeAccessGranted" typ="d" size="1" value="1"/>
+<var name="rhd.tick" typ="d" size="2" value="1 2708"/>
+<var name="rhd.hakonavigationmode" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakosteeringangle" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakoodopulses" typ="d" size="2" value="0 0"/>
+<var name="rhd.enginespeed" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakostate0" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakostate1" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakostate2" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakostate3" typ="d" size="2" value="0 0"/>
+<var name="rhd.liftinggearpos" typ="d" size="2" value="0 0"/>
+<var name="rhd.powertakeoffspeed" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakoodopulses1" typ="d" size="2" value="0 0"/>
+<var name="rhd.fogPhX" typ="d" size="2" value="1 43850"/>
+<var name="rhd.fogPhY" typ="d" size="2" value="1 9490"/>
+<var name="rhd.fogPhdZ" typ="d" size="2" value="1 19"/>
+<var name="rhd.fogTempB" typ="d" size="2" value="1 209"/>
+<var name="rhd.fogTempE" typ="d" size="2" value="1 233"/>
+<var name="rhd.fogFailStatus" typ="d" size="2" value="1 64"/>
+<var name="rhd.fogGyroStatus" typ="d" size="2" value="1 64"/>
+<var name="rhd.GPStime" typ="d" size="5" value="1 10 42 17 900"/>
+<var name="rhd.GPSdate" typ="d" size="4" value="1 10 13 2009"/>
+<var name="rhd.GPStimeofday" typ="d" size="3" value="1 1263116537 900000"/>
+<var name="rhd.GPSnorthing" typ="d" size="3" value="1 6174293 656000"/>
+<var name="rhd.GPSeasting" typ="d" size="3" value="1 707878 488000"/>
+<var name="rhd.GPSlattitude" typ="d" size="3" value="1 42 613890"/>
+<var name="rhd.GPSlongitude" typ="d" size="3" value="1 11 551968"/>
+<var name="rhd.GPSquality" typ="d" size="2" value="1 2"/>
+<var name="rhd.GPSfixvalid" typ="d" size="2" value="0 0"/>
+<var name="rhd.GPSsatused" typ="d" size="2" value="1 6"/>
+<var name="rhd.GPSdop" typ="d" size="3" value="1 2 700000"/>
+<var name="rhd.GPSaltitude" typ="d" size="3" value="0 0 0"/>
+<var name="rhd.GPSheigth" typ="d" size="3" value="0 0 0"/>
+<var name="rhd.GPSutmzone" typ="d" size="2" value="0 0"/>
+<var name="rhd.GPSheading" typ="d" size="3" value="0 0 0"/>
+<var name="rhd.GPSspeed" typ="d" size="3" value="0 0 0"/>
+<var name="rhd.GPSegnos" typ="d" size="2" value="0 0"/>
+<var name="rhd.GPSllfixes" typ="d" size="2" value="0 0"/>
+<var name="rhd.GPSutmfixes" typ="d" size="2" value="1 5436"/>
+<var name="rhd.speedref" typ="d" size="2" value="0 0"/>
+<var name="rhd.steeringangleref" typ="d" size="2" value="0 0"/>
+<var name="rhd.enginespeedref" typ="d" size="2" value="0 0"/>
+<var name="rhd.hakomanual" typ="d" size="2" value="0 0"/>
+<var name="rhd.liftinggearstateref" typ="d" size="2" value="0 0"/>
+<var name="rhd.powertakeoffstateref" typ="d" size="2" value="0 0"/>
+<var name="rhd.GPSsetutmzone" typ="d" size="2" value="0 0"/>
+<var info="done"/>
+<help subject="VAR">
+-------------------- Available VAR options:
+'variable [variable]*'  Get value of variable(s)
+variable="value"        Assign a value to a variable
+list                    Get list of variables in root of variable structure
+struct                  Get list of all variables in a structure
+[struct.]allCopy        Get list of all variables for var pool copy
+desc                    Get variable description too
+type=T                  semi-structure where T='pose' | '3d' | 'dq' | 's' | 't'
+call='me(par1,par2,..)' Test a method call with name 'me' and some parameters
+returnType=[lineseg|3d|pose|...] Expected struct result type of call
+log[=false]             Open (or close) logfile (open true) /home/chr/chr/results/auclient.var.log
+log[=false] struct      Start or stop logging of this struct
+isLogging   struct      Is this structure beeing logged?
+help                    This help message
+See also VARPUSH (update event handling)
+</help>
+<var info="done"/>
+<var name="rhd.version" typ="d" size="1" value="485" desc="(r) Version of this resource"/>
+<var name="rhd.host" typ="s" size="5" value="hako1" desc="(rw) Current host setting (set with rhd command)"/>
+<var name="rhd.port" typ="d" size="1" value="24902" desc="(rw) current port number"/>
+<var name="rhd.connected" typ="d" size="1" value="1" desc="(r) is connection to RHD established"/>
+<var name="rhd.keep" typ="d" size="1" value="1" desc="(rw) Should connection be reestablished after a disconnect"/>
+<var name="rhd.sampleTime" typ="d" size="1" value="0.1" desc="(r) Time between RHD updates"/>
+<var name="rhd.writeAccess" typ="d" size="1" value="1" desc="(rw) controls - at connect time - if write variables should be included in a writeable mode."/>
+<var name="rhd.writeAccessGranted" typ="d" size="1" value="1" desc="(r) is true (1) if write access is granted"/>
+<var name="rhd.tick" typ="d" size="2" value="1 2879" desc="(r) first value is update flag"/>
+<var name="rhd.hakonavigationmode" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakosteeringangle" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakoodopulses" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.enginespeed" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate0" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate1" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate2" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate3" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.liftinggearpos" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.powertakeoffspeed" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakoodopulses1" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhX" typ="d" size="2" value="1 56900" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhY" typ="d" size="2" value="1 5190" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhdZ" typ="d" size="2" value="1 47" desc="(r) first value is update flag"/>
+<var name="rhd.fogTempB" typ="d" size="2" value="1 209" desc="(r) first value is update flag"/>
+<var name="rhd.fogTempE" typ="d" size="2" value="1 233" desc="(r) first value is update flag"/>
+<var name="rhd.fogFailStatus" typ="d" size="2" value="1 64" desc="(r) first value is update flag"/>
+<var name="rhd.fogGyroStatus" typ="d" size="2" value="1 64" desc="(r) first value is update flag"/>
+<var name="rhd.GPStime" typ="d" size="5" value="1 10 42 35 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSdate" typ="d" size="4" value="1 10 13 2009" desc="(r) first value is update flag"/>
+<var name="rhd.GPStimeofday" typ="d" size="3" value="1 1263116555 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSnorthing" typ="d" size="3" value="1 6174293 761000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSeasting" typ="d" size="3" value="1 707878 505000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSlattitude" typ="d" size="3" value="1 42 613890" desc="(r) first value is update flag"/>
+<var name="rhd.GPSlongitude" typ="d" size="3" value="1 11 551969" desc="(r) first value is update flag"/>
+<var name="rhd.GPSquality" typ="d" size="2" value="1 2" desc="(r) first value is update flag"/>
+<var name="rhd.GPSfixvalid" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSsatused" typ="d" size="2" value="1 6" desc="(r) first value is update flag"/>
+<var name="rhd.GPSdop" typ="d" size="3" value="1 2 700000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSaltitude" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSheigth" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSutmzone" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSheading" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSspeed" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSegnos" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSllfixes" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSutmfixes" typ="d" size="2" value="1 5778" desc="(r) first value is update flag"/>
+<var name="rhd.speedref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.steeringangleref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.enginespeedref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.hakomanual" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.liftinggearstateref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.powertakeoffstateref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.GPSsetutmzone" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var info="done"/>
+<var name="version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="struct" typ="s" size="4" value="core" desc="new"/>
+<var name="core.version" typ="d" size="1" value="202" desc="(r) Version of this resource"/>
+<var name="core.port" typ="d" size="1" value="24929" desc="Interface port to this server"/>
+<var name="core.allowConnections" typ="d" size="1" value="1" desc="(r/w) Is new connections allowed (1=true)"/>
+<var name="core.open4connections" typ="d" size="1" value="1" desc="(r) Is server open for new connections (1=true)"/>
+<var name="core.clients" typ="d" size="1" value="1" desc="Number of clients connect on TCP/IP port"/>
+<var name="core.time" typ="t" size="1" value="1255430564.5869" tod="1255430564.586942" time="20091013_124244.586" desc="Last time the core loop passed"/>
+<var name="odoPose.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="odoPose.minDist" typ="d" size="1" value="0.03" desc="Adding history if distance is more than this"/>
+<var name="odoPose.minTurn" typ="d" size="1" value="0.0175" desc="Adding history if turned more than this"/>
+<var name="odoPose.minTime" typ="d" size="1" value="10" desc="Adding history if time passed is more than this"/>
+<var name="odoPose.trip" typ="d" size="1" value="0" desc="Total distance (should not be reset)"/>
+<var name="odoPose.tripA" typ="d" size="1" value="0" desc="Distance since reset - mission distance)"/>
+<var name="odoPose.tripB" typ="d" size="1" value="0" desc="Distance since reset - any trip"/>
+<var name="odoPose.pose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Current robot pose"/>
+<var name="odoPose.vel" typ="d" size="1" value="0" desc="Current velocity [m/s]"/>
+<var name="odoPose.poseQ" typ="d" size="1" value="-1" desc="Current pose quality (-1 is no data, GPS: 1=no, 2=float, 3=fix)"/>
+<var name="odoPose.estimateVel" typ="d" size="1" value="0" desc="Estimate velocity from position updates"/>
+<var name="odoPose.estimateHeading" typ="d" size="1" value="0" desc="Estimate heading from position updates (GPS)"/>
+<var name="odoPose.time" typ="t" size="1" value="0" tod="0.000000" time="19700101_010000.000" desc="current time (in sec since 1 jan 1970)"/>
+<var name="odoPose.tripTime" typ="d" size="1" value="0" desc="Time since restart [sec] (should not be reset)"/>
+<var name="odoPose.tripTimeA" typ="d" size="1" value="0" desc="Time since reset - mission time)"/>
+<var name="odoPose.tripTimeB" typ="d" size="1" value="0" desc="Time since reset - any sub time)"/>
+<var name="odoPose.poseh5m" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Average heading of the most recent 5 (but 1) meter"/>
+<var name="odoPose.poseh5mUse" typ="d" size="1" value="0" desc="Maintain the pose5m value (1=yes, 0=no)"/>
+<var name="odoPose.calcPose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Calculated pose by one of the pose returning functions"/>
+<var name="odoPose.odoPoseOrigin" typ="pose" size="1" value="0" x="0" y="0" th="0" desc="position of the origon of the odometry coordinate system"/>
+<var name="mapPose.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="mapPose.minDist" typ="d" size="1" value="0.03" desc="Adding history if distance is more than this"/>
+<var name="mapPose.minTurn" typ="d" size="1" value="0.0175" desc="Adding history if turned more than this"/>
+<var name="mapPose.minTime" typ="d" size="1" value="10" desc="Adding history if time passed is more than this"/>
+<var name="mapPose.trip" typ="d" size="1" value="0" desc="Total distance (should not be reset)"/>
+<var name="mapPose.tripA" typ="d" size="1" value="0" desc="Distance since reset - mission distance)"/>
+<var name="mapPose.tripB" typ="d" size="1" value="0" desc="Distance since reset - any trip"/>
+<var name="mapPose.pose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Current robot pose"/>
+<var name="mapPose.vel" typ="d" size="1" value="0" desc="Current velocity [m/s]"/>
+<var name="mapPose.poseQ" typ="d" size="1" value="-1" desc="Current pose quality (-1 is no data, GPS: 1=no, 2=float, 3=fix)"/>
+<var name="mapPose.estimateVel" typ="d" size="1" value="0" desc="Estimate velocity from position updates"/>
+<var name="mapPose.estimateHeading" typ="d" size="1" value="0" desc="Estimate heading from position updates (GPS)"/>
+<var name="mapPose.time" typ="t" size="1" value="0" tod="0.000000" time="19700101_010000.000" desc="current time (in sec since 1 jan 1970)"/>
+<var name="mapPose.tripTime" typ="d" size="1" value="0" desc="Time since restart [sec] (should not be reset)"/>
+<var name="mapPose.tripTimeA" typ="d" size="1" value="0" desc="Time since reset - mission time)"/>
+<var name="mapPose.tripTimeB" typ="d" size="1" value="0" desc="Time since reset - any sub time)"/>
+<var name="mapPose.poseh5m" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Average heading of the most recent 5 (but 1) meter"/>
+<var name="mapPose.poseh5mUse" typ="d" size="1" value="0" desc="Maintain the pose5m value (1=yes, 0=no)"/>
+<var name="mapPose.calcPose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Calculated pose by one of the pose returning functions"/>
+<var name="mapPose.odoPoseOrigin" typ="pose" size="1" value="0" x="0" y="0" th="0" desc="position of the origon of the odometry coordinate system"/>
+<var name="utmPose.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="utmPose.minDist" typ="d" size="1" value="0.03" desc="Adding history if distance is more than this"/>
+<var name="utmPose.minTurn" typ="d" size="1" value="0.0175" desc="Adding history if turned more than this"/>
+<var name="utmPose.minTime" typ="d" size="1" value="10" desc="Adding history if time passed is more than this"/>
+<var name="utmPose.trip" typ="d" size="1" value="0" desc="Total distance (should not be reset)"/>
+<var name="utmPose.tripA" typ="d" size="1" value="0" desc="Distance since reset - mission distance)"/>
+<var name="utmPose.tripB" typ="d" size="1" value="0" desc="Distance since reset - any trip"/>
+<var name="utmPose.pose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Current robot pose"/>
+<var name="utmPose.vel" typ="d" size="1" value="0" desc="Current velocity [m/s]"/>
+<var name="utmPose.poseQ" typ="d" size="1" value="-1" desc="Current pose quality (-1 is no data, GPS: 1=no, 2=float, 3=fix)"/>
+<var name="utmPose.estimateVel" typ="d" size="1" value="0" desc="Estimate velocity from position updates"/>
+<var name="utmPose.estimateHeading" typ="d" size="1" value="0" desc="Estimate heading from position updates (GPS)"/>
+<var name="utmPose.time" typ="t" size="1" value="0" tod="0.000000" time="19700101_010000.000" desc="current time (in sec since 1 jan 1970)"/>
+<var name="utmPose.tripTime" typ="d" size="1" value="0" desc="Time since restart [sec] (should not be reset)"/>
+<var name="utmPose.tripTimeA" typ="d" size="1" value="0" desc="Time since reset - mission time)"/>
+<var name="utmPose.tripTimeB" typ="d" size="1" value="0" desc="Time since reset - any sub time)"/>
+<var name="utmPose.poseh5m" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Average heading of the most recent 5 (but 1) meter"/>
+<var name="utmPose.poseh5mUse" typ="d" size="1" value="0" desc="Maintain the pose5m value (1=yes, 0=no)"/>
+<var name="utmPose.calcPose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Calculated pose by one of the pose returning functions"/>
+<var name="utmPose.odoPoseOrigin" typ="pose" size="1" value="0" x="0" y="0" th="0" desc="position of the origon of the odometry coordinate system"/>
+<var name="disp.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="disp.running" typ="d" size="1" value="1" desc="(ro) Is display loop (thread) running"/>
+<var name="disp.paintGrid" typ="d" size="1" value="0" desc="(rw) Paint the odometry grid"/>
+<var name="disp.paintSpeed" typ="d" size="1" value="0" desc="(rw) Paint robot speed"/>
+<var name="disp.NavImage" typ="d" size="1" value="97" desc="Image number in image pool for robot nav display"/>
+<var name="disp.autoHereNow" typ="d" size="1" value="1" desc="Should coordinate systems be aligned at current robot pose"/>
+<var name="poly.version" typ="d" size="1" value="410" desc="(r) Version of this resource"/>
+<var name="poly.polyCnt" typ="d" size="1" value="18" desc="(r) number of established poly utems"/>
+<var name="cam.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="cam.connected" typ="d" size="1" value="0" desc="(r) Connected when &apos;1&apos;"/>
+<var name="cam.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="cam.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="cam.aliveReceived" typ="d" size="1" value="0" desc="(r) Time since last alive status (sec)"/>
+<var name="cam.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="cam.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="cam.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var name="camImg.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="camImg.time" typ="d" size="1" value="0" desc="Latest image time received"/>
+<var name="camImg.pool" typ="d" size="1" value="0" desc="Latest image pool number received"/>
+<var name="camImg.cnt" typ="d" size="1" value="0" desc="Number of images received"/>
+<var name="camGmk.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="camGmk.upd" typ="d" size="1" value="0" desc="(r/w) Set to &apos;true&apos; on update from interface"/>
+<var name="camGmk.time" typ="d" size="1" value="0" desc="(r) Guidemark detection time (sec)"/>
+<var name="camGmk.posX" typ="d" size="1" value="0" desc="(r) Position of new guidemark - the closest in robot coordinates"/>
+<var name="camGmk.id" typ="d" size="1" value="0" desc="(r) Code inside this guidematk (integer)"/>
+<var name="camGmk.cnt" typ="d" size="1" value="0" desc="(r) The number of guidemarks found in image"/>
+<var name="camGmk.callDisp" typ="d" size="1" value="1" desc="(w) Should &apos;disp&apos; be called after a data update"/>
+<var name="camGmk.selID" typ="d" size="1" value="0" desc="(w) Guidemark with this code is put into the &apos;sel&apos; structure"/>
+<var name="camGmk.sel.upd" typ="d" size="1" value="0" desc="(r/w) Set to &apos;true&apos; on update from interface"/>
+<var name="camGmk.sel.time" typ="d" size="1" value="0" desc="(r) Guidemark detection time (sec)"/>
+<var name="camGmk.sel.posX" typ="d" size="1" value="0" desc="(r) Position of newe guidemark - the closest."/>
+<var name="camGmk.sel.id" typ="d" size="1" value="0" desc="(r) Code inside this guidematk (integer)"/>
+<var name="camPath.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="camPath.pTime" typ="d" size="1" value="0" desc="Time when road otline were detected"/>
+<var name="camPath.pose" typ="pose" size="3" value="0 0 0" x="0" y="0" th="0" desc="Pose of robot when robot when road outline were detected"/>
+<var name="camPath.pNew" typ="d" size="1" value="0" desc="Set to &apos;1&apos; when new data is available"/>
+<var name="laser.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="laser.connected" typ="d" size="1" value="1" desc="(r) Connected when &apos;1&apos;"/>
+<var name="laser.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="laser.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="laser.aliveReceived" typ="d" size="1" value="283.7561" desc="(r) Time since last alive status (sec)"/>
+<var name="laser.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="laser.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="laser.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var name="laserScan.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="laserScan.sersorX" typ="3d" size="6" value="2.07 0 0.52 0 0 0" x="2.07" y="0" z="0.52" desc="Sensor 3D position (holds also rotation - 6D)"/>
+<var name="laserScan.sersorO" typ="rot" size="3" value="0 0 0" Omega="0" Phi="0" Kappa="0" desc="Sensor 3D orientation (Omega (x), Phi (y), Kappa (z))"/>
+<var name="laserScan.scan" typ="d" size="1" value="37816" desc="Scan serial number for latest scan"/>
+<var name="laserObst.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="laserObst.serial" typ="d" size="1" value="144" desc="latest obstacle group serial number"/>
+<var name="laserObst.time" typ="t" size="1" value="1255431152.6365" tod="1255431152.636485" time="20091013_125232.636" desc="scan time for last update"/>
+<var name="laserObst.groups" typ="d" size="1" value="100" desc="Number of obstacle groups"/>
+<var name="laserRoad.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="laserRoad.leftN" typ="d" size="1" value="0" desc="Number of updates"/>
+<var name="laserRoad.leftQ" typ="d" size="1" value="0" desc="Quality of road line"/>
+<var name="laserRoad.centerN" typ="d" size="1" value="0" desc="Number of updates"/>
+<var name="laserRoad.centerQ" typ="d" size="1" value="0" desc="Quality of road line"/>
+<var name="laserRoad.rightN" typ="d" size="1" value="0" desc="Number of updates"/>
+<var name="laserRoad.rightQ" typ="d" size="1" value="0" desc="Quality of road line"/>
+<var name="laserRoad.updateTime" typ="d" size="1" value="0" desc="Quality of road line"/>
+<var name="navMan.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="navMan.manCnt" typ="d" size="1" value="0" desc="(ro) Number of available manoeuvres"/>
+<var name="navMan.Time" typ="d" size="1" value="0" desc="(ro) Latest update time"/>
+<var name="nav.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="nav.connected" typ="d" size="1" value="1" desc="(r) Connected when &apos;1&apos;"/>
+<var name="nav.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="nav.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="nav.aliveReceived" typ="d" size="1" value="283.2347" desc="(r) Time since last alive status (sec)"/>
+<var name="nav.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="nav.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="nav.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var name="ifVar.version" typ="d" size="1" value="650" desc="(r) Version of this resource"/>
+<var name="ifVar.callDispOnNewPose" typ="d" size="1" value="0" desc="(r/w) if true, then disp.newdata(sd) is called on new odo, map or utm pose update."/>
+<var name="posehist.tripA" typ="d" size="1" value="0" desc="new"/>
+<var name="posehist.triptimeA" typ="d" size="1" value="0" desc="new"/>
+<var name="rhd.version" typ="d" size="1" value="485" desc="(r) Version of this resource"/>
+<var name="rhd.host" typ="s" size="5" value="hako1" desc="(rw) Current host setting (set with rhd command)"/>
+<var name="rhd.port" typ="d" size="1" value="24902" desc="(rw) current port number"/>
+<var name="rhd.connected" typ="d" size="1" value="1" desc="(r) is connection to RHD established"/>
+<var name="rhd.keep" typ="d" size="1" value="1" desc="(rw) Should connection be reestablished after a disconnect"/>
+<var name="rhd.sampleTime" typ="d" size="1" value="0.1" desc="(r) Time between RHD updates"/>
+<var name="rhd.writeAccess" typ="d" size="1" value="1" desc="(rw) controls - at connect time - if write variables should be included in a writeable mode."/>
+<var name="rhd.writeAccessGranted" typ="d" size="1" value="1" desc="(r) is true (1) if write access is granted"/>
+<var name="rhd.tick" typ="d" size="2" value="1 2975" desc="(r) first value is update flag"/>
+<var name="rhd.hakonavigationmode" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakosteeringangle" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakoodopulses" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.enginespeed" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate0" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate1" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate2" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakostate3" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.liftinggearpos" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.powertakeoffspeed" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.hakoodopulses1" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhX" typ="d" size="2" value="1 52500" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhY" typ="d" size="2" value="1 13840" desc="(r) first value is update flag"/>
+<var name="rhd.fogPhdZ" typ="d" size="2" value="1 -48" desc="(r) first value is update flag"/>
+<var name="rhd.fogTempB" typ="d" size="2" value="1 209" desc="(r) first value is update flag"/>
+<var name="rhd.fogTempE" typ="d" size="2" value="1 233" desc="(r) first value is update flag"/>
+<var name="rhd.fogFailStatus" typ="d" size="2" value="1 64" desc="(r) first value is update flag"/>
+<var name="rhd.fogGyroStatus" typ="d" size="2" value="1 64" desc="(r) first value is update flag"/>
+<var name="rhd.GPStime" typ="d" size="5" value="1 10 42 44 600" desc="(r) first value is update flag"/>
+<var name="rhd.GPSdate" typ="d" size="4" value="1 10 13 2009" desc="(r) first value is update flag"/>
+<var name="rhd.GPStimeofday" typ="d" size="3" value="1 1263116564 600000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSnorthing" typ="d" size="3" value="1 6174293 814000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSeasting" typ="d" size="3" value="1 707878 519000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSlattitude" typ="d" size="3" value="1 42 613890" desc="(r) first value is update flag"/>
+<var name="rhd.GPSlongitude" typ="d" size="3" value="1 11 551969" desc="(r) first value is update flag"/>
+<var name="rhd.GPSquality" typ="d" size="2" value="1 2" desc="(r) first value is update flag"/>
+<var name="rhd.GPSfixvalid" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSsatused" typ="d" size="2" value="1 6" desc="(r) first value is update flag"/>
+<var name="rhd.GPSdop" typ="d" size="3" value="1 2 700000" desc="(r) first value is update flag"/>
+<var name="rhd.GPSaltitude" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSheigth" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSutmzone" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSheading" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSspeed" typ="d" size="3" value="0 0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSegnos" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSllfixes" typ="d" size="2" value="0 0" desc="(r) first value is update flag"/>
+<var name="rhd.GPSutmfixes" typ="d" size="2" value="1 5970" desc="(r) first value is update flag"/>
+<var name="rhd.speedref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.steeringangleref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.enginespeedref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.hakomanual" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.liftinggearstateref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.powertakeoffstateref" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="rhd.GPSsetutmzone" typ="d" size="2" value="0 0" desc="(w) writeable, first value unused"/>
+<var name="nox.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="nox.connected" typ="d" size="1" value="0" desc="(r) Connected when &apos;1&apos;"/>
+<var name="nox.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="nox.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="nox.aliveReceived" typ="d" size="1" value="0" desc="(r) Time since last alive status (sec)"/>
+<var name="nox.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="nox.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="nox.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var name="keep2.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="keep2.connected" typ="d" size="1" value="0" desc="(r) Connected when &apos;1&apos;"/>
+<var name="keep2.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="keep2.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="keep2.aliveReceived" typ="d" size="1" value="0" desc="(r) Time since last alive status (sec)"/>
+<var name="keep2.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="keep2.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="keep2.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var name="keep1.version" typ="d" size="1" value="200" desc="(r) Version of this resource"/>
+<var name="keep1.connected" typ="d" size="1" value="0" desc="(r) Connected when &apos;1&apos;"/>
+<var name="keep1.tryHold" typ="d" size="1" value="1" desc="(r) Try hold the connection - set from interface command"/>
+<var name="keep1.hostLoopAlive" typ="d" size="1" value="0" desc="(r) Time since last host server loop (sec)"/>
+<var name="keep1.aliveReceived" typ="d" size="1" value="0" desc="(r) Time since last alive status (sec)"/>
+<var name="keep1.runAliveTest" typ="d" size="1" value="0" desc="(r/w) Run an alive test every second"/>
+<var name="keep1.hostAlive" typ="d" size="1" value="1" desc="(r) qualified alive flag, when runAliveTest is true"/>
+<var name="keep1.aliveLimit" typ="d" size="1" value="4" desc="(r/w) at no resonce if this length (seconds) the server is deemed dead"/>
+<var info="done"/>

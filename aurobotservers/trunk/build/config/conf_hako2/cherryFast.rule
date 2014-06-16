@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- increase speed when well inside cherry area -->
+<rule name="cherryFast" if="true">
+  <init>
+    polyName='cherryFast'
+    poly.del(polyName)
+    poly.addPoint(polyName,-156.0, 326.0)
+    poly.addPoint(polyName, -86.5, 337.0)
+    poly.addPoint(polyName,-112.0, 523.0)
+    poly.addPoint(polyName,-180.5, 512.0)
+    poly.setRefCoord(polyName, 2) # map coordinate system
+    poly.setClosed(polyName)
+    # tool position - center rear wheels
+    toolPos[1] = 0.0
+    toolPos[0] = 0.0
+    outSpeed = smr.speed 
+    #
+    #
+    <rule name="isIn" if="poly.isInside(polyName, mapPose.pose, toolPos)">
+      print('has entered ' polyName ' area at ' utmPose.pose)
+      # increase speed
+      outSpeed = smr.speed
+      smr.speed = 1.0 # desired drive speed m/s in area
+      wait() : not if()
+      <post>
+        print('has left ' polyName ' at ' mapPose.pose)
+        smr.speed = outSpeed
+      </post>
+    </rule>
+  </init>
+  wait() : false;
+</rule>

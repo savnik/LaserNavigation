@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<rule name="keeplaser" if="defined('laser.connected')">
+  <description>
+    * This rule is trying to keep laser server running, when the
+    number of clients is more than required in global.requiredclients and
+    the variable global.keep.cam is true.
+    * This rule starts when the laser interface module is available (and
+    has created the variable laser.connected).
+    * When number of clients falls below the number of required, then
+    the server is closed (if it was started by the keeper).
+    * If the laser server is running already then the keeper will monitor the running
+    instance and restart it if it crashes. The server is crashed if no "alive" signal
+    is received within 3 seconds (value in alive rule below)
+  </description>
+  <init>
+    # define global status variables
+    global.alive.laser = false
+    global.alive.laserStarted = false
+    allow = 7  # allow time is allowed time to be dead
+    if (not defined('global.keep.laser'))
+      global.keep.laser=false
+    deadCnt = allow + 1
+    <rule name="alive" if="laser.connected[1] and
+                          laser.hostalive and
+                          not global.alive.laser">
+      global.alive.laser = true
+      print("laser is alive after " deadCnt " secs to start")
+      deadCnt = 0
+      allow = 3  # seen alive to dead detect
+    </rule>
+    <rule name="deadCnt" if="not laser.connected[1] or not laser.hostalive">
+      # if (deadCnt &lt; 0.51)
+      #   print("laser seems to be dying " deadCnt " : laser.connected=" laser.connected[1] ", laser.alive=" laser.hostalive)
+      deadCnt = deadCnt + rulestate.sampletime
+    </rule>
+    <rule name="noclient" if="laser.connected[1] and
+                              global.requiredclients > core.clients and
+                              global.alive.laserstarted">
+      global.alive.laserStarted = false
+      print("Closing laser server - as there is no clients left on port " core.port)
+      core.send("laser quit")
+    </rule>
+    <rule name="dead" if="deadCnt >= allow and global.alive.laser">
+      print("laser dead after " deadCnt " secs with no responce")
+      print(" - laser status: laser.connected=" laser.connected[1] ", laser.alive=" laser.hostalive)
+      global.alive.laser = false
+      global.alive.laserStarted = false
+    </rule>
+    <rule name="start" if="core.clients >= global.requiredclients and
+                          not global.alive.laser and
+                          not global.alive.laserStarted and
+                          global.keep.laser">
+      deadCnt = 0
+      global.alive.laserStarted = true
+      allow = 30 # allow for start-up time
+      core.send("bash nice --adjustment=4 /usr/local/smr/bin/startserver ulmsserver")
+    </rule>
+  </init>
+  # keep monitoring rule active
+  wait() : false
+</rule>
+

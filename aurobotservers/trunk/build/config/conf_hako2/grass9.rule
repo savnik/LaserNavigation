@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="grass9Poly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('grass9')
+poly.addPoint('grass9', -164.32, 300.88)
+poly.addPoint('grass9', -182.47, 298.53)
+poly.addPoint('grass9', -187.04, 294.91)
+poly.addPoint('grass9', -181.70, 292.58)
+poly.addPoint('grass9', -163.55, 294.93)
+poly.addPoint('grass9', -158.21, 292.60)
+poly.addPoint('grass9', -162.78, 288.98)
+poly.addPoint('grass9', -180.93, 286.63)
+poly.addPoint('grass9', -186.46, 290.45)
+poly.addPoint('grass9', -182.08, 295.56)
+poly.addPoint('grass9', -163.94, 297.91)
+poly.addPoint('grass9', -158.59, 295.58)
+poly.addPoint('grass9', -163.16, 291.96)
+poly.addPoint('grass9', -181.31, 289.61)
+poly.addPoint('grass9', -185.69, 284.50)
+poly.addPoint('grass9', -180.16, 280.68)
+poly.addPoint('grass9', -162.01, 283.03)
+poly.addPoint('grass9', -156.66, 280.70)
+poly.addPoint('grass9', -161.24, 277.08)
+poly.addPoint('grass9', -179.38, 274.73)
+poly.addPoint('grass9', -184.92, 278.55)
+poly.addPoint('grass9', -180.54, 283.66)
+poly.addPoint('grass9', -162.39, 286.01)
+poly.addPoint('grass9', -157.05, 283.68)
+poly.addPoint('grass9', -161.62, 280.06)
+poly.addPoint('grass9', -179.77, 277.70)
+poly.setRefCoord('grass9', 2) # map coordinate system
+# poly.setRefCoord('grass9', 1) # UTM coordinate system
+poly.setOpen('grass9') # polyline
+# ends at lat 0.000000 deg and long 0.000000 deg
+</rule>
+
+<rule name="grass9" run="false">
+<description>
+  Converted from google earth plan - check that name is legal
+  Heading is estimated from line length, and may be inappropriate
+  (rev2)
+  # converted from KML - offset by 0.00E, 0.00N
+  #           map part - offset by -708000.00E, -6174000.00N
+</description>
+<init>
+  global.drive.mission='grass9'
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+</init>
+# smr.speed = 0.7 # desired drive speed m/s (0.7m/s~2.5km/h)
+smr.do('set "hakoliftinggearstateref" 100')
+smr.do('set "hakopowertakeoffstateref" 0')
+smr.do('set "hakoenginespeed" 1900') # RPM
+smr.speed = 0.6
+global.drive.directOrWait = false
+#
+driveMap(-164.32, 300.88, 262.6)
+driveMap(-182.47, 298.53, 262.6)
+driveMap(-187.04, 294.91, 172.6)
+driveMap(-181.70, 292.58, 82.6)
+driveMap(-163.55, 294.93, 82.6)
+driveMap(-158.21, 292.60, 172.6)
+driveMap(-162.78, 288.98, 262.6)
+driveMap(-180.93, 286.63, 262.6)
+driveMap(-186.46, 290.45, 352.6)
+driveMap(-182.08, 295.56, 82.6)
+driveMap(-163.94, 297.91, 82.6)
+driveMap(-158.59, 295.58, 172.6)
+driveMap(-163.16, 291.96, 262.6)
+driveMap(-181.31, 289.61, 262.6)
+driveMap(-185.69, 284.50, 172.6)
+driveMap(-180.16, 280.68, 82.6)
+driveMap(-162.01, 283.03, 82.6)
+driveMap(-156.66, 280.70, 172.6)
+driveMap(-161.24, 277.08, 262.6)
+driveMap(-179.38, 274.73, 262.6)
+driveMap(-184.92, 278.55, 352.6)
+driveMap(-180.54, 283.66, 82.6)
+driveMap(-162.39, 286.01, 82.6)
+driveMap(-157.05, 283.68, 172.6)
+driveMap(-161.62, 280.06, 262.6)
+driveMap(-179.77, 277.70, 262.6)
+driveStop()
+# wait a 4 seconds before saving the MRC log
+smr.do('set "hakoenginespeed" 800') # RPM
+wait(4) : false
+smr.saveMrcLog()
+print('finished grass9')
+</rule>

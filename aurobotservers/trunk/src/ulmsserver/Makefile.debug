@@ -1,0 +1,63 @@
+# makefile
+# preprocessor flags like -I(include dir)
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include 
+#                  and -O0 (no optimize and -g3 full debug info)
+LDFLAGS = -L../lib -lurob4o -lugen4o -lumap4o -lcxcore -ldl -rdynamic \
+          -lcurses -lreadline -lpng -lcv
+# C++ compiler flags
+CXXFLAGS = -O0 -g3 -Wall
+
+# Object files to produce before link
+objects = ufunctionlaser.o userverstatic.o ulmsserver.o usick.o \
+          usickdata.o ufunclaserbase.o \
+          ulaserpool.o uhokuyo.o ulaserdevice.o ulaserdata.o \
+          ulasersim.o uclientfuncsimscan.o \
+          uresv360.o uv360scan.o uv360meas.o \
+	  ufuncv360.o ufakedevice.o ureplaydevice.o \
+          ulms100.o
+# executable file name
+exe = ulmsserver
+lib = libulms4o.a
+
+# compile all - all objects depend on all other
+all: $(objects)
+	c++ -o $(exe) $(objects) $(LDFLAGS)
+  
+.PHONY : clean install
+clean :
+	rm -f $(exe) $(objects) $(lib)
+	-@rm -fr *~ .deps
+
+
+install:
+	ar -r $(lib) $(objects)
+	-ar -d $(lib) $(exe).o
+	ranlib $(lib)
+	cp $(lib) ../lib
+	-rm ../include/ulms4/*.h
+	cp *.h ../include/ulms4
+	cp $(exe) ../bin
+
+######################################################################
+#
+# Automatic dependencies
+
+DEPS_MAGIC := $(shell mkdir -p .deps)
+
+
+%.o: .deps/%.d
+
+.deps/%.d: src/%.c
+	@cc $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' 
+
+.deps/%.d: %.cpp
+	@g++ $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' > $@
+
+
+
+######################################################################
+#
+# Include automatic dependencies
+
+-include $(patsubst %.o, .deps/%.d, $(objects))

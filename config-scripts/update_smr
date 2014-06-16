@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Updates smr.local (bin, lib, config and version) with /usr/local/smr version"
+rm -r /usr/local/smr.local/version*
+rsync -avr /usr/local/smr/bin /usr/local/smr.local
+rsync -avr /usr/local/smr/lib /usr/local/smr.local
+rsync -avr /usr/local/smr/config /usr/local/smr.local
+rsync -avr /usr/local/smr/version* /usr/local/smr.local
+echo `hostname` >/usr/local/smr.local/etc/hostname
+echo "done"
+echo " - use 'switchtool local'" 
+echo "or"
+echo " - reboot with no kalman (net) access"
+echo "   to use the local version"

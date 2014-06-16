@@ -1,0 +1,13 @@
+#!/bin/bash
+echo ¤¤¤¤ Change AURS compile options to debug, 
+echo ¤¤¤¤   e.g. to get better core dumps
+echo ¤¤¤¤ run this script from the SVN root directory, e.g.
+echo ¤¤¤¤ config.scripts/todebug
+sed -i 's#-g0 #-g3 #'  */*/*/*/Makefile
+sed -i 's#-O2 #-O0 #' */*/*/*/Makefile
+sed -i 's#-O3 #-O0 #' */*/*/*/Makefile
+sed -i 's#-O1 #-O0 #' */*/*/*/Makefile
+echo "Now do a"
+echo "   make clean, and a"
+echo "   make"
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<rule name="cherryArea" if="true">
+  <init>
+    poly.del('cherryArea')
+    poly.addPoint('cherryArea', 707881.79, 6174533.76)
+    poly.addPoint('cherryArea', 707815.00, 6174523.35)
+    poly.addPoint('cherryArea', 707845.31, 6174315.13)
+    poly.addPoint('cherryArea', 707907.28, 6174326.60)
+    # ends at lat 55.670167 deg and long 12.306048 deg
+    # converted from KML - offset by 0.65E, 0.00N
+    # poly.setRefCoord('cherryArea', 2) # map coordinate system
+    poly.setRefCoord('cherryArea', 1) # UTM coordinate system
+    poly.setClosed('cherryArea') # polygon
+    # poly.setOpen('cherryArea') # polyline
+    print('rule has defined cherryArea')
+    # tool position is 2.5m in front of robot origin and 1m to the right
+    toolPos[1] = -1.0;
+    toolPos[0] = 2.5;
+    #
+    #
+    <rule name="isIn" if="poly.isInside('cherryArea', utmPose.pose, toolPos)">
+      print('has entered cherry area at ' utmPose.pose)
+      # place enter-area actions here
+      wait() : not poly.isInside('cherryArea', utmPose.pose, toolPos)
+      print('has left cherry area at ' utmPose.pose)
+      # place leave-area actions here
+    </rule>
+  </init>
+  wait() : false;
+</rule>

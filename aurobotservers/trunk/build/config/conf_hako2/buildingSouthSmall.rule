@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="buildingSouthSmallPoly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('buildingSouthSmall')
+
+poly.addPoint('buildingSouthSmall', 707902.3, 6174135.4)
+poly.addPoint('buildingSouthSmall', 707884.0, 6174134.4)
+poly.addPoint('buildingSouthSmall', 707884.2, 6174130.4)
+poly.addPoint('buildingSouthSmall', 707902.5, 6174131.4)
+
+poly.setRefCoord('buildingSouthSmall', 1) # UTM coordinate system
+poly.setClosed('buildingSouthSmall') # polygon
+</rule>
+

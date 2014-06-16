@@ -1,0 +1,44 @@
+#!/bin/bash
+
+dir_name="/misc/opt/smr.${1}"
+bin_dir="/usr/local/smr.local/bin"
+if [ -z ${1} ]; then
+	if [ ! -d /usr/local/smr.net/bin ]; then
+		echo "Switching to default net version impossible.\n Kalman /opt not found."
+		exit 1
+	fi
+elif [ "${1}" != "local" ]; then
+	if [ ! -d $dir_name/bin ]; then
+		echo "Switching to version ${1} impossible.\n Path: ${dir_name} not found."
+		exit 2
+	fi
+fi
+
+if [ ! -x ${bin_dir}/rc.shutdown ]; then
+	echo "Warning: startup scripts not found. Is this a robot ?"
+else
+	${bin_dir}/rc.shutdown
+fi
+
+if [ -z ${1} ]; then
+	echo "Switching to production (default) version"
+	rm -f /usr/local/smr
+	ln -sf /usr/local/smr.net /usr/local/smr
+elif [ "${1}" == "local" ]; then
+	echo "Switching to local (on robot) version"
+	rm -f /usr/local/smr
+	ln -sf /usr/local/smr.local /usr/local/smr
+else
+	echo "Switching to ${1} version"
+	rm -f /usr/local/smr
+	ln -sf $dir_name /usr/local/smr
+fi
+
+if [ -x ${bin_dir}/rc.start ]; then
+	${bin_dir}/rc.start
+fi
+
+sleep 2
+echo "done"
+
+exit 0

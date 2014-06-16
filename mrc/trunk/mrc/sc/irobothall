@@ -1,0 +1,67 @@
+log "$odoy"
+d=0.5
+s=0.2
+n=0
+rounds=0
+targetrounds=5
+pi=3.14
+
+laser "resetlocalizer"
+
+laser "addline alpha=1.57 r=1.3"
+laser "addline alpha=-1.57 r=1.0"
+
+laser "setinitpose x=0 y=0 th=0"
+laser "setinitcov Cx=0.004 Cy=0.004 Cth=0.01"
+ targetxw=0
+  targetyw=0
+  targetzw=0
+
+
+
+label "updatetarget"
+
+laser "localize"
+
+wait 1
+
+eval $l0
+eval $l1
+eval $l2
+
+wxo=$l0
+wyo=$l1
+wtho=$l2
+
+
+ 
+v1=1.0
+
+label "gototarget"
+trans wxo wyo wtho targetxw targetyw targetzw
+targetxo=$res0
+targetyo=$res1
+targetzo=$res2
+
+
+
+eval targetxo
+eval targetyo
+eval targetzo
+
+
+
+driveon targetxo targetyo targetzo "rad" @v v1 :($drivendist >0.3)
+n=n+1
+eval n
+if (n < 20) "updatetarget"
+fwd 0.2
+turn 180 @v 0.2
+targetzw=targetzw+3.1415
+targetzw=normalizeanglerad(targetzw)
+n=0
+goto "updatetarget"
+
+label "end"
+stop
+

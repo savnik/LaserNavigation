@@ -1,0 +1,51 @@
+#! /bin/bash
+if [ $# -eq 0 ]
+then
+  echo
+  echo Start a nev version of the server in 1st parameter '(with a "-a" paramater)'
+  echo use with at least one parameter, like:
+  echo  $  startserver ucamserver
+  echo  $  startserver ulmsserver
+  echo  $  startserver auclientnox -p 24928
+  echo 
+else
+  serverName=$1
+#  echo par0 $0 par1 $1 par2 $2 slut
+# when assumed dead process is still running, then kill it
+#  echo serverName is $serverName and no more
+  if [ $( pgrep -xn "$serverName" ) ]
+  then
+    echo trying to terminate "$serverName" by signal 5
+    pkill "$serverName" > /dev/null
+      echo zzz 1...
+    sleep 0.7
+    if [ $( pgrep -xn "$serverName" ) ]
+    then
+      pgrep -xl "$serverName"
+      echo ... is still alive ...
+      sleep 2.5
+    fi
+    if [ $( pgrep -xn "$serverName" ) ]
+    then
+      pkill "$serverName" > /dev/null
+      pgrep -xl "$serverName"
+      echo ... send second signal 5 ...
+      sleep 7
+    fi
+    if [ $( pgrep -xn "$serverName" ) ]
+    then
+      pgrep -xl "$serverName"
+      echo sending signal 9 to kill "$serverName"
+      pkill -9 "$serverName" > /dev/null
+      echo "$serverName" killed
+    else
+      echo "$serverName" terminated
+    fi
+  fi
+#LOG_PATH=/root/log/keeper
+#  aulogrotate "$LOG_PATH"/"$serverName"_out
+#  aulogrotate "$LOG_PATH"/"$serverName"_err
+LOG_PATH=/root/log/keeper
+  /usr/local/bin/"$serverName" -a $2 $3 $4 > "$LOG_PATH"/"$serverName"_out 2> "$LOG_PATH"/"$serverName"_err &
+  echo started /usr/local/bin/"$serverName" -a $2 $3 $4
+fi

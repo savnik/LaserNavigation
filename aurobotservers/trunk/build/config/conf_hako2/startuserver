@@ -1,0 +1,52 @@
+#! /bin/bash
+#export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/lib/svs":$LD_LIBRARY_PATH
+# if no parameters, then assume server name is aukeeper
+# else assume first parameter is server name and
+# following parameters are for the server
+# like:
+#    startuServer aukeeper -p 24926
+if [ $# -eq 0 ]
+then
+  echo using default name 'aukeeper'
+  serverName=aukeeper
+  port='-p 24926'
+else
+  serverName=$1
+  port=''
+fi
+#serverSource=userver
+echo starting a "$serverName"
+if [ ! -e "$serverName" ]
+then
+  echo making new "$serverName" from userver
+  ln -sf userver "$serverName"
+fi
+if [ $( pgrep -x "$serverName" ) ]
+then
+  echo trying to terminate "$serverName"
+  killall "$serverName" > /dev/null
+    echo zzz 1...
+  sleep 0.7
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo zzzzzzz 2...
+    sleep 2.5
+  fi
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo zzzzzzzzzzzzzz 3...
+    sleep 7
+  fi
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo trying to 9 kill "$serverName"
+    killall -9 "$serverName" > /dev/null
+    echo "$serverName" killed
+  else
+    echo "$serverName" terminated
+  fi
+fi
+aulogrotate "$serverName"_out
+aulogrotate "$serverName"_err
+./"$serverName" -a $port $2 $3 $4 > "$serverName"_out 2> "$serverName"_err &
+echo started "$serverName" -a $port $2 $3 $4

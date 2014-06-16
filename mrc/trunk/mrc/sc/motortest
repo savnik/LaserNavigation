@@ -1,0 +1,9 @@
+n=100
+label "start"
+followline "bm" :($drivendist >1)
+fwd 0.1
+turn 180
+n=n-1
+if (n>0) "start"
+stop
+

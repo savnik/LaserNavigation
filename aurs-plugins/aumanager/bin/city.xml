@@ -1,0 +1,302 @@
+
+<!-- Graph describing the "city" for Åbent hus -->
+
+<graph name="city">
+  <!-- Nodes definitions -->
+  <node name="1" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="2" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="3" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="4" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="5" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="6" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="7" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="8" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="9" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="10" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="11" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="12" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="13" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="14" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="15" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="16" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="17" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="18" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="19" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="20" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="21" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="22" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="23" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="24" x="0.0" y="0.0">
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="25" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+  <node name="26" x="0.0" y="0.0"> 
+    <connector name="a" angle="0.0"/>
+    <connector name="b" angle="90.0"/>
+    <connector name="c" angle="180.0"/>
+    <connector name="d" angle="270.0"/>
+  </node>
+
+
+<!-- Path descriptions (Arcs)
+     Connection from start="nodename.connectorname" to end="..." of a length (cost) -->
+<edge name="gade1" start="1.b" end="2.d" directional="false" >
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade2" start="2.b" end="3.d" directional="false" >
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade3" start="3.b" end="4.d" directional="false">
+  <properties length="1.2" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade4" start="4.a" end="7.c" directional="false">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade5" start="3.a" end="5.c" directional="false">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade6" start="2.a" end="10.c" directional="false">
+  <properties length="0.8" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade7" start="1.a" end="11.c" directional="false">
+  <properties length="0.8" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade8" start="5.b" end="6.d" directional="false">
+  <properties length="0.6" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade9" start="6.a" end="8.c" directional="false">
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade10" start="6.b" end="7.d" directional="false">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade11" start="15.c" end="7.a" directional="true">
+  <properties length="1.2" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.3" />
+</edge>
+<edge name="gade12" start="9.b" end="8.d" directional="false">
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade13" start="9.a" end="12.c" directional="false">
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade14" start="10.b" end="9.d" directional="false">
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade15" start="19.c" end="11.a" directional="false">
+  <properties length="2.0" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade16" start="12.d" end="14.d" length="1.2" directional="true"><!-- 16,17,18 = rundkørsel-->
+  <properties length="1.2" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade17" start="14.b" end="13.a" directional="true">
+  <properties length="0.7" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade18" start="13.c" end="12.b" directional="true">
+  <properties length="0.7" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade19" start="13.b" end="15.d" directional="false">
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade20" start="15.a" end="26.c" directional="true">
+  <properties length="2.0" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade21" start="18.d" end="17.b" directional="false">
+  <properties length="0.6" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade22" start="14.a" end="17.c" directional="true">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade23" start="17.d" end="16.b" directional="false">
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade24" start="19.b" end="20.d" directional="false">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade25" start="20.a" end="23.c" directional="false">
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade26" start="16.a" end="20.c" directional="false" >
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade27" start="17.a" end="21.c" directional="false">
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade28" start="21.a" end="24.c" directional="false" >
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade29" start="24.d" end="23.b" directional="false" >
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade30" start="22.d" end="21.b" directional="false" >
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade31" start="22.a" end="25.c" directional="false">
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.15" />
+</edge>
+<edge name="gade32" start="22.c" end="18.a" directional="false" >
+  <properties length="0.3" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade33" start="26.d" end="25.b" directional="false">
+  <properties length="0.5" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+<edge name="gade34" start="10.d" end="11.b" directional="false" >
+  <properties length="0.4" straight="true" />
+  <linemarker color="black" width="0.04" speed="0.2" />
+</edge>
+</graph>

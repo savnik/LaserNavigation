@@ -1,0 +1,40 @@
+# makefile
+# preprocessor flags like -I(include dir)
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include 
+#                  and -O0 (no optimize and -g3 full debug info
+LDFLAGS = -g0 -lcxcore -lcv \
+          -L../lib -lurob4o -lugen4o -lumap4o \
+	  -lpng -ldl -rdynamic -lcurses -lreadline -lurob4o 
+# extra preprocessor defines (mainly for module testcode)
+# change NO_USE_HIGHGUI to USE_HIGHGUI for X-display direct
+# if NO_USE_HIGHGUI, then -lhighgui may be removed from LDFLAGS
+DEFINES = -D NO_USE_HIGHGUI
+# C++ compiler flags
+CXXFLAGS = -O2 -g0 -Wall $(DEFINES)
+
+# Object files to produce before link
+objects = auclient.o           ufunctiondisp.o     ureslaserif.o     \
+	uclientcamifgmk.o      ufunctionlaserif.o  ureslaserifobst.o \
+	uclientcamifpath.o     ugmkpool.o          ureslaserifroad.o \
+	uclientfuncgmk.o       ulaserdataset.o     ureslaserifscan.o \
+	uclientfuncpath.o      unavpaint.o         ureslaserifvar.o  \
+	uclienthandlercamif.o  uobstaclehist.o     userverstatic.o   \
+	ufeaturepool.o         urescamifimg.o      uvisdata.o        \
+	ufunctioncamif.o       uresdisp.o          urescamifcam.o    \
+	uresnavifman.o         urespoly.o          ufuncpoly.o \
+        ureslaserifsf.o        ufunctionlaserifscan.o
+
+# executable file name
+exe = auclientnox
+
+# compile all - all objects depend on all other
+all: $(objects)
+	c++ -o $(exe) $(objects) $(LDFLAGS)
+  
+.PHONY : clean install
+clean :
+	rm -f $(exe) $(objects)
+	-rm -f *~
+install:
+	cp $(exe) ../bin

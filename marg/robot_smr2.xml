@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : robot.xml
+    Created on : 6. oktober 2009, 11:35
+    Author     : MARG TEAM
+    Description:
+        Purpose of the document follows.
+    updated 31 oct 2009 - /christian
+-->
+
+<robot>
+    <name>SMR2</name>
+    <module>
+        <name>cam</name>
+        <host>smr2</host>
+        <port>24920</port>
+        <autoConnect>false</autoConnect>
+    </module>
+    <module>
+        <name>laser</name>
+        <host>smr2</host>
+        <port>24919</port>
+        <autoConnect>false</autoConnect>
+    </module>
+    <module>
+        <name>nav</name>
+        <host>smr2</host>
+        <port>24922</port>
+        <autoConnect>false</autoConnect>
+    </module>
+    <module>
+        <name>RHD</name>
+        <host>smr2</host>
+        <port>24926</port>
+        <plugin>SMRPlugin</plugin>
+        <autoConnect>false</autoConnect>
+    </module>
+    <controlButtons>
+        <start moduleName="nav" command="var global.mission.start='1'"/>
+        <pause moduleName="nav" command="var global.drive.pause='1'"/>
+        <stop moduleName="nav" command="var global.mission.start='0'"/>
+    </controlButtons>
+</robot>

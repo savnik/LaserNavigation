@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="alleNorthPoly" run="true">
+# converted from KML - offset by 0.02E, -0.01N
+#           map part - offset by -707999.98E, -6174000.01N
+poly.del('alleNorth')
+# poly.addPoint('alleNorth', 707861.57, 6174228.08)
+poly.addPoint('alleNorth', -138.43, 228.08)
+# poly.addPoint('alleNorth', 708107.17, 6174242.52)
+poly.addPoint('alleNorth', 107.17, 242.52)
+mapbase.addMapLine('alleNorth3', -138.43, 228.08, 107.17, 242.52, 1.0, 1)
+poly.setRefCoord('alleNorth', 2) # map coordinate system
+# poly.setRefCoord('alleNorth', 1) # UTM coordinate system
+poly.setOpen('alleNorth') # polygon
+# ends at lat 55.669325 deg and long 12.309247 deg
+</rule>
+

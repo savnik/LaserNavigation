@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<!--
+    Graph created from orchard measurements. Created: 09-Jun-2009
+-->
+<graph name="pometet.apple">
+  <nodetype name="waypoint">
+    <dimension shape="circle" radius="0.05" />
+    <connector name="a" x="0.00" y="0.00" th="0.00" autoconnect="1" />
+    <connector name="b" x="0.00" y="0.00" th="180.00" autoconnect="1" />
+  </nodetype>
+  <node name="apple" x="0.0" y="0.0" th="0.0">
+    <node name="carrot_1-2N" type="waypoint" x="146.644" y="391.010" th="-84.729"/>
+    <node name="carrot_1-2S" type="waypoint" x="158.517" y="259.037" th="-84.729"/>
+    <node name="carrot_2-3N" type="waypoint" x="150.175" y="391.321" th="-84.729"/>
+    <node name="carrot_2-3S" type="waypoint" x="162.047" y="259.358" th="-84.729"/>
+    <node name="carrot_3-4N" type="waypoint" x="153.609" y="391.623" th="-84.729"/>
+    <node name="carrot_3-4S" type="waypoint" x="165.515" y="259.673" th="-84.729"/>
+    <node name="carrot_4-5N" type="waypoint" x="157.075" y="391.929" th="-84.729"/>
+    <node name="carrot_4-5S" type="waypoint" x="169.024" y="259.992" th="-84.729"/>
+    <node name="carrot_5-6N" type="waypoint" x="160.595" y="392.239" th="-84.729"/>
+    <node name="carrot_5-6S" type="waypoint" x="172.516" y="260.309" th="-84.729"/>
+    <node name="carrot_6-7N" type="waypoint" x="164.062" y="392.544" th="-84.729"/>
+    <node name="carrot_6-7S" type="waypoint" x="175.965" y="260.623" th="-84.729"/>
+    <node name="carrot_7-8N" type="waypoint" x="167.539" y="392.850" th="-84.729"/>
+    <node name="carrot_7-8S" type="waypoint" x="179.449" y="260.940" th="-84.729"/>
+    <node name="carrot_8-9N" type="waypoint" x="171.061" y="393.160" th="-84.729"/>
+    <node name="carrot_8-9S" type="waypoint" x="182.932" y="261.256" th="-84.729"/>
+    <node name="carrot_9-10N" type="waypoint" x="174.558" y="393.468" th="-84.729"/>
+    <node name="carrot_9-10S" type="waypoint" x="186.438" y="261.575" th="-84.729"/>
+    <node name="transport_1-2N" type="waypoint" x="146.374" y="394.002" th="5.271"/>
+    <node name="transport_1-2S" type="waypoint" x="158.875" y="255.052" th="5.271"/>
+    <node name="transport_2-3N" type="waypoint" x="149.905" y="394.321" th="5.271"/>
+    <node name="transport_2-3S" type="waypoint" x="162.406" y="255.371" th="5.271"/>
+    <node name="transport_3-4N" type="waypoint" x="153.337" y="394.630" th="5.271"/>
+    <node name="transport_3-4S" type="waypoint" x="165.875" y="255.684" th="5.271"/>
+    <node name="transport_4-5N" type="waypoint" x="156.802" y="394.943" th="5.271"/>
+    <node name="transport_4-5S" type="waypoint" x="169.386" y="256.001" th="5.271"/>
+    <node name="transport_5-6N" type="waypoint" x="160.322" y="395.261" th="5.271"/>
+    <node name="transport_5-6S" type="waypoint" x="172.876" y="256.316" th="5.271"/>
+    <node name="transport_6-7N" type="waypoint" x="163.789" y="395.574" th="5.271"/>
+    <node name="transport_6-7S" type="waypoint" x="176.326" y="256.627" th="5.271"/>
+    <node name="transport_7-8N" type="waypoint" x="167.265" y="395.888" th="5.271"/>
+    <node name="transport_7-8S" type="waypoint" x="179.810" y="256.942" th="5.271"/>
+    <node name="transport_8-9N" type="waypoint" x="170.787" y="396.206" th="5.271"/>
+    <node name="transport_8-9S" type="waypoint" x="183.292" y="257.256" th="5.271"/>
+    <node name="transport_9-10N" type="waypoint" x="174.283" y="396.522" th="5.271"/>
+    <node name="transport_9-10S" type="waypoint" x="186.798" y="257.573" th="5.271"/>
+    <edge start="carrot_1-2N.a" end="carrot_1-2S.b" length="132.506"/>
+    <edge start="carrot_1-2N.b" end="transport_2-3N.b" length="4.647"/>
+    <edge start="carrot_1-2S.b" end="carrot_1-2N.a" length="132.506"/>
+    <edge start="carrot_1-2S.a" end="transport_2-3S.b" length="5.345"/>
+    <edge start="carrot_2-3N.a" end="carrot_2-3S.b" length="132.496"/>
+    <edge start="carrot_2-3N.b" end="transport_1-2N.a" length="4.651"/>
+    <edge start="carrot_2-3N.b" end="transport_3-4N.b" length="4.577"/>
+    <edge start="carrot_2-3S.b" end="carrot_2-3N.a" length="132.496"/>
+    <edge start="carrot_2-3S.a" end="transport_1-2S.a" length="5.348"/>
+    <edge start="carrot_2-3S.a" end="transport_3-4S.b" length="5.305"/>
+    <edge start="carrot_3-4N.a" end="carrot_3-4S.b" length="132.486"/>
+    <edge start="carrot_3-4N.b" end="transport_2-3N.a" length="4.582"/>
+    <edge start="carrot_3-4N.b" end="transport_4-5N.b" length="4.606"/>
+    <edge start="carrot_3-4S.b" end="carrot_3-4N.a" length="132.486"/>
+    <edge start="carrot_3-4S.a" end="transport_2-3S.a" length="5.308"/>
+    <edge start="carrot_3-4S.a" end="transport_4-5S.b" length="5.336"/>
+    <edge start="carrot_4-5N.a" end="carrot_4-5S.b" length="132.477"/>
+    <edge start="carrot_4-5N.b" end="transport_3-4N.a" length="4.612"/>
+    <edge start="carrot_4-5N.b" end="transport_5-6N.b" length="4.653"/>
+    <edge start="carrot_4-5S.b" end="carrot_4-5N.a" length="132.477"/>
+    <edge start="carrot_4-5S.a" end="transport_3-4S.a" length="5.337"/>
+    <edge start="carrot_4-5S.a" end="transport_5-6S.b" length="5.325"/>
+    <edge start="carrot_5-6N.a" end="carrot_5-6S.b" length="132.467"/>
+    <edge start="carrot_5-6N.b" end="transport_4-5N.a" length="4.659"/>
+    <edge start="carrot_5-6N.b" end="transport_6-7N.b" length="4.618"/>
+    <edge start="carrot_5-6S.b" end="carrot_5-6N.a" length="132.467"/>
+    <edge start="carrot_5-6S.a" end="transport_4-5S.a" length="5.325"/>
+    <edge start="carrot_5-6S.a" end="transport_6-7S.b" length="5.298"/>
+    <edge start="carrot_6-7N.a" end="carrot_6-7S.b" length="132.457"/>
+    <edge start="carrot_6-7N.b" end="transport_5-6N.a" length="4.623"/>
+    <edge start="carrot_6-7N.b" end="transport_7-8N.b" length="4.630"/>
+    <edge start="carrot_6-7S.b" end="carrot_6-7N.a" length="132.457"/>
+    <edge start="carrot_6-7S.a" end="transport_5-6S.a" length="5.300"/>
+    <edge start="carrot_6-7S.a" end="transport_7-8S.b" length="5.323"/>
+    <edge start="carrot_7-8N.a" end="carrot_7-8S.b" length="132.447"/>
+    <edge start="carrot_7-8N.b" end="transport_6-7N.a" length="4.635"/>
+    <edge start="carrot_7-8N.b" end="transport_8-9N.b" length="4.670"/>
+    <edge start="carrot_7-8S.b" end="carrot_7-8N.a" length="132.447"/>
+    <edge start="carrot_7-8S.a" end="transport_6-7S.a" length="5.325"/>
+    <edge start="carrot_7-8S.a" end="transport_8-9S.b" length="5.323"/>
+    <edge start="carrot_8-9N.a" end="carrot_8-9S.b" length="132.437"/>
+    <edge start="carrot_8-9N.b" end="transport_7-8N.a" length="4.675"/>
+    <edge start="carrot_8-9N.b" end="transport_9-10N.b" length="4.656"/>
+    <edge start="carrot_8-9S.b" end="carrot_8-9N.a" length="132.437"/>
+    <edge start="carrot_8-9S.a" end="transport_7-8S.a" length="5.325"/>
+    <edge start="carrot_8-9S.a" end="transport_9-10S.b" length="5.340"/>
+    <edge start="carrot_9-10N.a" end="carrot_9-10S.b" length="132.427"/>
+    <edge start="carrot_9-10N.b" end="transport_8-9N.a" length="4.660"/>
+    <edge start="carrot_9-10S.b" end="carrot_9-10N.a" length="132.427"/>
+    <edge start="carrot_9-10S.a" end="transport_8-9S.a" length="5.343"/>
+    <edge start="transport_1-2N.a" end="transport_2-3N.b" length="3.545"/>
+    <edge start="transport_1-2S.a" end="transport_2-3S.b" length="3.545"/>
+    <edge start="transport_2-3N.b" end="transport_1-2N.a" length="3.545"/>
+    <edge start="transport_2-3N.a" end="transport_3-4N.b" length="3.446"/>
+    <edge start="transport_2-3S.b" end="transport_1-2S.a" length="3.545"/>
+    <edge start="transport_2-3S.a" end="transport_3-4S.b" length="3.483"/>
+    <edge start="transport_3-4N.b" end="transport_2-3N.a" length="3.446"/>
+    <edge start="transport_3-4N.a" end="transport_4-5N.b" length="3.479"/>
+    <edge start="transport_3-4S.b" end="transport_2-3S.a" length="3.483"/>
+    <edge start="transport_3-4S.a" end="transport_4-5S.b" length="3.525"/>
+    <edge start="transport_4-5N.b" end="transport_3-4N.a" length="3.479"/>
+    <edge start="transport_4-5N.a" end="transport_5-6N.b" length="3.535"/>
+    <edge start="transport_4-5S.b" end="transport_3-4S.a" length="3.525"/>
+    <edge start="transport_4-5S.a" end="transport_5-6S.b" length="3.505"/>
+    <edge start="transport_5-6N.b" end="transport_4-5N.a" length="3.535"/>
+    <edge start="transport_5-6N.a" end="transport_6-7N.b" length="3.481"/>
+    <edge start="transport_5-6S.b" end="transport_4-5S.a" length="3.505"/>
+    <edge start="transport_5-6S.a" end="transport_6-7S.b" length="3.463"/>
+    <edge start="transport_6-7N.b" end="transport_5-6N.a" length="3.481"/>
+    <edge start="transport_6-7N.a" end="transport_7-8N.b" length="3.490"/>
+    <edge start="transport_6-7S.b" end="transport_5-6S.a" length="3.463"/>
+    <edge start="transport_6-7S.a" end="transport_7-8S.b" length="3.499"/>
+    <edge start="transport_7-8N.b" end="transport_6-7N.a" length="3.490"/>
+    <edge start="transport_7-8N.a" end="transport_8-9N.b" length="3.537"/>
+    <edge start="transport_7-8S.b" end="transport_6-7S.a" length="3.499"/>
+    <edge start="transport_7-8S.a" end="transport_8-9S.b" length="3.496"/>
+    <edge start="transport_8-9N.b" end="transport_7-8N.a" length="3.537"/>
+    <edge start="transport_8-9N.a" end="transport_9-10N.b" length="3.510"/>
+    <edge start="transport_8-9S.b" end="transport_7-8S.a" length="3.496"/>
+    <edge start="transport_8-9S.a" end="transport_9-10S.b" length="3.520"/>
+    <edge start="transport_9-10N.b" end="transport_8-9N.a" length="3.510"/>
+    <edge start="transport_9-10S.b" end="transport_8-9S.a" length="3.520"/>
+  </node>
+</graph>

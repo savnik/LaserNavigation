@@ -1,0 +1,46 @@
+#!/bin/bash
+# tars the specifiled files and removes the source files after the packing
+# the function waits 1 second from obtaining file-list until packing and deleting
+# parameter 1 is the source file specification NB! in apostrophs if wildcards are used
+# parameter 2 is the destination directory
+#
+# e.g: $ mvtar '/mnt/ram/svs*' /mnt/sda1
+# moving all svs files on ram disk to USB flash card as one tar file
+#
+# get list of files - do not show any error messages
+#files="$(ls svs_00010*)"
+# rm svs*D.bmp
+files="$(ls $1 2>/dev/null)" 
+# alternativ formulering
+#ini_files=`ls svs_000132*.ini`
+#
+# declare integer variables
+declare -i cnt=0
+declare -i zero=0
+# count number of files
+for X in $files
+do
+  if [ $cnt -eq $zero ]
+  then
+    first=$X
+  fi
+  cnt=$cnt+1
+done
+dd=$(date +%c)
+echo $dd packing ${cnt} files, 'from' ${first} 'to' $X
+#
+# wait for files to be closed
+sleep 0.6
+#
+# pack into one file and remove original
+for X in $files
+do
+  # pack to directory specified by parameter 2,
+  # using the first filename in list
+  tar --remove-files -cf ${2}/${X}.tar $files
+  # remove packed files
+  # could also use: tar --remove-files -cf ${2}/${X}.tar $files
+  #rm $files
+  break
+done
+#man expr for details.

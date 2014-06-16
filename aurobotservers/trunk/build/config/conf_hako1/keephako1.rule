@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<rule name="keephako1" if="true">
+  <description>
+  Maintains the global.alive.hako1 flag
+  </description>
+  <init>
+    global.alive.hako1 = false
+    <rule name="hako1flag" if="defined('global.alive.mrc') and
+                                defined('global.alive.rhd')">
+       global.alive.hako1 = global.alive.rhd and global.alive.mrc
+    </rule>
+  </init>
+  print("Started monitoring of hako1")
+  wait() : false
+</rule>
+

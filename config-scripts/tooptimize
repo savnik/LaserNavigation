@@ -1,0 +1,11 @@
+#!/bin/bash
+echo ¤¤¤¤¤ Change AURS to compile option optimized
+echo ¤¤¤¤¤ run from mobotware root directory, i.e.
+echo ¤¤¤¤¤ config-scripts/tooptimize
+sed -i 's#-g #-g0 #'  */*/*/*/Makefile
+sed -i 's#-g2 #-g0 #' */*/*/*/Makefile
+sed -i 's#-g3 #-g0 #' */*/*/*/Makefile
+sed -i 's#-O0 #-O2 #' */*/*/*/Makefile
+echo "Now do a"
+echo "   make clean, and a"
+echo "   make"

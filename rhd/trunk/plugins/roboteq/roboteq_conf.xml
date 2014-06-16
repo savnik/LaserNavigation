@@ -1,0 +1,7 @@
+<!-- RoboTeq Motor Controller - Serial connection -->
+	<rtq  enable="true" lib="librtq.so.1" critical="false">
+		<serial portleft="/dev/ttyS1"/>
+		<serial portright="/dev/ttyS0"/>
+		<encoder readtype="abs" /><!-- asb=absolute,rel=relative -->
+		
+	</rtq> 	

@@ -1,0 +1,70 @@
+# version 2.05 (2 november 2008)
+# makefile to compile all parts of this package
+# define all subdirectories to make
+#
+MAKE = make
+APPSUBDIRS = barcode2d include lib \
+          ugen4 urob4 umap4  aulibextractfeatures \
+          ulmsserver userver \
+          uclient auclient 
+PLUGINSUBDIRS = aulmsnear aucamcog aucamfocus uexres uexuse \
+          ulmspassable ulmsv360 auavoid \
+          auroaddrive auseq ausmr audrivepos \
+          augps auballfinder \
+          auefline \
+          ausvs aurule aucron \
+	  aulaserif aulaserifscan ucamif \
+          auobj3d
+#
+.PHONY : subdirs $(APPSUBDIRS) $(PLUGINSUBDIRS) doc
+
+all : $(APPSUBDIRS) $(PLUGINSUBDIRS)
+
+$(APPSUBDIRS):
+	$(MAKE) --silent --jobs=3 -C $@
+	$(MAKE) --silent -C $@ install
+	@echo ----- app $@ is finished
+
+$(PLUGINSUBDIRS):
+	$(MAKE) --silent --jobs=3 -C $@
+	$(MAKE) --silent -C $@ install
+	@echo ----- plug-in $@ is finished
+
+ucamserver : ugen4 urob4 umap4 ucam4
+
+ulmsserver : ugen4 urob4 umap4
+
+uclient : ugen4 urob4 umap4
+
+ulmsnear: ulmsserver
+
+ulmsv360: ulmsserver
+
+auefline: aulibextractfeatures
+
+doc:
+	doxygen Doxyfile
+
+clean :
+	for dir in $(APPSUBDIRS); do \
+	  $(MAKE) --silent -C $$dir clean; \
+	  rm $$dir/*~; \
+	  echo --------- app $$dir is clean; \
+	done
+	for dir in $(PLUGINSUBDIRS); do \
+	  $(MAKE) --silent -C $$dir clean; \
+	  rm $$dir/*~; \
+	  echo --------- plug-in $$dir is clean; \
+	done
+	-rm *~
+	-rm -r doc/html/*
+
+install : $(APPSUBDIRS) $(PLUGINSUBDIRS)
+	for dir in $(APPSUBDIRS); do \
+	  $(MAKE) --silent -C $$dir install; \
+	done
+	for dir in $(PLUGINSUBDIRS); do \
+	  $(MAKE) --silent -C $$dir install; \
+	done
+	@echo ---------- executables and plug-ins are now in the ./bin subdirectory
+	@echo ---------- if you need them anywhere else you need to do the copy yourself

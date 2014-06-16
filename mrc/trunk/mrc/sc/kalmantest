@@ -1,0 +1,4 @@
+log "$odox" "$odoy" "$odoth" "$xkalman" "$ykalman"  "$thkalman"
+set "kalmanon" 1
+fwd 10
+stop

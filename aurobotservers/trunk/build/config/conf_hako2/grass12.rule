@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="grass12Poly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('grass12')
+poly.addPoint('grass12', -164.32, 300.88)
+poly.addPoint('grass12', -182.47, 298.53)
+poly.addPoint('grass12', -187.04, 294.91)
+poly.addPoint('grass12', -181.70, 292.58)
+poly.addPoint('grass12', -163.55, 294.93)
+poly.addPoint('grass12', -158.21, 292.60)
+poly.addPoint('grass12', -162.78, 288.98)
+poly.addPoint('grass12', -180.93, 286.63)
+poly.addPoint('grass12', -185.50, 283.01)
+poly.addPoint('grass12', -180.16, 280.68)
+poly.addPoint('grass12', -162.01, 283.03)
+poly.addPoint('grass12', -157.95, 290.62)
+poly.addPoint('grass12', -163.81, 296.92)
+poly.addPoint('grass12', -181.96, 294.56)
+poly.addPoint('grass12', -186.53, 290.95)
+poly.addPoint('grass12', -181.18, 288.61)
+poly.addPoint('grass12', -163.04, 290.97)
+poly.addPoint('grass12', -158.59, 295.58)
+poly.addPoint('grass12', -164.06, 298.90)
+poly.addPoint('grass12', -182.21, 296.55)
+poly.addPoint('grass12', -186.79, 292.93)
+poly.addPoint('grass12', -181.44, 290.60)
+poly.addPoint('grass12', -163.29, 292.95)
+poly.addPoint('grass12', -157.82, 289.63)
+poly.addPoint('grass12', -162.26, 285.02)
+poly.addPoint('grass12', -180.41, 282.66)
+poly.addPoint('grass12', -184.99, 279.05)
+poly.addPoint('grass12', -179.64, 276.71)
+poly.addPoint('grass12', -161.49, 279.07)
+poly.addPoint('grass12', -157.05, 283.68)
+poly.addPoint('grass12', -162.52, 287.00)
+poly.addPoint('grass12', -180.67, 284.65)
+poly.addPoint('grass12', -185.24, 281.03)
+poly.addPoint('grass12', -179.90, 278.70)
+poly.addPoint('grass12', -161.75, 281.05)
+poly.setRefCoord('grass12', 2) # map coordinate system
+# poly.setRefCoord('grass12', 1) # UTM coordinate system
+poly.setOpen('grass12') # polyline
+# ends at lat 0.000000 deg and long 0.000000 deg
+</rule>
+
+<rule name="grass12" run="false">
+<description>
+  Converted from google earth plan - check that name is legal
+  Heading is estimated from line length, and may be inappropriate
+  (rev2)
+  # converted from KML - offset by 0.00E, 0.00N
+  #           map part - offset by -708000.00E, -6174000.00N
+</description>
+<init>
+  global.drive.compasHeading=true
+  # global.drive.compasHeading=false # means radians
+  global.drive.continueDist = 1.5 # meter, relaxed driving
+  # global.drive.continueDist = 0 # meter, tight driving
+</init>
+missionStart("grass12")
+# smr.speed = 0.7 # desired drive speed m/s (0.7m/s~2.5km/h)
+smr.do('setvar "hakoliftinggearstateref" 130')
+#smr.do('setvar "hakopowertakeoffstateref" 0')
+wait(2) : false
+smr.do('setvar "hakoenginespeed" 1900') # RPM
+smr.speed = 0.6
+smrctl.directOrWait = true
+#
+driveMap(-164.32, 300.88, 262.6)
+driveMap(-182.47, 298.53, 262.6)
+driveMap(-187.04, 294.91, 172.6)
+driveMap(-181.70, 292.58, 82.6)
+driveMap(-163.55, 294.93, 82.6)
+driveMap(-158.21, 292.60, 172.6)
+driveMap(-162.78, 288.98, 262.6)
+driveMap(-180.93, 286.63, 262.6)
+driveMap(-185.50, 283.01, 172.6)
+driveMap(-180.16, 280.68, 82.6)
+driveMap(-162.01, 283.03, 82.6)
+driveMap(-157.95, 290.62, 352.6)
+driveMap(-163.81, 296.92, 262.6)
+driveMap(-181.96, 294.56, 262.6)
+driveMap(-186.53, 290.95, 172.6)
+driveMap(-181.18, 288.61, 82.6)
+driveMap(-163.04, 290.97, 82.6)
+driveMap(-158.59, 295.58, 352.6)
+driveMap(-164.06, 298.90, 262.6)
+driveMap(-182.21, 296.55, 262.6)
+driveMap(-186.79, 292.93, 172.6)
+driveMap(-181.44, 290.60, 82.6)
+driveMap(-163.29, 292.95, 82.6)
+driveMap(-157.82, 289.63, 172.6)
+driveMap(-162.26, 285.02, 262.6)
+driveMap(-180.41, 282.66, 262.6)
+driveMap(-184.99, 279.05, 172.6)
+driveMap(-179.64, 276.71, 82.6)
+driveMap(-161.49, 279.07, 82.6)
+driveMap(-157.05, 283.68, 352.6)
+driveMap(-162.52, 287.00, 262.6)
+driveMap(-180.67, 284.65, 262.6)
+driveMap(-185.24, 281.03, 172.6)
+driveMap(-179.90, 278.70, 82.6)
+driveMap(-161.75, 281.05, 82.6)
+misionEnd()
+# wait a bit before saving the MRC log
+wait(3) : false
+smr.saveMrcLog()
+print('finished grass12')
+</rule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<!-- test the stuff... -->
+<rule name="test" if="true">
+  <init>
+    print("INITIALIZING RULE")
+  </init>
+  print("********** TICK!!! ************")
+</rule>

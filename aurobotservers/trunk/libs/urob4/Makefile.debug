@@ -1,0 +1,78 @@
+# makefile
+# preprocessor flags like -I(include dir)
+#CPPFLAGS = -I/usr/src/linux/drivers/usb/media
+#CPPFLAGS = -I/usr/src/linux/drivers/usb/media/pwc \
+#           -I../include
+CPPFLAGS = -I../include
+# linker flags like e.g. -lpthread and -L/usr/local/lib/include
+#                  and -O0 (no optimize and -g3 full debug info
+LDFLAGS = -g3 -lcxcore -lcv -L../lib -lugen4o -lumap4o -lpng
+
+# extra preprocessor defines
+DEFINES = 
+# C++ compiler flags
+CXXFLAGS = -O0 -g3 -Wall $(DEFINES)
+
+# Object files to produce before link
+objects =  ucmdexe.o ucomimana.o ucommoncomp.o\
+           ufunctionbase.o  \
+	   ufunctionimgbase.o ufunctionimgpool.o \
+	   upush.o usmltag.o usmlsource.o usmlfile.o usmlstring.o \
+	   umsgqueue.o ueventtrap.o uevents.o \
+	   userverclient.o userverport.o userverpush.o userverqueue.o \
+	   uclientport.o uclienthandler.o uclientfuncbase.o \
+	   uclientfuncimage.o uobstacle.o uclientfunccam.o \
+	   uclientcams.o uimgpush.o \
+           ureslink.o uimagepool.o uresbase.o urespool.o \
+	   usmrcl.o usockclient.o usockserv.o \
+	   ufunctionposehist.o uresposehist.o \
+           ufunctionvarpool.o uresvarpool.o uresclientifvar.o \
+	   uvarmethod.o uvarcalc.o uvarpool.o uvariable.o \
+	   uresifbase.o ufunctionif.o uresif.o ulogfile.o \
+           ufuncplugbase.o
+# urob4.o
+# executable file name
+exe = urob4
+lib = liburob4o.a
+
+# compile all - all objects depend on all other
+all: $(objects)
+#	c++ -c  $(objects) $(LDFLAGS)
+# 	c++ -o $(exe) $(objects) $(LDFLAGS)
+
+.PHONY : clean install
+clean :
+	-rm -f $(objects) $(lib)
+	-@rm -fr *~ .deps
+
+
+install:
+	-rm ../include/urob4/*.h
+	cp *.h ../include/urob4
+	ar -r $(lib) $(objects)
+#	-ar -d $(lib) $(exe).o
+	ranlib $(lib)
+	cp $(lib) ../lib
+
+######################################################################
+#
+# Automatic dependencies
+
+DEPS_MAGIC := $(shell mkdir -p .deps)
+
+
+%.o: .deps/%.d
+
+.deps/%.d: src/%.c
+	@cc $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' 
+
+.deps/%.d: %.cpp
+	@g++ $(CFLAGS) -MM $< | sed 's#^$(@F:%.d=%.o):#$@ $(@:.deps/%.d=%.o):#' > $@
+
+
+
+######################################################################
+#
+# Include automatic dependencies
+
+-include $(patsubst %.o, .deps/%.d, $(objects))

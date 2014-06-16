@@ -1,0 +1,29 @@
+odometry
+  cl 0.00011505
+  cr 0.00011505
+  w  0.46
+  ts 0.01   
+  maxtick 	256
+end  
+motioncontrol
+  ts  		0.01
+  line_gain 	0.05
+  line_tau	20
+  line_alfa     0.3
+  wall_gain     1
+  wall_tau      0.7
+  wall_alfa	0.2
+  gain		1
+  tau		0.16
+  alfa		0.2
+  w		0.46
+  lim 		0.5
+  stopdist	0.4
+  alarmdist	0.1
+  velcmd	0.3
+  acccmd	0.3
+end	    
+motorcontrol
+  velscalel 	43.0
+  velscaler 	43.0
+end  

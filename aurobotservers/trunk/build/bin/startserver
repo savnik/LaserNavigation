@@ -1,0 +1,59 @@
+#! /bin/bash
+if [ $# -eq 0 ]
+then
+  echo
+  echo Start a new version of the server in 1st parameter
+  echo - if running, then the old version is killed
+  echo the ini script is taken from /usr/local/smr/bin/aursconf
+  echo use with at least one parameter, like:
+  echo  $  startserver ucamserver
+  echo  $  startserver ulmsserver
+  echo  $  startserver auclientnox -p 24928
+  echo 
+else
+  serverName=$1
+  # if assumed dead process is still running, then kill it
+  if [ $( pgrep -x "$serverName" ) ]
+  then
+    echo trying to terminate "$serverName"
+    killall "$serverName" > /dev/null
+      echo zzz 1...
+    sleep 0.7
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo zzzzzzz 2...
+      sleep 2.5
+    fi
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo zzzzzzzzzzzzzz 3...
+      sleep 7
+    fi
+    if [ $( pgrep -x "$serverName" ) ]
+    then
+      echo trying to 9 kill "$serverName"
+      killall -9 "$serverName" > /dev/null
+      echo "$serverName" killed
+    else
+      echo "$serverName" terminated
+    fi
+  fi
+  # should there be a output log, create directory /var/log/keeper to get log
+  if [ -d "/var/log/keeper" ]; then
+     LOG_PATH1=/var/log/keeper/$serverName.out
+     LOG_PATH2=/var/log/keeper/$serverName.err
+  else
+     LOG_PATH1="/dev/null"
+     LOG_PATH2="/dev/null"
+  fi
+  if [ -x "/etc/rc.smr/$serverName.ini" ]; then
+     INI_PATH="/etc/rc.smr/$serverName.ini"
+  else
+     INI_PATH="/usr/local/smr/bin/aursconf/$serverName.ini"
+  fi
+  #  aulogrotate "$LOG_PATH"/"$serverName"_out
+  #  aulogrotate "$LOG_PATH"/"$serverName"_err
+  /usr/local/smr/bin/"$serverName" -s $INI_PATH -a $2 $3 $4 > $LOG_PATH1 2> $LOG_PATH2 &
+  echo "started /usr/local/smr/bin/$serverName -s $INI_PATH -a $2 $3 $4"
+  echo "output goes to $LOG_PATH"
+fi

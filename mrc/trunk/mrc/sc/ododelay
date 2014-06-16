@@ -1,0 +1,5 @@
+log "$odox" "$odoy" "$odoth" "$l0" "$l1" "$l2" "$l3" "$l4" "$l5" 
+laser "scanset width=180"
+laser "scanget"
+laser "scanpush cmd='near x=2 y=0.2 '"
+fwd 1

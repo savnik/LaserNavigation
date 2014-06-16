@@ -1,0 +1,7 @@
+log "$l3"
+%goto "lab"
+routeinput "mrc" "motionconnect" "obstaclefront" "$l3"
+laser "scanpush cmd='mrcobst width=0.4'"
+wait 2
+label "lab"
+fwd 3 @v0.3

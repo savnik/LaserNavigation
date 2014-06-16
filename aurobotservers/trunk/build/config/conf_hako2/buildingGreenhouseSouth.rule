@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="buildingGreenhouseSouthPoly" run="true">
+# converted from KML - offset by 0.00E, 0.00N
+#           map part - offset by -708000.00E, -6174000.00N
+poly.del('buildingGreenhouseSouth')
+poly.addPoint('buildingGreenhouseSouth', 707900.84, 6174164.08)
+poly.addPoint('buildingGreenhouseSouth', 707846.31, 6174160.74)
+poly.addPoint('buildingGreenhouseSouth', 707847.96, 6174136.95)
+poly.addPoint('buildingGreenhouseSouth', 707902.24, 6174140.31)
+poly.setRefCoord('buildingGreenhouseSouth', 1) # UTM coordinate system
+poly.setClosed('buildingGreenhouseSouth') # polygon
+# ends at lat 55.668496 deg and long 12.305917 deg
+</rule>
+

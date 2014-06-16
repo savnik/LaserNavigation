@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>KmlFile</name>
+  <StyleMap id="msn_ylw-pushpin">
+    <Pair>
+      <key>normal</key>
+      <styleUrl>#sn_ylw-pushpin</styleUrl>
+    </Pair>
+    <Pair>
+      <key>highlight</key>
+      <styleUrl>#sh_ylw-pushpin</styleUrl>
+    </Pair>
+  </StyleMap>
+  <Style id="sh_ylw-pushpin">
+    <IconStyle>
+      <scale>1.3</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+      </Icon>
+      <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+    </IconStyle>
+  </Style>
+  <Style id="sn_ylw-pushpin">
+    <IconStyle>
+      <scale>1.1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+      </Icon>
+      <hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>grass5x37</name>
+    <description>route with 5 passes including left and right turns</description>
+    <styleUrl>#msn_ylw-pushpin</styleUrl>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+12.30494473113506,55.66994230985095,0 12.30444643480258,55.6699170456049,0 12.30439398233592,55.66989239501794,0 12.30439507492119,55.66987267439465,0 12.30445517599521,55.66983508176437,0 12.30496002757017,55.66985541579898,0 12.30500592365511,55.66987513605066,0 12.30500592401923,55.66988931023813,0 12.30495019414287,55.66991088008077,0 12.30445299098004,55.66988191822794,0 12.30439179687746,55.66989855771965,0 12.30439070421357,55.669909650574,0 12.30444097122996,55.66993861505905,0 12.3049392679127,55.66996511185903,0 12.30499390518439,55.66994600709868,0 12.30500373916354,55.66991457728904,0 12.30495128623941,55.6698837642349,0 12.30445626899757,55.66985849998651,0 </coordinates>
+    </LineString>
+  </Placemark>
+</Document>
+</kml>

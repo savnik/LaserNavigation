@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule name="buildingChimneyPoly" run="true">
+# converted from KML - offset by 1.00E, 1.01N
+#           map part - offset by -707999.00E, -6173998.99N
+poly.del('buildingChimney')
+# poly.addPoint('buildingChimney', 707913.50, 6174313.69)
+poly.addPoint('buildingChimney', -86.50, 313.69)
+# poly.addPoint('buildingChimney', 707897.21, 6174312.42)
+poly.addPoint('buildingChimney', -102.79, 312.42)
+mapbase.addMapLine('buildingChimney3', -86.50, 313.69, -102.79, 312.42, 0.50, 1)
+# poly.addPoint('buildingChimney', 707900.08, 6174261.65)
+poly.addPoint('buildingChimney', -99.92, 261.65)
+mapbase.addMapLine('buildingChimney6', -102.79, 312.42, -99.92, 261.65, 0.50, 1)
+# poly.addPoint('buildingChimney', 707898.91, 6174261.32)
+poly.addPoint('buildingChimney', -101.09, 261.32)
+mapbase.addMapLine('buildingChimney9', -99.92, 261.65, -101.09, 261.32, 0.50, 1)
+# poly.addPoint('buildingChimney', 707899.02, 6174259.93)
+poly.addPoint('buildingChimney', -100.98, 259.93)
+mapbase.addMapLine('buildingChimney12', -101.09, 261.32, -100.98, 259.93, 0.50, 1)
+# poly.addPoint('buildingChimney', 707895.24, 6174260.03)
+poly.addPoint('buildingChimney', -104.76, 260.03)
+mapbase.addMapLine('buildingChimney15', -100.98, 259.93, -104.76, 260.03, 0.50, 1)
+# poly.addPoint('buildingChimney', 707895.49, 6174258.67)
+poly.addPoint('buildingChimney', -104.51, 258.67)
+mapbase.addMapLine('buildingChimney18', -104.76, 260.03, -104.51, 258.67, 0.50, 1)
+# poly.addPoint('buildingChimney', 707899.40, 6174257.92)
+poly.addPoint('buildingChimney', -100.60, 257.92)
+mapbase.addMapLine('buildingChimney21', -104.51, 258.67, -100.60, 257.92, 0.50, 1)
+# poly.addPoint('buildingChimney', 707899.94, 6174248.86)
+poly.addPoint('buildingChimney', -100.06, 248.86)
+mapbase.addMapLine('buildingChimney24', -100.60, 257.92, -100.06, 248.86, 0.50, 1)
+# poly.addPoint('buildingChimney', 707901.25, 6174248.81)
+poly.addPoint('buildingChimney', -98.75, 248.81)
+mapbase.addMapLine('buildingChimney27', -100.06, 248.86, -98.75, 248.81, 0.50, 1)
+# poly.addPoint('buildingChimney', 707901.94, 6174239.63)
+poly.addPoint('buildingChimney', -98.06, 239.63)
+mapbase.addMapLine('buildingChimney30', -98.75, 248.81, -98.06, 239.63, 0.50, 1)
+# poly.addPoint('buildingChimney', 707917.98, 6174241.07)
+poly.addPoint('buildingChimney', -82.02, 241.07)
+mapbase.addMapLine('buildingChimney33', -98.06, 239.63, -82.02, 241.07, 0.50, 1)
+mapbase.addMapLine('buildingChimney36', -82.02, 241.07, -86.50, 313.69, 0.50, 1)
+poly.setRefCoord('buildingChimney', 2) # map coordinate system
+# poly.setRefCoord('buildingChimney', 1) # UTM coordinate system
+poly.setClosed('buildingChimney') # polygon
+# ends at lat 55.669384 deg and long 12.306226 deg
+</rule>
+

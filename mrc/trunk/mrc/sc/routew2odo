@@ -1,0 +1,6 @@
+routeinput "mrc" "motionconnect" "w2odox" "$vis0"
+routeinput "mrc" "motionconnect" "w2odoy" "$vis1"
+routeinput "mrc" "motionconnect" "w2odoth" "$vis2"
+wait 1
+drivew 0 0 0:($drivendist>5)
+

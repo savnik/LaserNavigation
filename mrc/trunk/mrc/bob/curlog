@@ -1,0 +1,5 @@
+log  "$odox" "$odoy" "$ir1[0]" "$ir1[1]"
+wait 5
+ 
+
+
