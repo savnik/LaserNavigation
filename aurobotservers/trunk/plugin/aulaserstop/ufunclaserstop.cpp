@@ -75,6 +75,8 @@ class UFuncLaserStop : public UFuncLaserBase
      int camDevice = -1;
      bool debug = true; // default is debug on
      bool result = true;
+     ULaserData * data;
+     ULaserDevice * lasDev; // pointer to laser device
      
      ask4help = msg->tag.getAttValue("help", val, MVL);
      if (not ask4help)
@@ -88,7 +90,7 @@ class UFuncLaserStop : public UFuncLaserBase
      // ask4help = false, if no 'help' option were available.
      if (ask4help)
      { // create the reply in XML-like (html - like) format
-      printf("test\n");
+      printf("test3\n");
       sendHelpStart("B2");
       sendText("--- available B2 options\n");
       sendText("device=X          Use this camera - for position and parameters\n");
@@ -102,29 +104,99 @@ class UFuncLaserStop : public UFuncLaserBase
       sendInfo("done");
       result = true;
      } 
+     // Handle all other commands
      else
      {
-       result = false;
-     }
-     
+       // Print out data
+       if(msg->tag.getAttValue("dataprint", NULL, 0))
+       {
+	 ULaserDevice * lasDev; // laser device
+         data = getScan(msg, (ULaserData*)extra, false, &lasDev);
+         if (data->isValid())
+	 {
+	   printf("MAX Scan: %d\n",data->getRangeCnt());
+	   int i;
+	   for(i=0;i<data->getRangeCnt();i=i+1){
+	     if(data->getRangeMeter(i)>=1) printf("ID: %d \t%f \t%f \n",i,data->getRangeMeter(i),data->getAngleDeg(i));
+	   }
+	 }
+	 else
+	 {
+	   sendWarning(msg, "No scandata available");
+	 }
+       }
+       
+       // test stop condition
+       else if(msg->tag.getAttValue("test", NULL, 0))
+       {
+	 ULaserDevice * lasDev; // laser device
+         data = getScan(msg, (ULaserData*)extra, false, &lasDev);
+         
+	 if (data->isValid())
+	 {
+	  printf("MAX Scan: %d\n",data->getRangeCnt());
+	  // loop that run for all messurements
+	  int i;
+	  for(i = 0; i < data->getRangeCnt(); i = i+1)
+	  {
+	    // Filter out the angles of interrest
+	    if((data->getAngleDeg(i) > -30) && (data->getAngleDeg(i) < 30))
+	    {
+	      printf("ID: %d \t%f \t%f \n",i,data->getRangeMeter(i),data->getAngleDeg(i));
+	    }
+	  }
+	 }
+       }   
+       
+       // MRC
+       else if(msg->tag.getAttValue("mrc", NULL, 0))
+       {
+	 ULaserDevice * lasDev; // laser device
+         data = getScan(msg, (ULaserData*)extra, false, &lasDev);
+         int objectDetected = 0;
+	 
+	 if (data->isValid())
+	 {
+	   
+	  // loop that run for all messurements
+	  int i;
+	  for(i = 0; i < data->getRangeCnt(); i = i+1)
+	  {
+	    // Filter out the angles of interrest
+	    if((data->getAngleDeg(i) >= -30) && (data->getAngleDeg(i) <= 30))
+	    {
+	      // 0.25 stop if obstacel is closer than 0.25m
+	      // remove samples that are closer than 0.06m due to datasheet presision.
+	      // Remove samples that are out of index (0).
+	      if((data->getRangeMeter(i)<0.25) && (data->getRangeMeter(i) > 0.06)){
+		objectDetected = 1;
+		//printf("ID: %d \t%f \t%f \n",i,data->getRangeMeter(i),data->getAngleDeg(i));
+	      }
+	    }
+	  }
+	  
+	  if(objectDetected == 1){
+	    sendText("Object in front of SMR!\n");
+	    sendMsg("<laser l1=\"1\"/>\n");
+	  }
+	  else{
+	    sendMsg("<laser l1=\"0\"/>\n");
+	  }
+	 }
+	 else{
+	   sendWarning(msg, "No scandata available!");
+	 }
+       }   
+       
+       else{
+	result = false;
+       }
+     } // end of handle all other commands
      
      return result;
    }
    
-   bool setResource(UResBase * resource, bool remove)
-    { // load resource as provided by the server (or other plugins)
-      bool result;
-      result = true;
-      return result;
-    }
-    
-    /**
-    * Create any resources that this modules needs
-    * This method is called after the resource is registred by the server. */
-    virtual void createResources()
-    {
-      
-    }
+   
  
  protected:
   
