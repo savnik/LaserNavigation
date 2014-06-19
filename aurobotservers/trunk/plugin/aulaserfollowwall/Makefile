@@ -1,7 +1,7 @@
 # makefile $Id: Makefile 174 2013-03-30 06:41:59Z jcan $
 #
 # libraryname (for shared library)
-libname = aulaserstop.so
+libname = aulaserfollowwall.so
 #
 # preprocessor flags like -I(include dir)
 CPPFLAGS = -I../../include
@@ -27,7 +27,7 @@ include ../../include/opencv_flags.mk
 # endif
 #
 # Object files to produce before link
-sourcescpp = ufunclaserstop.cpp
+sourcescpp = ufunclaserfollowwall.cpp
 #
 sourcesh = $(sourcescpp:.cpp=.h)
 OBJECTS = $(sourcescpp:.cpp=.o)

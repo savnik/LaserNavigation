@@ -29,7 +29,7 @@
 #include <urob4/usmltag.h>
 #include <cstdlib>
 #include <ulms4/ufunclaserbase.h>
-#include <LEL_ransac.h>
+//#include <ucam4/ufunctioncambase.h>
 
 /**
 Laser scanner plugin - follow wall
@@ -153,9 +153,6 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	 if (data->isValid())
 	 {
 	  
-	   
-	   list<LEL_GFLine> GFLL;
-	   ransac(X, Y, dataI, GFLL);
 	  
 	  // feedback to SMRCL with vars
 	   sendMsg("<laser l1=\"0\"/>\n");
