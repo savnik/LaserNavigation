@@ -29,7 +29,7 @@
 #include <urob4/usmltag.h>
 #include <cstdlib>
 #include <ulms4/ufunclaserbase.h>
-#include <LEL_ransac.h>
+#include <LEL_ransac.h>		// LELE Line Estimation Lib
 
 /**
 Laser scanner plugin - follow wall
@@ -75,7 +75,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
      int camDevice = -1;
      bool debug = true; // default is debug on
      bool result = true;
-     ULaserData * data;
+     
      ULaserDevice * lasDev; // pointer to laser device
      
      ask4help = msg->tag.getAttValue("help", val, MVL);
@@ -146,15 +146,23 @@ class UFuncLaserFollowWall : public UFuncLaserBase
        // MRC
        else if(msg->tag.getAttValue("start", NULL, 0))
        {
-	 ULaserDevice * lasDev; // laser device
-         data = getScan(msg, (ULaserData*)extra, false, &lasDev); // Fetch laser data
-        
+	
+	 ULaserData * scanData;
+	 
+	 // Get data
+         data = getScan(msg, (ULaserData*)extra); // Fetch laser data
+         
 	 // if data is good find wall 
 	 if (data->isValid())
 	 {
-	  
+	   ULaserDevice * device = getDevice(msg, data); // laser device
+	   lasPose = device->getDevicePose(); // Get position data 
 	   
-	   list<LEL_GFLine> GFLL;
+	   // Get position at laser scan time
+	   Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
+	   UTime scanTime = data->getScanTime();
+	   
+	   list<LEL_GFLine> GFLL; 	// List of lines
 	   ransac(X, Y, dataI, GFLL);
 	  
 	  // feedback to SMRCL with vars
