@@ -162,9 +162,42 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
 	   UTime scanTime = data->getScanTime();
 	   
+	   // For loop that makes a list of x,y points
+	   // Filter out bad readings
+	   double minRange = 0.05;	// The minimum range for a point on a wall
+	   double X[data->getRangeCnt()];	// list of x,y coordinates
+	   double Y[data->getRangeCnt()];	// max length = max count of scanner points
+	   
+	   int i, dataI; // i controls loop, dataI controls X,Y list
+	   for(i = 0, dataI = 0; i< data->getRangeCnt(), i++){
+	    bool rangeValid;
+	    double r = data->getRangeMeter(i, &rangeValid);	// Get data from laserscanner and valid parameter
+	    // test if data is valid and in good range
+	    if(!rangeValid || r<minRange) continue;	// if true skip dataset
+	    
+	    // translate angle and dist to x,y coordinates
+	    double alpha = data->getAngleRad(i);	// Get this samples angel in rad
+	    X[dataI] = r * cos(alpha);
+	    Y[dataI] = r * sin(alpha);
+	    dataI++;
+	   }
+	   
 	   list<LEL_GFLine> GFLL; 	// List of lines
-	   ransac(X, Y, dataI, GFLL);
+	   ransac(X, Y, dataI, GFLL);	// RANSAC takes a list of x,y points and make lines out of it.
 	  
+	   list<LEL_GFLine>::iterator itLas; // creates a list of type <LEL_GFLine>
+	   
+	   // loop that put itLas in line 
+	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLass++){
+	     LEL_ARLine line = (*itLas).toARLine();  	     
+	   }
+	   
+	   list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
+	   
+	   
+	   
+	   
+	   
 	  // feedback to SMRCL with vars
 	   sendMsg("<laser l1=\"0\"/>\n");
 	  
