@@ -75,6 +75,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
      int camDevice = -1;
      bool debug = true; // default is debug on
      bool result = true;
+     ULaserData * data;
      
      ULaserDevice * lasDev; // pointer to laser device
      
@@ -156,6 +157,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	 if (data->isValid())
 	 {
 	   ULaserDevice * device = getDevice(msg, data); // laser device
+	   
 	   lasPose = device->getDevicePose(); // Get position data 
 	   
 	   // Get position at laser scan time
@@ -193,6 +195,8 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   }
 	   
 	   list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
+	   LEL_ARLine bestline;
+	   
 	   
 	   
 	   
