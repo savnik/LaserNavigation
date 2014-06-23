@@ -31,6 +31,8 @@
 #include <ulms4/ufunclaserbase.h>
 #include <LEL_ransac.h>		// LELE Line Estimation Lib
 
+#include <math.h>
+
 /**
 Laser scanner plugin - follow wall
 */
@@ -158,11 +160,11 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	 {
 	   ULaserDevice * device = getDevice(msg, data); // laser device
 	   
-	   lasPose = device->getDevicePose(); // Get position data 
+	   //lasPose = device->getDevicePose(); // Get position data 
 	   
 	   // Get position at laser scan time
-	   Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
-	   UTime scanTime = data->getScanTime();
+	   //Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
+	   //UTime scanTime = data->getScanTime();
 	   
 	   // For loop that makes a list of x,y points
 	   // Filter out bad readings
@@ -171,7 +173,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   double Y[data->getRangeCnt()];	// max length = max count of scanner points
 	   
 	   int i, dataI; // i controls loop, dataI controls X,Y list
-	   for(i = 0, dataI = 0; i< data->getRangeCnt(), i++){
+	   for(i = 0, dataI = 0; i< data->getRangeCnt(); i++){
 	    bool rangeValid;
 	    double r = data->getRangeMeter(i, &rangeValid);	// Get data from laserscanner and valid parameter
 	    // test if data is valid and in good range
@@ -188,14 +190,22 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   ransac(X, Y, dataI, GFLL);	// RANSAC takes a list of x,y points and make lines out of it.
 	  
 	   list<LEL_GFLine>::iterator itLas; // creates a list of type <LEL_GFLine>
+	   LEL_ARLine bestline;
+	   double lineLength = 0; // The lengt of current line
+	   double lineLengthDummy = 0; // the length of last longest line
 	   
 	   // loop that put itLas in line 
-	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLass++){
-	     LEL_ARLine line = (*itLas).toARLine();  	     
+	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLas++){
+	     LEL_ARLine line = (*itLas).toARLine();
+	     lineLength = sqrt(pow((*itLas).endX-(*itLas).startX,2) + pow((*itLas).endY-(*itLas).startY),2);
+	     if(lineLength > lineLengthDummy){
+	       bestline = (*itLas); // Copy the line 
+	       lineLengthDummy = lineLength; // set new biggest line
+	     }
 	   }
 	   
-	   list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
-	   LEL_ARLine bestline;
+	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
+	   
 	   
 	   
 	   
