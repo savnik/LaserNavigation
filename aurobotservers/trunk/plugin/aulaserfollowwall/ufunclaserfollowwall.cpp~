@@ -30,7 +30,7 @@
 #include <cstdlib>
 #include <ulms4/ufunclaserbase.h>
 #include <LEL_ransac.h>		// LELE Line Estimation Lib
-#include <iostream>
+
 #include <math.h>
 
 /**
@@ -190,14 +190,14 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   ransac(X, Y, dataI, GFLL);	// RANSAC takes a list of x,y points and make lines out of it.
 	  
 	   list<LEL_GFLine>::iterator itLas; // creates a list of type <LEL_GFLine>
-	   LEL_ARLine bestline;
+	   LEL_GFLine bestline;
 	   double lineLength = 0; // The lengt of current line
 	   double lineLengthDummy = 0; // the length of last longest line
 	   
 	   // loop that put itLas in line 
 	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLas++){
 	     LEL_ARLine line = (*itLas).toARLine();
-	     lineLength = sqrt(pow((*itLas).endX-(*itLas).startX,2) + pow((*itLas).endY-(*itLas).startY),2);
+	     lineLength = sqrt(pow((*itLas).endX-(*itLas).startX,2) + pow((*itLas).endY-(*itLas).startY,2));
 	     if(lineLength > lineLengthDummy){
 	       bestline = (*itLas); // Copy the line 
 	       lineLengthDummy = lineLength; // set new biggest line
