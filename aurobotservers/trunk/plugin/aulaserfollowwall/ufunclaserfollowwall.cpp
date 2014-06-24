@@ -186,6 +186,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	    dataI++;
 	   }
 	   
+	   
 	   list<LEL_GFLine> GFLL; 	// List of lines
 	   ransac(X, Y, dataI, GFLL);	// RANSAC takes a list of x,y points and make lines out of it.
 	  
@@ -206,7 +207,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	   
 	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
-	   
+	   printf("Length of line %d", lineLengthDummy);
 	   
 	   
 	   
