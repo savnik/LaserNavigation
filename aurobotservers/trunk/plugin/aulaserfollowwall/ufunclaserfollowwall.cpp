@@ -30,7 +30,8 @@
 #include <cstdlib>
 #include <ulms4/ufunclaserbase.h>
 #include <LEL_ransac.h>		// LELE Line Estimation Lib
-
+#include <iostream>
+#include <fstream>
 #include <math.h>
 
 /**
@@ -79,7 +80,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
      bool result = true;
      ULaserData * data;
      
-     ULaserDevice * lasDev; // pointer to laser device
+     //ULaserDevice * lasDev; // pointer to laser device
      
      ask4help = msg->tag.getAttValue("help", val, MVL);
      if (not ask4help)
@@ -150,7 +151,13 @@ class UFuncLaserFollowWall : public UFuncLaserBase
        else if(msg->tag.getAttValue("start", NULL, 0))
        {
 	
-	 ULaserData * scanData;
+	 //ULaserData * scanData;
+	 
+	 // File with matlab plots
+	 ofstream matlabData;
+	 matlabData.open ("laserMatlab.m");
+	 
+	 matlabData << "hold all;\n scatter(0,0,'lineWidth', 4)\n";
 	 
 	 // Get data
          data = getScan(msg, (ULaserData*)extra); // Fetch laser data
@@ -158,7 +165,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	 // if data is good find wall 
 	 if (data->isValid())
 	 {
-	   ULaserDevice * device = getDevice(msg, data); // laser device
+	   //ULaserDevice * device = getDevice(msg, data); // laser device
 	   
 	   //lasPose = device->getDevicePose(); // Get position data 
 	   
@@ -183,6 +190,8 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	    double alpha = data->getAngleRad(i);	// Get this samples angel in rad
 	    X[dataI] = r * cos(alpha);
 	    Y[dataI] = r * sin(alpha);
+	    printf("scatter(%f,%f, 'lineWidth', 2)\n", X[dataI],Y[dataI]);
+	    matlabData << "scatter(" << X[dataI] << "," << Y[dataI] << ", 'lineWidth',2)\n";	// Save to matlab file
 	    dataI++;
 	   }
 	   
@@ -197,9 +206,12 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	   // loop that put itLas in line 
 	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLas++){
-	     LEL_ARLine line = (*itLas).toARLine();
-	     lineLength = sqrt(pow((*itLas).endX-(*itLas).startX,2) + pow((*itLas).endY-(*itLas).startY,2));
-	     if(lineLength > lineLengthDummy){
+	     //LEL_ARLine line = (*itLas).toARLine();
+	     lineLength = sqrt(pow((*itLas).endX - (*itLas).startX,2) + pow((*itLas).endY - (*itLas).startY,2));
+	      printf("line([%f,%f],[%f,%f]) \n", (*itLas).startX,(*itLas).startY,(*itLas).endX,(*itLas).endY);
+	      matlabData << "line([" << (*itLas).startX << "," << (*itLas).endX << "],[" << (*itLas).startY << "," << (*itLas).endY << "])\n";	// Save to matlab file
+	     
+	      if(lineLength > lineLengthDummy){
 	       bestline = (*itLas); // Copy the line 
 	       lineLengthDummy = lineLength; // set new biggest line
 	     }
@@ -207,7 +219,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	   
 	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
-	   printf("Length of line %d", lineLengthDummy);
+	   printf("\tLength of longest line %f\n", lineLengthDummy);
 	   
 	   
 	   
@@ -216,13 +228,104 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	  // feedback to SMRCL with vars
 	   sendMsg("<laser l1=\"0\"/>\n");
+	   matlabData << "axis([-5,5],[-5,5])\n hold off;\n ";
+	   matlabData.close(); // Close matlab file and save
 	  
 	 }
 	 // if data is bad
 	 else{
 	   sendWarning(msg, "No scandata available!");
 	 }
+       } 
+       
+       
+       
+       else if(msg->tag.getAttValue("ransactest", NULL, 0))
+       {
+	
+	 //ULaserData * scanData;
+	 
+	 // File with matlab plots
+	 ofstream matlabData;
+	 matlabData.open ("laserMatlab.m");
+	 
+	 matlabData << "hold all;\n scatter(0,0,'lineWidth', 4)\n";
+	 
+	 // Get data
+         //data = getScan(msg, (ULaserData*)extra); // Fetch laser data
+         
+	 // if data is good find wall 
+	 //if (data->isValid())
+	 //{
+	   //ULaserDevice * device = getDevice(msg, data); // laser device
+	   
+	   //lasPose = device->getDevicePose(); // Get position data 
+	   
+	   // Get position at laser scan time
+	   //Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
+	   //UTime scanTime = data->getScanTime();
+	   
+	   // For loop that makes a list of x,y points
+	   // Filter out bad readings
+	   double minRange = 0.05;	// The minimum range for a point on a wall
+	   double X[100];	// list of x,y coordinates
+	   double Y[100];	// max length = max count of scanner points
+	   
+	   
+	   
+	   int i, dataI; // i controls loop, dataI controls X,Y list
+	   for(i = 0, dataI = 0; i< 100; i++){
+	    X[i] = i*0.001;
+	    Y[i] = 0;
+	    printf("scatter(%f,%f, 'lineWidth', 2)\n", X[dataI],Y[dataI]);
+	    matlabData << "scatter(" << X[dataI] << "," << Y[dataI] << ", 'lineWidth',2)\n";	// Save to matlab file
+	    dataI++;
+	   }
+	   
+	   
+	   list<LEL_GFLine> GFLL; 	// List of lines
+	   ransac(X, Y, dataI, GFLL);	// RANSAC takes a list of x,y points and make lines out of it.
+	  
+	   list<LEL_GFLine>::iterator itLas; // creates a list of type <LEL_GFLine>
+	   LEL_GFLine bestline;
+	   double lineLength = 0; // The lengt of current line
+	   double lineLengthDummy = 0; // the length of last longest line
+	   
+	   // loop that put itLas in line 
+	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLas++){
+	     //LEL_ARLine line = (*itLas).toARLine();
+	     lineLength = sqrt(pow((*itLas).endX - (*itLas).startX,2) + pow((*itLas).endY - (*itLas).startY,2));
+	      printf("line([%f,%f],[%f,%f]) \n", (*itLas).startX,(*itLas).startY,(*itLas).endX,(*itLas).endY);
+	      printf("%f, %f, %f \n",(*itLas).A, (*itLas).B, (*itLas).C);
+	      matlabData << "line([" << (*itLas).startX << "," << (*itLas).endX << "],[" << (*itLas).startY << "," << (*itLas).endY << "])\n";	// Save to matlab file
+	     
+	      if(lineLength > lineLengthDummy){
+	       bestline = (*itLas); // Copy the line 
+	       lineLengthDummy = lineLength; // set new biggest line
+	     }
+	   }
+	   
+	   
+	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
+	   printf("\tLength of longest line %f\n", lineLengthDummy);
+	   
+	   
+	   
+	   
+	   
+	   
+	  // feedback to SMRCL with vars
+	   sendMsg("<laser l1=\"0\"/>\n");
+	   matlabData << "axis([-5,5],[-5,5])\n hold off;\n ";
+	   matlabData.close(); // Close matlab file and save
+	  
+	 //}
+	 // if data is bad
+	 //else{
+	 //  sendWarning(msg, "No scandata available!");
+	 //}
        }   
+       
        
        else{
 	result = false;
