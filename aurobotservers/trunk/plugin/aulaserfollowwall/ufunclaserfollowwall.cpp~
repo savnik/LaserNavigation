@@ -183,11 +183,18 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   for(i = 0, dataI = 0; i< data->getRangeCnt(); i++){
 	    bool rangeValid;
 	    double r = data->getRangeMeter(i, &rangeValid);	// Get data from laserscanner and valid parameter
-	    // test if data is valid and in good range
+	    // test if data is valid and in good range 
 	    if(!rangeValid || r<minRange) continue;	// if true skip dataset
-	    
+
 	    // translate angle and dist to x,y coordinates
 	    double alpha = data->getAngleRad(i);	// Get this samples angel in rad
+	    
+	    // Consider only robots righthandside
+	    if(r*sin(alpha) > 0) continue;
+	    
+	    // Filter of readings in a angle less than -190 or larger than +190
+	    if(alpha < -190 || alpha > 190) continue;
+	    
 	    X[dataI] = r * cos(alpha);
 	    Y[dataI] = r * sin(alpha);
 	    printf("scatter(%f,%f, 'lineWidth', 2)\n", X[dataI],Y[dataI]);
@@ -206,10 +213,10 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	   // loop that put itLas in line 
 	   for(itLas = GFLL.begin(); itLas != GFLL.end();itLas++){
-	     //LEL_ARLine line = (*itLas).toARLine();
+	     
 	     lineLength = sqrt(pow((*itLas).endX - (*itLas).startX,2) + pow((*itLas).endY - (*itLas).startY,2));
-	      printf("line([%f,%f],[%f,%f]) \n", (*itLas).startX,(*itLas).startY,(*itLas).endX,(*itLas).endY);
-	      matlabData << "line([" << (*itLas).startX << "," << (*itLas).startY << "],[" << (*itLas).endX << "," << (*itLas).endY << "])\n";	// Save to matlab file
+	      printf("line([%f,%f],[%f,%f],'lineWidth', 2) \n", (*itLas).startX,(*itLas).startY,(*itLas).endX,(*itLas).endY);
+	      //matlabData << "line([" << (*itLas).startX << "," << (*itLas).endX << "],[" << (*itLas).startY << "," << (*itLas).endY << "],'lineWidth', 2)\n";	// Save to matlab file
 	     
 	      if(lineLength > lineLengthDummy){
 	       bestline = (*itLas); // Copy the line 
@@ -220,7 +227,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   
 	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
 	   printf("\tLength of longest line %f\n", lineLengthDummy);
-	   
+	   matlabData << "line([" << (*itLas).startX << "," << (*itLas).endX << "],[" << (*itLas).startY << "," << (*itLas).endY << "],'lineWidth', 2)\n";	// Save to matlab file
 	   
 	   
 	   
