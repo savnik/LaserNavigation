@@ -186,8 +186,8 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	    
 	    X[dataI] = r * cos(alpha);
 	    Y[dataI] = r * sin(alpha);
-	    printf("scatter(%f,%f, 'lineWidth', 2)\n", X[dataI],Y[dataI]);
-	    matlabData << "scatter(" << X[dataI] << "," << Y[dataI] << ", 'lineWidth',2)\n";	// Save to matlab file
+	    printf("scatter(%f,%f,2,[.5 0 0],'filled')\n", X[dataI],Y[dataI]);
+	    matlabData << "scatter(" << X[dataI] << "," << Y[dataI] << ",2,[.5 0 0],'filled')\n";	// Save to matlab file
 	    dataI++;
 	   }
 	   
@@ -214,19 +214,22 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   }
 	   
 	   // Calc the angle from line to x axsis in deg.
-	   double theta = atan(bestline.A);
+	   double theta = atan(-bestline.A);
+	   double distToLine = -1;
 	   
 	   printf("\tLength of longest line %f\n", lineLengthDummy);
 	   printf("Theta: %f\n", theta);
 	   matlabData << "line([" << bestline.startX << "," << bestline.endX << "],[" << bestline.startY << "," << bestline.endY << "],'lineWidth', 2)\n";	// Save to matlab file
+	   // Plot line with ABC
+	   matlabData << "sn = @(x) -" << bestline.A << "*x+(" << -bestline.C-distToLine << "); \n fplot(sn,[0,2])\n";	// Save to matlab file
 	   
 	   
-	   double distToLine = -1;
+	   
 	   
 	   
 	  // feedback to SMRCL with vars
 	   char reply[500];
-	   snprintf(reply, 500, "<laser l0=\"%f\" l1=\"%f\" l2=\"%f\" l3=\"%f\"/>\n",bestline.startX,bestline.startY-distToLine,theta, lineLengthDummy);
+	   snprintf(reply, 500, "<laser l0=\"%f\" l1=\"%f\" l2=\"%f\" l3=\"%f\"/>\n",bestline.startX,-bestline.startY-distToLine,theta, lineLengthDummy);
 	   sendMsg(msg, reply);
 	   
 	   matlabData << "axis([-5,5],[-5,5])\n hold off;\n ";
