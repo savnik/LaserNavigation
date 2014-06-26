@@ -224,17 +224,22 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	     }
 	   }
 	   
+	   // Calc the angle from line to x axsis in deg.
+	   double theta = atan(bestline.A)*(180/M_PI);
 	   
-	   //list<LEL_ARLine>::iterator itWrld; // creates a list of type LEL_ARLine
 	   printf("\tLength of longest line %f\n", lineLengthDummy);
+	   printf("Theta: %f\n", theta);
 	   matlabData << "line([" << bestline.startX << "," << bestline.endX << "],[" << bestline.startY << "," << bestline.endY << "],'lineWidth', 2)\n";	// Save to matlab file
 	   
 	   
-	   
+	   double distToLine = -1;
 	   
 	   
 	  // feedback to SMRCL with vars
-	   sendMsg("<laser l1=\"0\"/>\n");
+	   char reply[500];
+	   snprintf(reply, 500, "<laser l0=\"%f\" l1=\"%f\" l2=\"%f\" l3=\"%f\"/>\n",bestline.startX,bestline.startY-distToLine,theta, lineLengthDummy);
+	   sendMsg(msg, reply);
+	   
 	   matlabData << "axis([-5,5],[-5,5])\n hold off;\n ";
 	   matlabData.close(); // Close matlab file and save
 	  
