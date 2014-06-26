@@ -1,0 +1,2 @@
+laser "laserstop mrc"
+drive @v0.2 :($l1 > 0)

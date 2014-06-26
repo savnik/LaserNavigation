@@ -1,0 +1,5 @@
+clear;
+M = dlmread('/misc/shome/ex25/live/log','\n')
+
+
+

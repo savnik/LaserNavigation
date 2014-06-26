@@ -1,0 +1,7 @@
+laser "laserfollowwall start"
+log "$l0" "$l1" "$l2" "$l3" "$odox" "$odoy"
+x = $l0
+y = $l1
+theta = $l2
+lineLength = $l3
+drive x y theta : ($drivendist > 5)
