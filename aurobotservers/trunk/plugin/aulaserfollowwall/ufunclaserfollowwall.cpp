@@ -214,7 +214,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	   }
 	   
 	   // Calc the angle from line to x axsis in deg.
-	   double theta = atan(bestline.A)*(180/M_PI);
+	   double theta = atan(bestline.A);
 	   
 	   printf("\tLength of longest line %f\n", lineLengthDummy);
 	   printf("Theta: %f\n", theta);

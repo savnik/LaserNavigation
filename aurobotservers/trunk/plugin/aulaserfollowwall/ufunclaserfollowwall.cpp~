@@ -85,11 +85,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
      ask4help = msg->tag.getAttValue("help", val, MVL);
      if (not ask4help)
      { // get all other parameters
-       msg->tag.getAttValueInt("device", &camDevice);
-       //gotImg = msg->tag.getAttValueInt("img", &imgPoolNum);
        msg->tag.getAttValueBool("debug", &debug, true);
-       //msg->tag.getAttValueBool("smrcl", &smrcl, true);
-       //msg->tag.getAttValueBool("blue", &gotBlue, true);
      }
      // ask4help = false, if no 'help' option were available.
      if (ask4help)
@@ -151,7 +147,7 @@ class UFuncLaserFollowWall : public UFuncLaserBase
        else if(msg->tag.getAttValue("start", NULL, 0))
        {
 	
-	 //ULaserData * scanData;
+	 
 	 
 	 // File with matlab plots
 	 ofstream matlabData;
@@ -165,13 +161,6 @@ class UFuncLaserFollowWall : public UFuncLaserBase
 	 // if data is good find wall 
 	 if (data->isValid())
 	 {
-	   //ULaserDevice * device = getDevice(msg, data); // laser device
-	   
-	   //lasPose = device->getDevicePose(); // Get position data 
-	   
-	   // Get position at laser scan time
-	   //Upose uNewPose = poseHist->getPoseAtTime(data->getScanTime());
-	   //UTime scanTime = data->getScanTime();
 	   
 	   // For loop that makes a list of x,y points
 	   // Filter out bad readings
